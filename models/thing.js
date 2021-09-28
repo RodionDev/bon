@@ -8,7 +8,7 @@ const schema = new mongoose.Schema({
   },
   alternateName: {
     type: String,
-    maxlength: [128, 'A 50 character or less alias for the item.']
+    maxlength: [128, 'A 128 character or less alias for the item.']
   },
   description: {
     type: String,
