@@ -2,11 +2,21 @@
 const mongoose = require('mongoose');
 var env = process.env.NODE_ENV || 'development';
 var config = require('./settings')[env];
-mongoose.connect(config.db, {
-  useNewUrlParser: true
-});
-const db = mongoose.connection;
+let options = {
+  useNewUrlParser: true,
+  server: {
+    socketOptions: {
+      keepAlive: 1,
+      connectTimeoutMS: 30000
+    }
+  },
+  replset: {
+    socketOptions: {
+      keepAlive: 1,
+      connectTimeoutMS: 30000
+    }
+  }
+};
+mongoose.connect(config.db, options);
+let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log(`Connected to the things database`);
-});
