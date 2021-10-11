@@ -1,8 +1,7 @@
-'use strict';
-const app = require('./app')
-var env = process.env.NODE_ENV || 'development';
-var config = require('../configs/settings')[env];
-const port = parseInt(process.env.PORT, 10) || config.port;
+"use strict";
+require("../configs/database");
+const app = require("./app")
+const port = parseInt(process.env.PORT, 10) || 3000;
 const server = app.listen(port, () => {
   console.log(`App is running at: http:
 });

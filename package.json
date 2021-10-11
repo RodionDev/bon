@@ -1,7 +1,7 @@
 {
   "name": "bones",
   "version": "0.0.1",
-  "description": "cruddy api for Schema.org models done the elioWay.",
+  "description": "Simple cruddy api for Schema.org models done the elioWay.",
   "main": "server.js",
   "scripts": {
     "test": "mocha",
@@ -26,9 +26,11 @@
     "mongoose": "^5.2.4"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-http": "^2.0.1",
-    "mocha": "^2.4.5",
-    "nodemon": "^1.18.3"
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.3",
+    "sinon": "^6.1.4",
+    "sinon-mongoose": "^2.2.1"
   }
 }
