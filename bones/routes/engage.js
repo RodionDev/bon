@@ -2,7 +2,7 @@
 const express = require("express");
 const Thing = require("../models/thing");
 const router = express.Router();
-router.route("/thing")
+router.route("/things")
   .post((req, res) => {
     const thing = new Thing({
       name: req.body.name,

@@ -1,5 +1,5 @@
 "use strict";
-require("../configs/database");
+require("./database");
 const app = require("./app")
 const port = parseInt(process.env.PORT, 10) || 3000;
 const server = app.listen(port, () => {

@@ -22,7 +22,7 @@ describe("Thing Routes", function() {
   describe("/GET thing", function() {
     it("should GET no Things when there are no Things", function(done) {
       chai.request(app)
-        .get("/api/thing")
+        .get("/engage/things")
         .end(function(err, res) {
           res.should.have.status(200);
           res.body.should.be.a("array");
