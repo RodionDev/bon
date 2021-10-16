@@ -1,8 +1,8 @@
 let mongoose = require("mongoose");
-let Thing = require("../bones/models/thing");
+let Thing = require("../../bones/models/thing");
 let chai = require("chai");
 let chaiHttp = require("chai-http");
-let app = require("../bones/app");
+let app = require("../../bones/app");
 let should = chai.should();
 chai.use(chaiHttp);
 describe("Thing Routes", function() {
