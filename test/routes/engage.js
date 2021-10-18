@@ -8,6 +8,8 @@ chai.use(chaiHttp);
 describe("Thing Routes", function() {
   before(function(done) {
     mongoose.connect("mongodb:
+      useNewUrlParser: true
+    });
     const db = mongoose.connection;
     db.on("error", console.error.bind(console, "connection error"));
     db.once("open", function() {
@@ -19,7 +21,17 @@ describe("Thing Routes", function() {
       done();
     });
   });
-  describe("/GET thing", function() {
+  describe("/GET nofuckingway/thing", function() {
+    it("should GET no Things when not engaged", function(done) {
+      chai.request(app)
+        .get("/nofuckingway/thing")
+        .end(function(err, res) {
+          res.should.have.status(404);
+          done();
+        });
+    });
+  });
+  describe("/GET engage/thing", function() {
     it("should GET no Things when there are no Things", function(done) {
       chai.request(app)
         .get("/engage/things")
