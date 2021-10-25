@@ -1,38 +1,41 @@
 "use strict"
 const express = require("express");
-const Thing = require("../models/thing");
 const router = express.Router();
 router.route("/:thing")
   .post((req, res) => {
-    const thing = new Thing({
-      name: req.body.name,
-      alternateName: req.body.alternateName,
-      description: req.body.description,
-      disambiguatingDescription: req.body.disambiguatingDescription,
-      engaged: req.body.engaged
-    });
-    thing.save((err) => {
-      if (err) {
+    var Thing = require(`../models/${req.params.thing}`);
+    const thing = new Thing(req.body);
+    Thing.create(req.body)
+      .then(function(thing) {
+        return res.json({
+          _id: thing._id,
+          message: `${thing.name} created`
+        });
+      })
+      .catch(function(err) {
+        if (err.code == 11000) {
+          return res.json({
+            message: "A record with this alternative name already exists."
+          });
+        }
         return res.send(err);
-      }
-      return res.json({
-        message: "New thing created!"
       });
-    });
   })
   .get((req, res) => {
+    var Thing = require(`../models/${req.params.thing}`);
     Thing.find({}).sort({
         created: -1
       })
-      .exec((err, task) => {
+      .exec((err, thing) => {
         if (err) {
           return res.send(err);
         }
-        return res.json(task);
+        return res.json(thing);
       });
   })
 router.route("/:thing/:id")
   .get((req, res) => {
+    var Thing = require(`../models/${req.params.thing}`);
     Thing.findById(req.params.id, (err, task) => {
       if (err) {
         return res.send(err);
@@ -41,13 +44,8 @@ router.route("/:thing/:id")
     });
   })
   .put((req, res) => {
-    Thing.findByIdAndUpdate(req.params.id, {
-      name: req.body.name,
-      alternateName: req.body.name,
-      description: req.body.description,
-      disambiguatingDescription: req.body.disambiguatingDescription,
-      engaged: req.body.engaged
-    }, (err) => {
+    var Thing = require(`../models/${req.params.thing}`);
+    Thing.findByIdAndUpdate(req.params.id, req.body, (err) => {
       if (err) {
         return res.send(err);
       }
@@ -57,6 +55,7 @@ router.route("/:thing/:id")
     });
   })
   .delete((req, res) => {
+    var Thing = require(`../models/${req.params.thing}`);
     Thing.remove({
       _id: req.params.id
     }, (err) => {
