@@ -1,6 +1,6 @@
 "use strict";
 const mongoose = require("mongoose");
-mongoose.plugin(require('./adon'));
+mongoose.plugin(require("./adon"));
 const schema = new mongoose.Schema({
   name: {
     type: String,
