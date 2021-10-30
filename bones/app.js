@@ -6,6 +6,5 @@ app.use(bodyParser.urlencoded({
     extended: true
   }))
   .use(bodyParser.json());
-var routes = require("./routes/engage"); 
-routes(app); 
+app.use("/engage", require("./routes/engage"));
 module.exports = app;
