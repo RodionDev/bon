@@ -34,6 +34,7 @@
     "mocha": "^5.2.0",
     "nodemon": "^1.18.3",
     "sinon": "^6.1.4",
-    "sinon-mongoose": "^2.2.1"
+    "sinon-mongoose": "^2.2.1",
+    "sinon-as-promised": "^4.0.3"
   }
 }

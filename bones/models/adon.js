@@ -1,5 +1,5 @@
-const slug = require('mollusc');
-const uniquefy = require('../../lib/uniquefy');
+const slug = require("mollusc");
+const uniquefy = require("../../lib/uniquefy");
 module.exports = exports = function adon(schema, options) {
   schema.add({
     slug: {
@@ -12,12 +12,18 @@ module.exports = exports = function adon(schema, options) {
       maxlength: [255, "A 255 character or less unique set of keywords for the item."]
     },
   });
-  schema.pre('save', function(next) {
-    this.slug = slug(this.alternateName);
+  schema.pre("save", function(next) {
+    this.slug = slug(this.disambiguatingDescription);
     this.seoKeywords = uniquefy.uniquefy(this.slug);
     next();
   });
   if (options && options.index) {
-    schema.path('slug').index(options.index);
+    schema.path("slug").index(options.index);
   }
+  schema.static('findByDisambiguating', function(disambiguatingDescription, callback) {
+    return this.findOne({
+        slug: slug(disambiguatingDescription)
+      })
+      .exec(callback);
+  });
 }

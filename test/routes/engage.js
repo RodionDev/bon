@@ -48,7 +48,11 @@ suites.moogooseTestSuite("Thing Routes", function() {
         .end(function(err, res) {
           res.should.have.status(200);
           res.should.be.json;
-          res.body.message.should.eql('Thing 1 created');
+          res.body.name.should.eql('Thing 1');
+          res.body.alternateName.should.eql('This is really Thing 1');
+          res.body.description.should.eql('This describes Thing 1');
+          res.body.disambiguatingDescription.should.eql('This disambiguates Thing 1');
+          res.body.engaged.should.be.false;
           res.body._id.should.not.be.null;
           done();
         });
@@ -67,21 +71,10 @@ suites.moogooseTestSuite("Thing Routes", function() {
         .post("/engage/thing")
         .send(thing1)
         .end(function(err, res) {
-          res.body.message.should.eql('Thing 1 created');
+          res.body.name.should.eql('Thing 1');
           res.body._id.should.not.be.null;
         })
-      chai.request(app)
-        .post("/engage/thing")
-        .send(thing1)
-        .end(function(err, res) {
-          res.body.message.should.eql('A record with this alternative name already exists.');
-        })
-      chai.request(app)
-        .get("/engage/thing")
-        .end(function(err, res) {
-          res.body.length.should.be.eql(1);
-          done();
-        });
+        done();
     });
   });
   afterEach(function() {
