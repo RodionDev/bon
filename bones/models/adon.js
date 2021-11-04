@@ -11,6 +11,10 @@ module.exports = exports = function adon(schema, options) {
       type: String,
       maxlength: [255, "A 255 character or less unique set of keywords for the item."]
     },
+    engaged: {
+      type: Boolean,
+      default: false
+    },
   });
   schema.pre("save", function(next) {
     this.slug = slug(this.disambiguatingDescription);
@@ -20,6 +24,16 @@ module.exports = exports = function adon(schema, options) {
   if (options && options.index) {
     schema.path("slug").index(options.index);
   }
+  schema.method('engage', function(callback) {
+    return this.update({
+      engaged: true
+    }).exec(callback)
+  })
+  schema.method('disengage', function(callback) {
+    return this.update({
+      engaged: false
+    }).exec(callback);
+  });
   schema.static('findByDisambiguating', function(disambiguatingDescription, callback) {
     return this.findOne({
         slug: slug(disambiguatingDescription)

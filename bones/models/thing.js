@@ -8,33 +8,21 @@ const schema = new mongoose.Schema({
   },
   alternateName: {
     type: String,
-    maxlength: [255, "A 255 character or less alias for the item."]
+    maxlength: [255, "A 255 character or less alias for the item."],
+    required: [false, "A description of the item which not required."]
   },
   disambiguatingDescription: {
     type: String,
-    maxlength: [255, "A 255 character or less alias for the item."]
+    maxlength: [255, "A 255 character or less alias for the item."],
+    required: [true, "The disambiguating description is required."]
   },
   description: {
     type: String,
     required: [false, "A description of the item which not required."]
   },
-  engaged: {
-    type: Boolean,
-    default: false
-  },
   created: {
     type: Date,
     default: Date.now
   }
-});
-schema.method('engage', function(callback) {
-  return this.update({
-    engaged: true
-  }).exec(callback)
-})
-schema.method('disengage', function(callback) {
-  return this.update({
-    engaged: false
-  }).exec(callback);
 });
 module.exports = mongoose.model("thing", schema);
