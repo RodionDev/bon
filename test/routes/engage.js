@@ -33,6 +33,28 @@ suites.moogooseTestSuite("Thing Routes", function() {
         });
     });
   });
+  describe("/GET engage/:thing", function() {
+    it("should GET many Things when there are many Things", function(done) {
+      var many_things = [{
+          name: 'should GET many Things',
+          disambiguatingDescription: 'should GET many Things',
+        },
+        {
+          name: 'when there are many Things',
+          disambiguatingDescription: 'when there are many Things',
+        }
+      ]
+      Thing.create(many_things);
+      chai.request(app)
+        .get("/engage/thing/")
+        .end(function(err, res) {
+          res.should.have.status(200);
+          res.body.should.be.a("array");
+          res.body.length.should.be.eql(2);
+          done();
+        });
+    });
+  });
   describe("/POST engage/:thing", function() {
     it("should ADD a Thing", function(done) {
       var mock_thing = {
