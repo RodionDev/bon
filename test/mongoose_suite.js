@@ -1,16 +1,16 @@
-let mongoose = require("mongoose");
+let mongoose = require('mongoose');
 exports.moogooseTestSuite = function(name, tests) {
   describe(name, function() {
     before(function(done) {
-      mongoose.connect("mongodb:
+      mongoose.connect('mongodb:
         useNewUrlParser: true
       });
       const db = mongoose.connection;
-      db.on("error", console.error.bind(console, "connection error"));
-      db.once("open", function() {
+      db.on('error', console.error.bind(console, 'connection error'));
+      db.once('open', function() {
         done();
       });
-      mongoose.plugin(require("../bones/models/adon"));
+      mongoose.plugin(require('../bones/models/adon'));
     });
     tests();
     after(function(done) {
