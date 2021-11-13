@@ -35,7 +35,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
   })
   describe('/GET engage/:thing', function () {
     it('should GET many Things when there are many Things', function (done) {
-      var many_things = [{
+      var manyThings = [{
         name: 'should GET many Things',
         disambiguatingDescription: 'should GET many Things'
       },
@@ -44,7 +44,7 @@ suites.moogooseTestSuite('Thing Routes', function () {
         disambiguatingDescription: 'when there are many Things'
       }
       ]
-      Thing.create(many_things)
+      Thing.create(manyThings)
       chai.request(app)
         .get('/engage/thing/')
         .end(function (err, res) {
