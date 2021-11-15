@@ -7,6 +7,18 @@
     "test": "mocha --recursive",
     "devstart": "nodemon ./bones/server.js"
   },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/elioschemers/bones.git"
