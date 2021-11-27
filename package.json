@@ -4,7 +4,7 @@
   "description": "Simple cruddy api for Schema.org models done the elioWay.",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --recursive",
+    "test": "nyc mocha --recursive",
     "devstart": "nodemon ./bones/server.js"
   },
   "standard": {
