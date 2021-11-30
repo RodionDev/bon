@@ -1,6 +1,6 @@
 {
   "name": "bones",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Simple cruddy api for Schema.org models done the elioWay.",
   "main": "server.js",
   "scripts": {
@@ -24,7 +24,13 @@
     "url": "git+https://gitlab.com/elioschemers/bones.git"
   },
   "keywords": [
-    "api"
+    "REST",
+    "SEO",
+    "schema",
+    "express",
+    "mongoose",
+    "javascript",
+    "nodejs"
   ],
   "author": "Tim Bushell",
   "license": "MIT",
@@ -37,7 +43,8 @@
     "express": "^4.16.3",
     "keyword-extractor": "0.0.15",
     "mollusc": "^2.0.0",
-    "mongoose": "^5.2.4"
+    "mongoose": "^5.2.4",
+    "nyc": "^12.0.2"
   },
   "devDependencies": {
     "chai": "^4.1.2",
