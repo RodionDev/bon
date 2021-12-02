@@ -1,7 +1,7 @@
 {
   "name": "bones",
   "version": "0.1.0",
-  "description": "Simple cruddy api for Schema.org models done the elioWay.",
+  "description": "Simple, cruddy Rest API for Schema.org models done the elioWay.",
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha --recursive",
