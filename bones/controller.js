@@ -8,7 +8,7 @@ exports.list_all_things = function (req, res) {
 }
 exports.create_a_thing = function (req, res) {
   var Thing = require(`./models/${req.params.thing}`)
-  var newThing = new Thing(req.body)
+  let newThing = new Thing(req.body)
   newThing.save(function (err, thing) {
     if (err) {
       if (err.code === 11000) {
