@@ -5,7 +5,7 @@ let mongoose = require('mongoose')
 let mocks = require('./mocks/thing')
 require('sinon-mongoose')
 mongoose.plugin(require('../../bones/models/adon'))
-var Thing = require('../../bones/models/thing')
+let Thing = require('@elioway/spider/schemas/2018.6.28/models/Thing')
 describe('Model adon methods', function () {
   it('findsByDisambiguating', function (done) {
     var ThingMock = sinon.mock(Thing)

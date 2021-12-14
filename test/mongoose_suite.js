@@ -10,7 +10,6 @@ exports.moogooseTestSuite = function (name, tests) {
       db.once('open', function () {
         done()
       })
-      mongoose.plugin(require('../bones/models/adon'))
     })
     tests()
     after(function (done) {
