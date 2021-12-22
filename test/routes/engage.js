@@ -30,6 +30,10 @@ suites.moogooseTestSuite('Thing Routes', function () {
         .end(function (err, res) {
           should.not.exist(err)
           res.should.have.status(200)
+          let b = []
+          res.body.should.equal(b)
+          b.should.be.a('array')
+          b.length.should.be.eql(0)
           res.body.should.be.a('array')
           res.body.length.should.be.eql(0)
           done()
