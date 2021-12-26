@@ -7,18 +7,6 @@
     "test": "nyc mocha --recursive",
     "devstart": "nodemon ./bones/server.js"
   },
-  "standard": {
-    "globals": [
-      "describe",
-      "context",
-      "before",
-      "beforeEach",
-      "after",
-      "afterEach",
-      "it",
-      "expect"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "git+https://gitlab.com/elioschemers/bones.git"
@@ -39,11 +27,9 @@
   },
   "homepage": "https://gitlab.com/elioschemers/bones/blob/master/README.md",
   "dependencies": {
-    "@elioway/spider": "^1.0.2",
+    "@elioway/spider": "^1.0.9",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "keyword-extractor": "0.0.15",
-    "mollusc": "^2.0.0",
     "mongoose": "^5.2.4",
     "nyc": "^12.0.2"
   },
@@ -55,5 +41,17 @@
     "sinon": "^6.1.4",
     "sinon-mongoose": "^2.2.1",
     "standard": "*"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
   }
 }
