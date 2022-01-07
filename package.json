@@ -1,7 +1,7 @@
 {
   "name": "@elioway/bones",
   "title": "bones",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple, cruddy Rest API for Schema.org models done the elioWay.",
   "main": "server.js",
   "scripts": {
