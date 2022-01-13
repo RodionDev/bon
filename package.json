@@ -2,7 +2,7 @@
   "name": "@elioway/bones",
   "title": "bones",
   "version": "1.0.1",
-  "description": "Simple, cruddy REST API for Schema.org models done the elioWay.",
+  "description": "REST API for Schema.org mongoose schema spidered the elioWay.",
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha --recursive",
