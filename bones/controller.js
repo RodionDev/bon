@@ -1,14 +1,14 @@
 'use strict'
-var ver = '2018.6.28'
+var schemaVer = '2018.6.28'
 exports.list_all_things = function (req, res) {
-  var Thing = require(`@elioway/spider/schemas/` + ver + `/models/${req.params.thing}`)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   Thing.find({}, function (err, thing) {
     if (err) { res.send(err) }
     res.json(thing)
   })
 }
 exports.create_a_thing = function (req, res) {
-  var Thing = require(`@elioway/spider/schemas/` + ver + `/models/${req.params.thing}`)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   let newThing = new Thing(req.body)
   newThing.save(function (err, thing) {
     if (err) {
@@ -25,14 +25,14 @@ exports.create_a_thing = function (req, res) {
   })
 }
 exports.read_a_thing = function (req, res) {
-  var Thing = require(`@elioway/spider/schemas/` + ver + `/models/${req.params.thing}`)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   Thing.findById(req.params.thingId, function (err, thing) {
     if (err) { res.send(err) }
     res.json(thing)
   })
 }
 exports.update_a_thing = function (req, res) {
-  var Thing = require(`@elioway/spider/schemas/` + ver + `/models/${req.params.thing}`)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   Thing.findOneAndUpdate({
     _id: req.params.thingId
   }, req.body, {
@@ -43,7 +43,7 @@ exports.update_a_thing = function (req, res) {
   })
 }
 exports.delete_a_thing = function (req, res) {
-  var Thing = require(`@elioway/spider/schemas/` + ver + `/models/${req.params.thing}`)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
   Thing.remove({
     _id: req.params.thingId
   }, function (err, thing) {
