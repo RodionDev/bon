@@ -9,5 +9,5 @@ module.exports = function (app) {
     .put(controller.update_a_thing)
     .delete(controller.delete_a_thing)
   app.route('/schema/:thing')
-  .post(controller.schema)
+  .get(controller.schema)
 }
