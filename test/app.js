@@ -1,4 +1,4 @@
-let Thing = require('@elioway/spider/schemas/2018.6.28/models/Thing')
+let Thing = require('@elioway/spider/schemas/ThingOnAString/models/Thing')
 let chai = require('chai')
 let chaiHttp = require('chai-http')
 let app = require('../bones/app')
@@ -86,7 +86,7 @@ suites.moogooseTestSuite('bones.app', function() {
               res.body.description.should.eql(mockThing.description)
               res.body.slug.should.eql('should-add-a-thing')
               res.body.seoKeywords.should.eql('add thing')
-              res.body.engaged.should.be.false
+              res.body.engaged.should.be.eql('false')
               res.body._id.should.not.be.null
               done()
             })
@@ -130,7 +130,7 @@ suites.moogooseTestSuite('bones.app', function() {
               res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
               res.body.slug.should.eql('should-get-a-thing')
               res.body.seoKeywords.should.eql('thing')
-              res.body.engaged.should.be.false
+              res.body.engaged.should.be.eql('false')
               res.body._id.should.not.be.null
               done()
             })
