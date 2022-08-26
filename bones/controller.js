@@ -1,5 +1,5 @@
 'use strict'
-var schemaVer = 'ThingOnAString'
+var schemaVer = 'ThingOnAShoeString'
 var makeSafe = function(res) {
   res.setHeader('Access-Control-Allow-Origin', 'http:
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
