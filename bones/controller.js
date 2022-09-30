@@ -5,29 +5,71 @@ var makeSafe = function(res) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   return res
 }
-exports.schema = function(req, res) {
-    res = makeSafe(res)
-    res.header('Access-Control-Allow-Methods', 'GET')
-    var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-    res.json(Thing.schema.paths)
+var schemaRoots = function(req) {
+  let schemaThing = req.params.thing
+  if (schemaThing.endsWith("s")) {
+    schemaThing = schemaThing.slice(0, -1)
   }
+  return schemaThing.charAt(0).toUpperCase() + schemaThing.slice(1)
+}
+var emberRoutify = function(data) {
+  console.log(data)
+  let newData = {}
+  for (var key in data.toJSON()) {
+    if (
+          key != "__v"
+      ) {
+      newData[key] = data[key]
+    }
+  }
+  return newData
+}
+var emberRoutifyList = function(data) {
+  let list = []
+  for (let record in data) {
+    list.push(
+      emberRoutify(data[record])
+    )
+  }
+  return list
+}
+exports.schema = function(req, res) {
+  res = makeSafe(res)
+  res.header('Access-Control-Allow-Methods', 'GET')
+  schemaThing = schemaRoots(schemaThing)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${schemaThing}`)
+  res.send({
+    jsonapi: {
+      version: "1.0",
+      server: "bones",
+    },
+    meta: Thing.schema.paths,
+  })
+  console.log('request: schema')
+}
 exports.list_all_things = function(req, res) {
   res = makeSafe(res)
   res.header('Access-Control-Allow-Methods', 'GET')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  Thing.find({}, function(err, thing) {
+  var schemaThing = schemaRoots(req)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${schemaThing}`)
+  Thing.find({}, function(err, things) {
     if (err) {
-      res.send({error:err})
-		}
-		else {
-			res.send({things:thing})
+      res.send({
+        error: err
+      })
+    } else {
+      res.send({
+        data: emberRoutifyList(things)
+      })
     }
   })
+  console.log(`request: list_all_things type ${schemaThing}`)
 }
 exports.create_a_thing = function(req, res) {
   res = makeSafe(res)
   res.header('Access-Control-Allow-Methods', 'POST')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
+  var schemaThing = schemaRoots(req)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${schemaThing}`)
   let newThing = new Thing(req.body)
   newThing.save(function(err, thing) {
     if (err) {
@@ -37,56 +79,74 @@ exports.create_a_thing = function(req, res) {
         })
       } else {
         console.log(err)
-        res.send({error:err})
+        res.send({
+          error: err
+        })
       }
-    }
-		else {
-			res.send({thing:thing})
+    } else {
+      res.send({
+        data: thing
+      })
     }
   })
+  console.log('request: create_a_thing')
 }
 exports.read_a_thing = function(req, res) {
   res = makeSafe(res)
   res.header('Access-Control-Allow-Methods', 'GET')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
+  var schemaThing = schemaRoots(req)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${schemaThing}`)
   Thing.findById(req.params.thingId, function(err, thing) {
     if (err) {
-      res.send({error:err})
-    }
-		else {
-			res.send({thing:thing})
+      res.send({
+        error: err
+      })
+    } else {
+      res.send({
+        data: thing
+      })
     }
   })
+  console.log('request: read_a_thing')
 }
 exports.update_a_thing = function(req, res) {
   res = makeSafe(res)
   res.header('Access-Control-Allow-Methods', 'PUT')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
+  var schemaThing = schemaRoots(req)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${schemaThing}`)
   Thing.findOneAndUpdate({
     _id: req.params.thingId
   }, req.body, {
     new: true
   }, function(err, thing) {
     if (err) {
-      res.send({error:err})
-    }
-		else {
-			res.send({thing:thing})
+      res.send({
+        error: err
+      })
+    } else {
+      res.send({
+        data: thing
+      })
     }
   })
+  console.log('request: update_a_thing')
 }
 exports.delete_a_thing = function(req, res) {
   res = makeSafe(res)
   res.header('Access-Control-Allow-Methods', 'DELETE')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
+  var schemaThing = schemaRoots(req)
+  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${schemaThing}`)
   Thing.remove({
     _id: req.params.thingId
   }, function(err, thing) {
     if (err) {
-      res.send({error:err})
-    }
-		else {
-			res.send({thing:'Thing successfully deleted'})
+      res.send({
+        error: err
+      })
+    } else {
+      res.send({
+        data: 'Thing successfully deleted'
+      })
     }
   })
 }
