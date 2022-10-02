@@ -12,23 +12,22 @@ var schemaRoots = function(req) {
   }
   return schemaThing.charAt(0).toUpperCase() + schemaThing.slice(1)
 }
-var emberRoutify = function(data) {
-  console.log(data)
+var emberRoutify = function(thing) {
   let newData = {}
-  for (var key in data.toJSON()) {
+  for (var key in thing.toJSON()) {
     if (
           key != "__v"
       ) {
-      newData[key] = data[key]
+      newData[key] = thing[key]
     }
   }
   return newData
 }
-var emberRoutifyList = function(data) {
+var emberRoutifyList = function(thing) {
   let list = []
-  for (let record in data) {
+  for (let record in thing) {
     list.push(
-      emberRoutify(data[record])
+      emberRoutify(thing[record])
     )
   }
   return list
@@ -59,7 +58,7 @@ exports.list_all_things = function(req, res) {
       })
     } else {
       res.send({
-        data: emberRoutifyList(things)
+        thing: emberRoutifyList(things)
       })
     }
   })
@@ -85,7 +84,7 @@ exports.create_a_thing = function(req, res) {
       }
     } else {
       res.send({
-        data: thing
+        thing: thing
       })
     }
   })
@@ -103,7 +102,7 @@ exports.read_a_thing = function(req, res) {
       })
     } else {
       res.send({
-        data: thing
+        thing: thing
       })
     }
   })
@@ -125,7 +124,7 @@ exports.update_a_thing = function(req, res) {
       })
     } else {
       res.send({
-        data: thing
+        thing: thing
       })
     }
   })
@@ -145,7 +144,7 @@ exports.delete_a_thing = function(req, res) {
       })
     } else {
       res.send({
-        data: 'Thing successfully deleted'
+        thing: 'Thing successfully deleted'
       })
     }
   })
