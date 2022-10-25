@@ -1,9 +1,23 @@
-let Thing = require('@elioway/spider/schemas/ThingOnAShoeString/models/Thing')
+let Thing = require('@elioway/spider/schemas/TestVersion/models/Thing')
 let chai = require('chai')
 let chaiHttp = require('chai-http')
 let app = require('../bones/app')
-let suites = require('./mongoose_suite')
+let suites = require('./utils/mongoose_suite')
 let should = chai.should()
+const mockRequire = require("mock-require");
+const importFresh = require("import-fresh");
+process.env.NODE_CONFIG = JSON.stringify({
+  BONES: {
+    endoskeleton: "TestVersion",
+    exoskeleton: "jsonapi",
+  }
+});
+const testConfig = importFresh("config");
+expect(
+  testConfig.get("BONES.endoskeleton"),
+  "config value not set to 1"
+).to.equal("TestVersion");
+mockRequire("config", testConfig);
 chai.use(chaiHttp)
 suites.moogooseTestSuite('bones.app', function () {
   describe('bones.routes', function () {
