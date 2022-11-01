@@ -5,12 +5,14 @@ var exoskeletons = {
   'boney': {
     'outOf': boney.outOf,
     'listOutOf': boney.listOutOf,
-    'metaOf': boney.metaOf
+    'metaOf': boney.metaOf,
+    'deleteOf': boney.deleteOf
   },
   'jsonApiV1.0': {
     'outOf': jsonApi.outOf,
     'listOutOf': jsonApi.listOutOf,
-    'metaOf': jsonApi.metaOf
+    'metaOf': jsonApi.metaOf,
+    'deleteOf': jsonApi.deleteOf
   }
 }
-module.exports = exoskeletons[process.env.EXOSKELETON]
+module.exports = exoskeletons[process.env['EXOSKELETON']]

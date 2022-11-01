@@ -1,6 +1,7 @@
 'use strict'
+require('dotenv').config()
 const exoSkeleton = require('./skeleton')
-const endoSkeleton = `@elioway/spider/endoskeletons/` + process.env.ENDOSKELETON + `/models`
+const endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
 var makeSafe = function(res, method) {
   res.setHeader('Access-Control-Allow-Origin', 'http:
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
@@ -104,7 +105,7 @@ exports.delete_a_thing = function(req, res) {
         errors: [err]
       })
     } else {
-      res.send(exoSkeleton.metaOf(Thing))
+      res.send(exoSkeleton.deleteOf(Thing))
     }
   })
 }

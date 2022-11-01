@@ -32,12 +32,12 @@ suites.moogooseTestSuite('bones.default.app', function() {
             .end(function(err, res) {
               should.not.exist(err)
               res.should.have.status(200)
-              res.body.thing.should.be.an('array')
+              res.body.should.be.an('array')
               let b = []
               b.should.be.an('array')
               b.length.should.be.eql(0)
-              res.body.thing.should.deep.equal(b)
-              res.body.thing.length.should.be.eql(0)
+              res.body.should.deep.equal(b)
+              res.body.length.should.be.eql(0)
               done()
             })
         })
@@ -59,8 +59,8 @@ suites.moogooseTestSuite('bones.default.app', function() {
             .end(function(err, res) {
               should.not.exist(err)
               res.should.have.status(200)
-              res.body.thing.should.be.a('array')
-              res.body.thing.length.should.be.eql(2)
+              res.body.should.be.a('array')
+              res.body.length.should.be.eql(2)
               done()
             })
         })
@@ -80,34 +80,14 @@ suites.moogooseTestSuite('bones.default.app', function() {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json
-              res.body.thing.name.should.eql(mockThing.name)
-              res.body.thing.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
-              res.body.thing.alternateName.should.eql(mockThing.alternateName)
-              res.body.thing.description.should.eql(mockThing.description)
-              res.body.thing.slug.should.eql('should-add-a-thing')
-              res.body.thing.seoKeywords.should.eql('add thing')
-              res.body.thing.engaged.should.be.eql('false')
-              res.body.thing._id.should.not.be.null
-              done()
-            })
-        })
-      })
-      describe('/POST engage/:thing', function() {
-        it('should ADD a Thing once', function(done) {
-          var mockThing = {
-            name: 'should ADD a Thing once',
-            disambiguatingDescription: 'should ADD a Thing once'
-          }
-          var thing = new Thing(mockThing)
-          thing.save()
-          chai.request(app)
-            .post('/engage/Thing')
-            .send(mockThing)
-            .end(function(err, res) {
-              should.not.exist(err)
-              res.should.have.status(200)
-              res.should.be.json
-              res.body.thing.should.eql('A record with this alternative name already exists.')
+              res.body.name.should.eql(mockThing.name)
+              res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
+              res.body.alternateName.should.eql(mockThing.alternateName)
+              res.body.description.should.eql(mockThing.description)
+              res.body.slug.should.eql('should-add-a-thing')
+              res.body.seoKeywords.should.eql('add thing')
+              res.body.engaged.should.be.eql('false')
+              res.body._id.should.not.be.null
               done()
             })
         })
@@ -126,12 +106,12 @@ suites.moogooseTestSuite('bones.default.app', function() {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json
-              res.body.thing.name.should.eql(mockThing.name)
-              res.body.thing.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
-              res.body.thing.slug.should.eql('should-get-a-thing')
-              res.body.thing.seoKeywords.should.eql('thing')
-              res.body.thing.engaged.should.be.eql('false')
-              res.body.thing._id.should.not.be.null
+              res.body.name.should.eql(mockThing.name)
+              res.body.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
+              res.body.slug.should.eql('should-get-a-thing')
+              res.body.seoKeywords.should.eql('thing')
+              res.body.engaged.should.be.eql('false')
+              res.body._id.should.not.be.null
               done()
             })
         })
@@ -155,8 +135,8 @@ suites.moogooseTestSuite('bones.default.app', function() {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json
-              res.body.thing.name.should.eql(updateThing.name)
-              res.body.thing.disambiguatingDescription.should.eql(updateThing.name)
+              res.body.name.should.eql(updateThing.name)
+              res.body.disambiguatingDescription.should.eql(updateThing.name)
               done()
             })
         })
@@ -175,7 +155,7 @@ suites.moogooseTestSuite('bones.default.app', function() {
               should.not.exist(err)
               res.should.have.status(200)
               res.should.be.json
-              res.body.thing.should.eql('Thing successfully deleted')
+              res.body.msg.should.eql('Thing successfully deleted')
               done()
             })
         })

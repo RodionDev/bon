@@ -8,8 +8,12 @@ var ListOfThings = function(Thing, things, typeOfThing) {
 var MetaOfThing = function(Thing) {
   return Thing.schema.paths
 }
+var DeleteOfThing = function(Thing) {
+  return {msg: 'Thing successfully deleted'}
+}
 module.exports = {
   'outOf': OfThing,
   'listOutOf': ListOfThings,
   'metaOf': MetaOfThing,
+  'deleteOf': DeleteOfThing
 }

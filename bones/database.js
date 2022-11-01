@@ -1,8 +1,8 @@
 'use strict'
-const nconf = require('nconf')
 const mongoose = require('mongoose')
+let cnnStr = '' + process.env['MONGODB'] + process.env['DATABASENAME']
 mongoose.Promise = global.Promise
-mongoose.connect(process.env.MONGODB + process.env.DATABASENAME, {
+mongoose.connect(cnnStr, {
   useNewUrlParser: true
 })
 let db = mongoose.connection
