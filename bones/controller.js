@@ -1,7 +1,5 @@
 'use strict'
-require('dotenv').config()
 const exoSkeleton = require('./skeleton')
-const endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
 var makeSafe = function(res, method) {
   res.setHeader('Access-Control-Allow-Origin', 'http:
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
@@ -16,13 +14,16 @@ var schemaRoots = function(req) {
   return schemaName.charAt(0).toUpperCase() + schemaName.slice(1)
 }
 exports.schema = function(req, res) {
+  let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+  console.log('BONES.controller: endoSkeleton: ' + endoSkeleton)
   res = makeSafe(res, 'GET')
   var schemaName = schemaRoots(req)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
   res.send(exoSkeleton.metaOf(Thing))
-  console.log('request: schema')
 }
 exports.list_all_things = function(req, res) {
+  let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+  console.log('BONES.controller: endoSkeleton: ' + endoSkeleton)
   res = makeSafe(res, 'GET')
   var schemaName = schemaRoots(req)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
@@ -56,7 +57,6 @@ exports.create_a_thing = function(req, res) {
       res.send(exoSkeleton.outOf(Thing, thing, schemaName))
     }
   })
-  console.log('request: create_a_thing')
 }
 exports.read_a_thing = function(req, res) {
   res = makeSafe(res, 'GET')
@@ -71,13 +71,11 @@ exports.read_a_thing = function(req, res) {
       res.send(exoSkeleton.outOf(Thing, thing, schemaName))
     }
   })
-  console.log('request: read_a_thing')
 }
 exports.update_a_thing = function(req, res) {
   res = makeSafe(res, 'PUT')
   var schemaName = schemaRoots(req)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
-  console.log(req.body)
   Thing.findOneAndUpdate({
     _id: req.params.thingId
   }, req.body, {
@@ -91,7 +89,6 @@ exports.update_a_thing = function(req, res) {
       res.send(exoSkeleton.outOf(Thing, thing, schemaName))
     }
   })
-  console.log('request: update_a_thing')
 }
 exports.delete_a_thing = function(req, res) {
   res = makeSafe(res, 'DELETE')

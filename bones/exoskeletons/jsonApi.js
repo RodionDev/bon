@@ -4,7 +4,6 @@ function isDict(v) {
 }
 function jsonApiExoSkeleton(thing, typeOfThing) {
   let newData = {}
-  console.log(thing)
   newData['type'] = typeOfThing
   newData['id'] = thing['_id']
   newData['attributes'] = {}

@@ -1,9 +1,8 @@
 let mongoose = require('mongoose')
-require('dotenv').config()
 exports.moogooseTestSuite = function (name, tests) {
   describe(name, function () {
     before(function (done) {
-      let cnnStr = '' + process.env['MONGODB'] + process.env['DATABASENAME']
+      let cnnStr = '' + process.env['MONGODB'] + "testDb"
       mongoose.connect(cnnStr, {
         useNewUrlParser: true
       })

@@ -6,14 +6,15 @@ const importFresh = require('import-fresh')
 const suites = require('./utils/mongoose_suite')
 const should = chai.should()
 chai.use(chaiHttp)
-suites.moogooseTestSuite('bones.app.boney', function() {
-  describe('bones.routes.boney', function() {
-    describe('bones.controller.boney', function() {
+suites.moogooseTestSuite('bones.app.jsonApi', function() {
+  describe('bones.routes.jsonApi', function() {
+    describe('bones.controller.jsonApi', function() {
       this.app = null
       beforeEach(function(done) {
-        process.env['ENDOSKELETON'] = 'TestVersion'
-        process.env['EXOSKELETON'] = 'boney'
+        process.env['ENDOSKELETON'] = 'ThingOnAShoeString'
+        process.env['EXOSKELETON'] = 'jsonApiV1.0'
         this.app = importFresh('../bones/app')
+        console.log(process.env['EXOSKELETON'])
         Thing.remove({}, (err) => {
           should.not.exist(err)
           done()
@@ -36,8 +37,9 @@ suites.moogooseTestSuite('bones.app.boney', function() {
             .end(function(err, res) {
               should.not.exist(err)
               res.should.have.status(200)
-              res.body.should.be.a('array')
-              res.body.length.should.be.eql(2)
+              res.body.data.should.be.a('array')
+              res.body.data.length.should.be.eql(2)
+              res.body.meta.should.not.be.null
               done()
             })
         })
