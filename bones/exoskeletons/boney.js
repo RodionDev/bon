@@ -1,14 +1,14 @@
 'use strict'
-var OfThing = function(Thing, thing, typeOfThing) {
-  return thing
+var OfThing = function(meta, data) {
+  return data
 }
-var ListOfThings = function(Thing, things, typeOfThing) {
-  return things
+var ListOfThings = function(meta, data) {
+  return data
 }
-var MetaOfThing = function(Thing) {
-  return Thing.schema.paths
+var MetaOfThing = function(meta, data) {
+  return meta.Thing.schema.paths
 }
-var DeleteOfThing = function(Thing) {
+var DeleteOfThing = function(meta, data) {
   return {msg: 'Thing successfully deleted'}
 }
 module.exports = {

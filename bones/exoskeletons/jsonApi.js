@@ -2,35 +2,35 @@
 function isDict(v) {
     return typeof v==='object' && v!==null && !(v instanceof Array) && !(v instanceof Date);
 }
-function jsonApiExoSkeleton(thing, typeOfThing) {
+function jsonApiExoSkeleton(meta, data) {
   let newData = {}
-  newData['type'] = typeOfThing
-  newData['id'] = thing['_id']
+  newData['type'] = meta.schemaName
+  newData['id'] = data['_id']
   newData['attributes'] = {}
-  for (var key in thing) {
+  for (var key in data) {
     if (
       key !== '_id' &&
       key !== '__v'
     ) {
-      newData['attributes'][key] = thing[key]
+      newData['attributes'][key] = data[key]
     }
   }
   return newData
 }
-var jsonApiOfThing = function(Thing, thing, typeOfThing) {
+var jsonApiOfThing = function(meta, data) {
   return {
     'jsonapi': {
       'version': '1.0'
     },
-    'data': jsonApiExoSkeleton(thing, typeOfThing),
-    'meta': Thing.schema.paths
+    'data': jsonApiExoSkeleton(meta, data),
+    'meta': meta.Thing.schema.paths
   }
 }
-var jsonApiListOfThings = function(Thing, thing, typeOfThing) {
+var jsonApiListOfThings = function(meta, data) {
   let list = []
-  for (let record in thing) {
+  for (let record in data) {
     list.push(
-      jsonApiExoSkeleton(thing[record], typeOfThing)
+      jsonApiExoSkeleton(meta, data[record])
     )
   }
   return {
@@ -38,15 +38,14 @@ var jsonApiListOfThings = function(Thing, thing, typeOfThing) {
       'version': '1.0'
     },
     'data': list,
-    'meta': Thing.schema.paths
   }
 }
-var jsonApiMetaOfThing = function(Thing) {
+var jsonApiMetaOfThing = function(meta, data) {
   return {
     'jsonapi': {
       'version': '1.0'
     },
-    'meta': Thing.schema.paths
+    'meta': meta.Thing.schema.paths
   }
 }
 module.exports = {
