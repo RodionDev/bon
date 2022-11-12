@@ -1,35 +1,48 @@
 'use strict'
-const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 const chai = require('chai')
 chai.should()
+const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 const jsonApi = require('../../bones/exoskeletons/jsonApi')
-const bad_data = {
-  '_id': '5b72c7d7f5ee795f924421b2',
-  'name': 'Thing Blue',
-  'disambiguatingDescription': 'Thing is blue',
-  '__v': 0
+var gud_data = require('../utils/gud_data.json')
+var bad_data = require('../utils/bad_data.json')
+bad_data['toObject'] = function () {
+  return bad_data
 }
-const gud_data = {
+const gud_meta = {
   'jsonapi': {
     'version': '1.0'
   },
-  'data': {
-    'type': 'Thing',
-    'id': '5b72c7d7f5ee795f924421b2',
-    'attributes': {
-      'name': 'Thing Blue',
-      'disambiguatingDescription': 'Thing is blue'
-    }
-  },
   'meta': Thing.schema.paths
 }
-describe('jsonApi.jsonApiOfThing', function() {
-  it('Make bones standard output conform to JSONAPI', function() {
-    let meta = {
-      schemaName: 'Thing',
-      Thing: Thing,
+var meta = {
+  schemaName: 'Thing',
+  Thing: Thing,
+}
+describe('exoskeleton.jsonApi', function() {
+  it('.outOf() should convert to jsonApi single data key format.', function() {
+    var jsowned = jsonApi.outOf(meta, bad_data)
+    var gud_datad = {
+      'jsonapi': gud_meta['jsonapi'],
+      'meta': gud_meta['meta'],
+      'data': gud_data
     }
-    var jsonApied = jsonApi.outOf(meta, bad_data)
-    jsonApied.should.deep.eql(gud_data)
+    jsowned.should.deep.eql(gud_datad)
+  })
+  it('.listOutOf() should convert to jsonApi data keyed list format.', function() {
+    var jsowned = jsonApi.listOutOf(meta, [bad_data, bad_data, bad_data])
+    var gud_datad = {
+      'jsonapi': gud_meta['jsonapi'],
+      'meta': gud_meta['meta'],
+      'data': [gud_data, gud_data, gud_data]
+    }
+    jsowned.should.deep.eql(gud_datad)
+  })
+  it('.metaOf() should return the meta keyed mongoose schema.', function() {
+    var jsowned = jsonApi.metaOf(meta)
+    jsowned.should.deep.eql(gud_meta)
+  })
+  it('.deleteOf() should return the meta keyed mongoose schema.', function() {
+    var jsowned = jsonApi.deleteOf(meta, bad_data)
+    jsowned.should.deep.eql(gud_meta)
   })
 })
