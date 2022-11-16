@@ -12,7 +12,7 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       this.app = null
       beforeEach(function(done) {
         process.env['ENDOSKELETON'] = 'ThingOnAShoeString'
-        process.env['EXOSKELETON'] = 'jsonApiV1.0'
+        process.env['EXOSKELETON'] = 'jsonApi'
         this.app = importFresh('../bones/app')
         console.log(process.env['EXOSKELETON'])
         Thing.remove({}, (err) => {
