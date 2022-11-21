@@ -1,11 +1,12 @@
 'use strict'
 const mongoose = require('mongoose')
+let cnnStr = '' + process.env['MONGODB'] + process.env['DATABASENAME']
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb:
+mongoose.connect(cnnStr, {
   useNewUrlParser: true
 })
 let db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => {
-  console.log(`Connected to the elioWay database`)
+  console.log(`Connected to the ${process.env.DATABASENAME} database`)
 })

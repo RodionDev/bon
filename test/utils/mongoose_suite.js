@@ -1,8 +1,9 @@
 let mongoose = require('mongoose')
-exports.moogooseTestSuite = function (name, tests) {
-  describe(name, function () {
-    before(function (done) {
-      mongoose.connect('mongodb:
+exports.moogooseTestSuite = function (testname, tests) {
+  describe(testname, function () {
+    beforeEach(function (done) {
+      let cnnStr = '' + process.env['MONGODB'] + testname.split(".").join("") + "Db"
+      mongoose.connect(cnnStr, {
         useNewUrlParser: true
       })
       const db = mongoose.connection
@@ -12,7 +13,7 @@ exports.moogooseTestSuite = function (name, tests) {
       })
     })
     tests()
-    after(function (done) {
+    afterEach(function (done) {
       mongoose.connection.db.dropDatabase(function () {
         mongoose.connection.close(done)
       })

@@ -1,85 +1,85 @@
 'use strict'
-var schemaVer = 'ThingOnAShoeString'
-var makeSafe = function(res) {
-  res.setHeader('Access-Control-Allow-Origin', 'http:
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  return res
-}
+const exoSkeleton = require('./exoskeletons/' + process.env['EXOSKELETON'])
 exports.schema = function(req, res) {
-    res = makeSafe(res)
-    res.header('Access-Control-Allow-Methods', 'GET')
-    var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-    res.json(Thing.schema.paths)
-  }
+  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+    res.send(exoSkeleton.metaOf(meta))
+  })
+}
 exports.list_all_things = function(req, res) {
-  res = makeSafe(res)
-  res.header('Access-Control-Allow-Methods', 'GET')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  Thing.find({}, function(err, thing) {
-    if (err) {
-      res.send(err)
-    }
-    res.json(thing)
+  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+    Thing.find({}, function(err, things) {
+      if (err) {
+        res.send({
+          errors: [err]
+        })
+      } else {
+        res.send(exoSkeleton.listOutOf(meta, things))
+      }
+    })
   })
 }
 exports.create_a_thing = function(req, res) {
-  res = makeSafe(res)
-  res.header('Access-Control-Allow-Methods', 'POST')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  let newThing = new Thing(req.body)
-  newThing.save(function(err, thing) {
-    if (err) {
-      if (err.code === 11000) {
-        return res.json({
-          message: 'A record with this alternative name already exists.'
-        })
+  exoSkeleton.anatomyOf('POST', req, res, function(req, res, Thing, meta) {
+    let newThing = new Thing(req.body)
+    newThing.save(function(err, thing) {
+      if (err) {
+        if (err.code === 11000) {
+          return res.json({
+            errors: ['A record with this alternative name already exists.'],
+          })
+        } else {
+          res.send({
+            errors: [err]
+          })
+        }
       } else {
-        console.log(err)
-        res.send(err)
+        res.send(exoSkeleton.outOf(meta, thing))
       }
-    }
-    var j = res.json(thing)
-    return j
+    })
   })
 }
 exports.read_a_thing = function(req, res) {
-  res = makeSafe(res)
-  res.header('Access-Control-Allow-Methods', 'GET')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  Thing.findById(req.params.thingId, function(err, thing) {
-    if (err) {
-      res.send(err)
-    }
-    res.json(thing)
+  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+    Thing.findById(req.params.thingId, function(err, thing) {
+      if (err) {
+        res.send({
+          errors: [err]
+        })
+      } else {
+        res.send(exoSkeleton.outOf(meta, thing))
+      }
+    })
   })
 }
 exports.update_a_thing = function(req, res) {
-  res = makeSafe(res)
-  res.header('Access-Control-Allow-Methods', 'PUT')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  Thing.findOneAndUpdate({
-    _id: req.params.thingId
-  }, req.body, {
-    new: true
-  }, function(err, thing) {
-    if (err) {
-      res.send(err)
-    }
-    res.json(thing)
+  exoSkeleton.anatomyOf('PUT', req, res, function(req, res, Thing, meta) {
+    Thing.findOneAndUpdate({
+      _id: req.params.thingId
+    }, req.body, {
+      new: true
+    }, function(err, thing) {
+      if (err) {
+        res.send({
+          errors: [err]
+        })
+      } else {
+        res.send(exoSkeleton.outOf(meta, thing))
+      }
+    })
   })
 }
 exports.delete_a_thing = function(req, res) {
-  res = makeSafe(res)
-  res.header('Access-Control-Allow-Methods', 'DELETE')
-  var Thing = require(`@elioway/spider/schemas/` + schemaVer + `/models/${req.params.thing}`)
-  Thing.remove({
-    _id: req.params.thingId
-  }, function(err, thing) {
-    if (err) {
-      res.send(err)
-    }
-    res.json({
-      message: 'Thing successfully deleted'
+  exoSkeleton.anatomyOf('DELETE', req, res, function(req, res, Thing, meta) {
+    Thing.remove({
+      _id: req.params.thingId
+    }, function(err, thing) {
+      if (err) {
+        res.send({
+          errors: [err]
+        })
+      } else {
+        res.send(exoSkeleton.deleteOf(meta, thing))
+      }
     })
   })
 }
