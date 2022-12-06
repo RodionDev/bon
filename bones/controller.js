@@ -1,5 +1,7 @@
 'use strict'
-const exoSkeleton = require('./exoskeletons/' + process.env['EXOSKELETON'])
+const exoSkeletonPath = './exoskeletons/' + process.env['EXOSKELETON']
+console.log(exoSkeletonPath)
+const exoSkeleton = require(exoSkeletonPath)
 exports.schema = function(req, res) {
   exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
     res.send(exoSkeleton.metaOf(meta))

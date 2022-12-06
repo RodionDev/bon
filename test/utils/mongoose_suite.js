@@ -1,7 +1,7 @@
 let mongoose = require('mongoose')
 exports.moogooseTestSuite = function (testname, tests) {
   describe(testname, function () {
-    beforeEach(function (done) {
+    before(function (done) {
       let cnnStr = '' + process.env['MONGODB'] + testname.split(".").join("") + "Db"
       mongoose.connect(cnnStr, {
         useNewUrlParser: true
@@ -13,7 +13,7 @@ exports.moogooseTestSuite = function (testname, tests) {
       })
     })
     tests()
-    afterEach(function (done) {
+    after(function (done) {
       mongoose.connection.db.dropDatabase(function () {
         mongoose.connection.close(done)
       })

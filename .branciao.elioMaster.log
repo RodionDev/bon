@@ -4,3 +4,4 @@
 #--@ twigged elioMaster --{merged elioMasterB  ==> Sat 25 Aug 02:29:00 EEST 2018}
 #--@ twigged elioMaster --{merged twig skeletons to control data output  ==> Sat 25 Aug 02:29:52 EEST 2018}
 #--@ twigged elioMaster --{merged twig skeletons  ==> Sat 25 Aug 02:34:48 EEST 2018}
+#--@ twigged elioMaster --{twig all tests passing together! must import controller fresh each time as well as app! ==> Sat 25 Aug 14:17:16 EEST 2018}
