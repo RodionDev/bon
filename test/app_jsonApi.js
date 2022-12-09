@@ -12,6 +12,7 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       beforeEach(function(done) {
         process.env['ENDOSKELETON'] = 'ThingOnAShoeString'
         process.env['EXOSKELETON'] = 'jsonApi'
+        importFresh('../bones/controller')
         Thing.remove({}, (err) => {
           should.not.exist(err)
           done()

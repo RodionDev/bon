@@ -1,6 +1,5 @@
 'use strict'
-const exoSkeletonPath = './exoskeletons/' + process.env['EXOSKELETON']
-console.log(exoSkeletonPath)
+let exoSkeletonPath = './exoskeletons/' + process.env['EXOSKELETON']
 const exoSkeleton = require(exoSkeletonPath)
 exports.schema = function(req, res) {
   exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
