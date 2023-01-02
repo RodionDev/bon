@@ -1,3 +1,4 @@
 #--@ twigged master --{elioMasterB exile complete  ==> Sat 25 Aug 15:09:55 EEST 2018}
 #--@ twigged master --{checkout complete  ==> Sat 25 Aug 15:10:56 EEST 2018}
 #--@ twigged master --{merged elioMaster  ==> Sat 25 Aug 15:11:11 EEST 2018}
+#--@ twigged master --{twig Added the flexibility of setting different exo (structure of data output, e.g. validated restAPI) and endo skeletons (versions of schema.org mongoose models) ==> Sat 25 Aug 15:16:58 EEST 2018}
