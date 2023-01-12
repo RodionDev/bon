@@ -46,8 +46,6 @@
     "mock-require": "^3.0.2",
     "nodemon": "^1.18.3",
     "nyc": "^12.0.2",
-    "sinon": "^6.1.5",
-    "sinon-mongoose": "^2.2.1",
     "standard": "*"
   },
   "standard": {
