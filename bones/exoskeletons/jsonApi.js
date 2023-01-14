@@ -1,5 +1,13 @@
 'use strict'
 const boney = require('./boney')
+function jsonApiAcquire(req) {
+  let data = boney.acquire(req).data
+  let mongooseReadyData = {}
+  for (var key in data.attributes) {
+    mongooseReadyData[key] = data.attributes[key]
+  }
+  return mongooseReadyData
+}
 function jsonApiExoSkeleton(meta, data) {
   let newData = {}
   newData['type'] = meta.schemaName
@@ -55,6 +63,7 @@ function jsonApiAnatomyOf(method, req, res, mongooseCall) {
   boney.anatomyOf(method, req, res, mongooseCall)
 }
 module.exports = {
+  'acquire': jsonApiAcquire,
   'outOf': jsonApiOfThing,
   'listOutOf': jsonApiListOfThings,
   'metaOf': jsonApiMetaOfThing,

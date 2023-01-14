@@ -122,7 +122,7 @@ suites.moogooseTestSuite('bones.app.boney', function() {
           })
         })
       })
-      describe('/PUT engage/:thing', function() {
+      describe('/PATCH engage/:thing', function() {
         it('should UPDATE a Thing', function(done) {
           var mockThing = {
             name: 'should UPDATE a boney Thing',
@@ -135,7 +135,7 @@ suites.moogooseTestSuite('bones.app.boney', function() {
               disambiguatingDescription: 'boney Thing should be UPDATED'
             }
             chai.request(importFresh('../bones/app'))
-              .put(`/engage/Thing/${thing._id}`)
+              .patch(`/engage/Thing/${thing._id}`)
               .send(updateThing)
               .end(function(err, res) {
                 should.not.exist(err)
