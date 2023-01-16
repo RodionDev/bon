@@ -10,3 +10,4 @@
 #--@ twigged icarusFlight --{twig bones ready and tested to work to jsonApi standards. retrying icarus wings ==> Sat 25 Aug 15:24:52 EEST 2018}
 #--@ twigged icarusFlight --{twig READMES ==> Sat 25 Aug 15:35:55 EEST 2018}
 #--@ twigged icarusFlight --{twig Handles JSONApi formatted sent packages depending on EXOSKELETON setting ==> Sun 26 Aug 13:49:37 EEST 2018}
+#--@ twigged icarusFlight --{twig Ember CRUD working with bones ==> Sun 26 Aug 13:54:50 EEST 2018}
