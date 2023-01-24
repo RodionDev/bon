@@ -8,7 +8,7 @@ exports.schema = function(req, res) {
 }
 exports.list_all_things = function(req, res) {
   exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
-    Thing.find(function(err, things) {
+    Thing.find({}, function(err, things) {
       if (err) {
         res.send({
           errors: [err]
@@ -21,7 +21,7 @@ exports.list_all_things = function(req, res) {
 }
 exports.create_a_thing = function(req, res) {
   exoSkeleton.anatomyOf('POST', req, res, function(req, res, Thing, meta) {
-    let newThing = new Thing(exoSkeleton.acquire(req))
+    let newThing = new Thing(req.body)
     newThing.save(function(err, thing) {
       if (err) {
         if (err.code === 11000) {
@@ -56,7 +56,7 @@ exports.update_a_thing = function(req, res) {
   exoSkeleton.anatomyOf('PUT', req, res, function(req, res, Thing, meta) {
     Thing.findOneAndUpdate({
       _id: req.params.thingId
-    }, exoSkeleton.acquire(req), {
+    }, req.body, {
       new: true
     }, function(err, thing) {
       if (err) {
@@ -71,7 +71,7 @@ exports.update_a_thing = function(req, res) {
 }
 exports.delete_a_thing = function(req, res) {
   exoSkeleton.anatomyOf('DELETE', req, res, function(req, res, Thing, meta) {
-    Thing.deleteOne({
+    Thing.remove({
       _id: req.params.thingId
     }, function(err, thing) {
       if (err) {

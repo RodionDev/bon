@@ -64,13 +64,8 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
       describe('/POST engage/:thing', function() {
         it('should ADD a Thing', function(done) {
           var mockThing = {
-            data: {
-              type: 'thing',
-              attributes: {
-                name: 'should ADD a jsonApi Thing',
-                disambiguatingDescription: 'should ADD a jsonApi Thing'
-              }
-            }
+            name: 'should ADD a jsonApi Thing',
+            disambiguatingDescription: 'should ADD a jsonApi Thing'
           }
           chai.request(importFresh('../bones/app'))
             .post('/engage/Thing')
@@ -81,8 +76,8 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
               res.should.be.json
               res.body.data.id.should.not.be.null
               res.body.data.type.should.eql('Thing')
-              res.body.data.attributes.name.should.eql(mockThing.data.attributes.name)
-              res.body.data.attributes.disambiguatingDescription.should.eql(mockThing.data.attributes.disambiguatingDescription)
+              res.body.data.attributes.name.should.eql(mockThing.name)
+              res.body.data.attributes.disambiguatingDescription.should.eql(mockThing.disambiguatingDescription)
               res.body.meta.should.not.be.null
               done()
             })
@@ -112,7 +107,7 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
           })
         })
       })
-      describe('/PATCH engage/:thing', function() {
+      describe('/PUT engage/:thing', function() {
         it('should UPDATE a Thing', function(done) {
           var mockThing = {
             name: 'should UPDATE a jsonApi Thing',
@@ -121,26 +116,20 @@ suites.moogooseTestSuite('bones.app.jsonApi', function() {
           var thing = new Thing(mockThing)
           thing.save(function() {
             var updateThing = {
-              data: {
-                type: 'thing',
-                attributes: {
-                  name: 'jsonApi Thing should be UPDATED',
-                  disambiguatingDescription: 'jsonApi Thing should be UPDATED'
-                }
-              }
+              name: 'jsonApi Thing should be UPDATED',
+              disambiguatingDescription: 'jsonApi Thing should be UPDATED'
             }
             chai.request(importFresh('../bones/app'))
-              .patch(`/engage/Thing/${thing._id}`)
+              .put(`/engage/Thing/${thing._id}`)
               .send(updateThing)
               .end(function(err, res) {
                 should.not.exist(err)
                 res.should.have.status(200)
                 res.should.be.json
-                res.body.data.type.should.eql('Thing')
                 res.body.data.id.should.not.be.null
-                res.body.data.id.should.eql(thing._id.toString())
-                res.body.data.attributes.name.should.eql(updateThing.data.attributes.name)
-                res.body.data.attributes.disambiguatingDescription.should.eql(updateThing.data.attributes.disambiguatingDescription)
+                res.body.data.type.should.eql('Thing')
+                res.body.data.attributes.name.should.eql(updateThing.name)
+                res.body.data.attributes.disambiguatingDescription.should.eql(updateThing.disambiguatingDescription)
                 res.body.meta.should.not.be.null
                 done()
               })

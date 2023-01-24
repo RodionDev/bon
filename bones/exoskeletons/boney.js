@@ -1,8 +1,5 @@
 'use strict'
 const utils = require('./utils')
-function Acquire(req) {
-  return req.body
-}
 var OfThing = function(meta, data) {
   return data.toObject()
 }
@@ -32,7 +29,6 @@ function AnatomyOf(method, req, res, mongooseCall) {
   mongooseCall(req, res, Thing, meta)
 }
 module.exports = {
-  'acquire': Acquire,
   'outOf': OfThing,
   'listOutOf': ListOfThings,
   'metaOf': MetaOfThing,
