@@ -1,4 +1,5 @@
-'use strict'
+ 'use strict'
+ * http:
 const boney = require('./boney')
 function jsonApiAcquire(req) {
   let data = boney.acquire(req).data
@@ -8,7 +9,7 @@ function jsonApiAcquire(req) {
   }
   return mongooseReadyData
 }
-function jsonApiExoSkeleton(meta, data) {
+function _jsonApiExoSkeleton(meta, data) {
   let newData = {}
   newData['type'] = meta.schemaName
   newData['id'] = data._id
@@ -29,7 +30,7 @@ var jsonApiOfThing = function(meta, data) {
     'jsonapi': {
       'version': '1.0'
     },
-    'data': jsonApiExoSkeleton(meta, data),
+    'data': _jsonApiExoSkeleton(meta, data),
     'meta': meta.Thing.schema.paths
   }
 }
@@ -37,7 +38,7 @@ var jsonApiListOfThings = function(meta, data) {
   let list = []
   for (let record in data) {
     list.push(
-      jsonApiExoSkeleton(meta, data[record])
+      _jsonApiExoSkeleton(meta, data[record])
     )
   }
   return {

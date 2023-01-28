@@ -6,14 +6,14 @@ const cors = require('cors')({
   origin: true
 })
 const app = express()
-app.use(cors)
-app.use(bodyParser.urlencoded({
+app
+  .use(cors)
+  .use(bodyParser.urlencoded({
     extended: true
   }))
-  .use(bodyParser.json())
   .use(bodyParser.json({
     type: 'application/vnd.api+json'
   }))
-var routes = require('./routes') 
-routes(app) 
+var routes = require('./routes')  
+routes(app)  
 module.exports = app

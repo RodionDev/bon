@@ -19,6 +19,19 @@ exports.list_all_things = function(req, res) {
     })
   })
 }
+exports.read_a_thing = function(req, res) {
+  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
+    Thing.findById(req.params.thingId, function(err, thing) {
+      if (err) {
+        res.send({
+          errors: [err]
+        })
+      } else {
+        res.send(exoSkeleton.outOf(meta, thing))
+      }
+    })
+  })
+}
 exports.create_a_thing = function(req, res) {
   exoSkeleton.anatomyOf('POST', req, res, function(req, res, Thing, meta) {
     let newThing = new Thing(exoSkeleton.acquire(req))
@@ -39,21 +52,8 @@ exports.create_a_thing = function(req, res) {
     })
   })
 }
-exports.read_a_thing = function(req, res) {
-  exoSkeleton.anatomyOf('GET', req, res, function(req, res, Thing, meta) {
-    Thing.findById(req.params.thingId, function(err, thing) {
-      if (err) {
-        res.send({
-          errors: [err]
-        })
-      } else {
-        res.send(exoSkeleton.outOf(meta, thing))
-      }
-    })
-  })
-}
 exports.update_a_thing = function(req, res) {
-  exoSkeleton.anatomyOf('PUT', req, res, function(req, res, Thing, meta) {
+  exoSkeleton.anatomyOf('PATCH', req, res, function(req, res, Thing, meta) {
     Thing.findOneAndUpdate({
       _id: req.params.thingId
     }, exoSkeleton.acquire(req), {
