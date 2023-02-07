@@ -1,7 +1,7 @@
 {
   "name": "@elioway/bones",
   "title": "bones",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "REST API for Schema.org mongoose schema spidered the elioWay.",
   "main": "server.js",
   "scripts": {
