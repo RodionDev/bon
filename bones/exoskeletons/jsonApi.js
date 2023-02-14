@@ -1,5 +1,4 @@
- 'use strict'
- * http:
+'use strict'
 const boney = require('./boney')
 function jsonApiAcquire(req) {
   let data = boney.acquire(req).data
