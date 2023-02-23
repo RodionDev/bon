@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/elioschemers/bones.git"
+    "url": "git+https://gitlab.com/eliodata/bones.git"
   },
   "keywords": [
     "REST",
@@ -24,9 +24,9 @@
   "author": "Tim Bushell",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/elioschemers/bones/issues"
+    "url": "https://gitlab.com/eliodata/bones/issues"
   },
-  "homepage": "https://gitlab.com/elioschemers/bones/blob/master/README.md",
+  "homepage": "https://gitlab.com/eliodata/bones/blob/master/README.md",
   "dependencies": {
     "@elioway/spider": "^1.2.5",
     "body-parser": "^1.18.3",

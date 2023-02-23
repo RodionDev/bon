@@ -60,7 +60,7 @@ function jsonApiAnatomyOf(method, req, res, mongooseCall) {
   res.setHeader('Access-Control-Allow-Origin', process.env['ALLOWED_HOST'])
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   res.header('Access-Control-Allow-Methods', method)
-  boney.anatomyOf(method, req, res, mongooseCall)
+  boney.thenMongoose(method, req, res, mongooseCall)
 }
 module.exports = {
   'acquire': jsonApiAcquire,
@@ -68,5 +68,5 @@ module.exports = {
   'listOutOf': jsonApiListOfThings,
   'metaOf': jsonApiMetaOfThing,
   'deleteOf': jsonApiMetaOfThing,
-  'anatomyOf': jsonApiAnatomyOf,
+  'thenMongoose': jsonApiAnatomyOf,
 }

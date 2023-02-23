@@ -21,7 +21,7 @@ var MetaOfThing = function(meta) {
 var DeleteOfThing = function(meta, data) {
   return {msg: 'Thing successfully deleted'}
 }
-function AnatomyOf(method, req, res, mongooseCall) {
+function MongooseCall(method, req, res, mongooseCall) {
   let endoSkeleton = `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
@@ -37,5 +37,5 @@ module.exports = {
   'listOutOf': ListOfThings,
   'metaOf': MetaOfThing,
   'deleteOf': DeleteOfThing,
-  'anatomyOf': AnatomyOf,
+  'thenMongoose': MongooseCall,
 }
