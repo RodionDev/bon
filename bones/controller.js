@@ -39,7 +39,7 @@ exports.create_a_thing = function(req, res) {
       if (err) {
         if (err.code === 11000) {
           return res.json({
-            errors: ['A record with this alternative name already exists.'],
+            errors: ['A record with this alternative name already exists.']
           })
         } else {
           res.send({
@@ -54,33 +54,41 @@ exports.create_a_thing = function(req, res) {
 }
 exports.update_a_thing = function(req, res) {
   exoSkeleton.thenMongoose('PATCH', req, res, function(req, res, Thing, meta) {
-    Thing.findOneAndUpdate({
-      _id: req.params.thingId
-    }, exoSkeleton.acquire(req), {
-      new: true
-    }, function(err, thing) {
-      if (err) {
-        res.send({
-          errors: [err]
-        })
-      } else {
-        res.send(exoSkeleton.outOf(meta, thing))
+    Thing.findOneAndUpdate(
+      {
+        _id: req.params.thingId
+      },
+      exoSkeleton.acquire(req),
+      {
+        new: true
+      },
+      function(err, thing) {
+        if (err) {
+          res.send({
+            errors: [err]
+          })
+        } else {
+          res.send(exoSkeleton.outOf(meta, thing))
+        }
       }
-    })
+    )
   })
 }
 exports.delete_a_thing = function(req, res) {
   exoSkeleton.thenMongoose('DELETE', req, res, function(req, res, Thing, meta) {
-    Thing.deleteOne({
-      _id: req.params.thingId
-    }, function(err, thing) {
-      if (err) {
-        res.send({
-          errors: [err]
-        })
-      } else {
-        res.send(exoSkeleton.deleteOf(meta, thing))
+    Thing.deleteOne(
+      {
+        _id: req.params.thingId
+      },
+      function(err, thing) {
+        if (err) {
+          res.send({
+            errors: [err]
+          })
+        } else {
+          res.send(exoSkeleton.deleteOf(meta, thing))
+        }
       }
-    })
+    )
   })
 }

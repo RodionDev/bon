@@ -10,10 +10,10 @@ suites.moogooseTestSuite('bones.adon.boney', function() {
   describe('bones.routes.adon.boney', function() {
     describe('bones.controller.adon.boney', function() {
       beforeEach(function(done) {
-        process.env['ENDOSKELETON'] = "TestVersion"
-        process.env['EXOSKELETON'] = "boney"
+        process.env['ENDOSKELETON'] = 'TestVersion'
+        process.env['EXOSKELETON'] = 'boney'
         importFresh('../bones/controller')
-        Thing.remove({}, (err) => {
+        Thing.remove({}, err => {
           should.not.exist(err)
           done()
         })
@@ -26,14 +26,17 @@ suites.moogooseTestSuite('bones.adon.boney', function() {
           }
           var thing = new Thing(mockThing)
           thing.save(function() {
-            chai.request(importFresh('../bones/app.js'))
+            chai
+              .request(importFresh('../bones/app.js'))
               .post('/engage/Thing')
               .send(mockThing)
               .end(function(err, res) {
                 should.not.exist(err)
                 res.should.have.status(200)
                 res.should.be.json
-                res.body.errors.should.eql(['A record with this alternative name already exists.'])
+                res.body.errors.should.eql([
+                  'A record with this alternative name already exists.'
+                ])
                 done()
               })
           })

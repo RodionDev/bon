@@ -5,35 +5,35 @@ const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 const jsonApi = require('../../bones/exoskeletons/jsonApi')
 var gud_data = require('../utils/gud_data.json')
 var bad_data = require('../utils/bad_data.json')
-bad_data['toObject'] = function () {
+bad_data['toObject'] = function() {
   return bad_data
 }
 const gud_meta = {
-  'jsonapi': {
-    'version': '1.0'
+  jsonapi: {
+    version: '1.0'
   },
-  'meta': Thing.schema.paths
+  meta: Thing.schema.paths
 }
 var meta = {
   schemaName: 'Thing',
-  Thing: Thing,
+  Thing: Thing
 }
 describe('exoskeleton.jsonApi', function() {
   it('.outOf() should convert to jsonApi single data key format.', function() {
     var jsowned = jsonApi.outOf(meta, bad_data)
     var gud_datad = {
-      'jsonapi': gud_meta['jsonapi'],
-      'meta': gud_meta['meta'],
-      'data': gud_data
+      jsonapi: gud_meta['jsonapi'],
+      meta: gud_meta['meta'],
+      data: gud_data
     }
     jsowned.should.deep.eql(gud_datad)
   })
   it('.listOutOf() should convert to jsonApi data keyed list format.', function() {
     var jsowned = jsonApi.listOutOf(meta, [bad_data, bad_data, bad_data])
     var gud_datad = {
-      'jsonapi': gud_meta['jsonapi'],
-      'meta': gud_meta['meta'],
-      'data': [gud_data, gud_data, gud_data]
+      jsonapi: gud_meta['jsonapi'],
+      meta: gud_meta['meta'],
+      data: [gud_data, gud_data, gud_data]
     }
     jsowned.should.deep.eql(gud_datad)
   })

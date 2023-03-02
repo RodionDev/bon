@@ -1,4 +1,4 @@
-const importFresh = require('import-fresh');
+const importFresh = require('import-fresh')
 var foo = null
 foo = require('./foo')
 console.log(foo.eyeeye())

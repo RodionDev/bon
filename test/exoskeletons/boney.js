@@ -4,12 +4,12 @@ chai.should()
 const Thing = require('@elioway/spider/endoskeletons/TestVersion/models/Thing')
 const boney = require('../../bones/exoskeletons/boney')
 var bad_data = require('../utils/bad_data.json')
-bad_data['toObject'] = function () {
+bad_data['toObject'] = function() {
   return bad_data
 }
 var meta = {
   schemaName: 'Thing',
-  Thing: Thing,
+  Thing: Thing
 }
 describe('exoskeleton.boney', function() {
   it('.outOf() should leave the data untouched', function() {
@@ -32,8 +32,8 @@ describe('exoskeleton.boney', function() {
   })
   it('.anatomyOf() should set some parameters for the mongooseCall', function() {
     var mock_req = {
-      'params': {
-        'thing': 'Thing'
+      params: {
+        thing: 'Thing'
       }
     }
     var mock_res = {}

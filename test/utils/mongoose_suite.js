@@ -3,7 +3,8 @@ const importFresh = require('import-fresh')
 exports.moogooseTestSuite = function(testname, tests) {
   describe(testname, function() {
     before(function(done) {
-      let cnnStr = '' + process.env['MONGODB'] + testname.split(".").join("") + "Db"
+      let cnnStr =
+        '' + process.env['MONGODB'] + testname.split('.').join('') + 'Db'
       mongoose.connect(cnnStr, {
         useNewUrlParser: true
       })
