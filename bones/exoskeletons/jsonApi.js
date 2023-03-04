@@ -23,10 +23,10 @@ function _jsonApiExoSkeleton(meta, data) {
 var jsonApiOfThing = function(meta, data) {
   return {
     jsonapi: {
-      version: '1.0'
+      version: '1.0',
     },
     data: _jsonApiExoSkeleton(meta, data),
-    meta: meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths,
   }
 }
 var jsonApiListOfThings = function(meta, data) {
@@ -36,25 +36,33 @@ var jsonApiListOfThings = function(meta, data) {
   }
   return {
     jsonapi: {
-      version: '1.0'
+      version: '1.0',
     },
     data: list,
-    meta: meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths,
   }
 }
 var jsonApiMetaOfThing = function(meta) {
   return {
     jsonapi: {
-      version: '1.0'
+      version: '1.0',
     },
-    meta: meta.Thing.schema.paths
+    meta: meta.Thing.schema.paths,
+  }
+}
+var jsonApiErrorOfThing = function(meta, errMsg) {
+  return {
+    jsonapi: {
+      version: '1.0',
+    },
+    errors: [`${meta.schemaName} ${errMsg}`],
   }
 }
 function jsonApiAnatomyOf(method, req, res, mongooseCall) {
   res.setHeader('Access-Control-Allow-Origin', process.env['ALLOWED_HOST'])
   res.header(
     'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
+    'Origin, X-Requested-With, Content-Type, Accept',
   )
   res.header('Access-Control-Allow-Methods', method)
   boney.thenMongoose(method, req, res, mongooseCall)
@@ -65,5 +73,6 @@ module.exports = {
   listOutOf: jsonApiListOfThings,
   metaOf: jsonApiMetaOfThing,
   deleteOf: jsonApiMetaOfThing,
-  thenMongoose: jsonApiAnatomyOf
+  errorOf: jsonApiErrorOfThing,
+  thenMongoose: jsonApiAnatomyOf,
 }

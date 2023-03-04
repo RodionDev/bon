@@ -6,5 +6,5 @@ var singularPronoun = function(schemaName) {
   return schemaName.charAt(0).toUpperCase() + schemaName.slice(1)
 }
 module.exports = {
-  singularPronoun: singularPronoun
+  singularPronoun: singularPronoun,
 }

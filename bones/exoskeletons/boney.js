@@ -1,6 +1,6 @@
 'use strict'
 const utils = require('./utils')
-function Acquire(req) {
+var Acquire = function(req) {
   return req.body
 }
 var OfThing = function(meta, data) {
@@ -17,16 +17,19 @@ var MetaOfThing = function(meta) {
   return meta.Thing.schema.paths
 }
 var DeleteOfThing = function(meta, data) {
-  return { msg: 'Thing successfully deleted' }
+  return { msg: `${meta.schemaName} successfully deleted` }
 }
-function MongooseCall(method, req, res, mongooseCall) {
+var ErrorOfThing = function(meta, errMsg) {
+  return { msg: `${meta.schemaName} ${errMsg}` }
+}
+var MongooseCall = function(method, req, res, mongooseCall) {
   let endoSkeleton =
-    `@elioway/spider/endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+    `../endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
   var meta = {
     schemaName: schemaName,
-    Thing: Thing
+    Thing: Thing,
   }
   mongooseCall(req, res, Thing, meta)
 }
@@ -36,5 +39,6 @@ module.exports = {
   listOutOf: ListOfThings,
   metaOf: MetaOfThing,
   deleteOf: DeleteOfThing,
-  thenMongoose: MongooseCall
+  errorOf: ErrorOfThing,
+  thenMongoose: MongooseCall,
 }

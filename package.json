@@ -3,10 +3,11 @@
   "title": "bones",
   "version": "1.2.4",
   "description": "REST API for Schema.org mongoose schema spidered the elioWay.",
-  "main": "server.js",
+  "main": "./bones/server.js",
   "scripts": {
     "test": "nyc mocha --recursive",
-    "devstart": "nodemon ./bones/server.js"
+    "devstart": "nodemon ./bones/server.js",
+    "format": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
   },
   "repository": {
     "type": "git",
@@ -29,32 +30,22 @@
   "homepage": "https://gitlab.com/eliodata/bones/blob/master/README.md",
   "dependencies": {
     "@elioway/spider": "^1.2.5",
-    "body-parser": "^1.18.3",
-    "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
-    "express": "^4.16.3",
-    "mongoose": "^5.2.9",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.6.9",
     "request": "^2.88.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
-    "chai-http": "^4.0.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "import-fresh": "^2.0.0",
     "mocha": "^5.2.0",
-    "nodemon": "^1.18.3",
+    "nodemon": "^1.19.1",
     "nyc": "^12.0.2",
-    "standard": "*"
-  },
-  "standard": {
-    "globals": [
-      "describe",
-      "context",
-      "before",
-      "beforeEach",
-      "after",
-      "afterEach",
-      "it",
-      "expect"
-    ]
+    "prettier": "1.16.4",
+    "sinon": "^6.1.4",
+    "sinon-mongoose": "^2.2.1"
   }
 }

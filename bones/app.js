@@ -3,20 +3,20 @@ require('request')
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')({
-  origin: true
+  origin: true,
 })
 const app = express()
 app
   .use(cors)
   .use(
     bodyParser.urlencoded({
-      extended: true
-    })
+      extended: true,
+    }),
   )
   .use(
     bodyParser.json({
-      type: 'application/vnd.api+json'
-    })
+      type: 'application/vnd.api+json',
+    }),
   )
 var routes = require('./routes') 
 routes(app) 
