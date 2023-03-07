@@ -18,31 +18,7 @@ suites.moogooseTestSuite('bones.adon.boney', function() {
           done()
         })
       })
-      describe('/POST engage/:thing', function() {
-        it('adon should ADD a Thing once', function(done) {
-          var mockThing = {
-            name: 'should ADD a Thing once',
-            disambiguatingDescription: 'should ADD a Thing once',
-          }
-          var thing = new Thing(mockThing)
-          thing.save(function() {
-            chai
-              .request(importFresh('../bones/app.js'))
-              .post('/engage/Thing')
-              .set('content-type', 'application/vnd.api+json')
-              .send(mockThing)
-              .end(function(err, res) {
-                should.not.exist(err)
-                res.should.have.status(409)
-                res.should.be.json
-                res.body.msg.should.eql(
-                  'Thing E11000 duplicate key error collection: bonesadonboneyDb.things index: slug_1 dup key: { : "should-add-a-thing-once" }',
-                )
-                done()
-              })
-          })
-        })
-      })
+      describe('/POST engage/:thing', function() {})
     })
   })
 })

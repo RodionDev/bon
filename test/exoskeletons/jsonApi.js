@@ -46,7 +46,7 @@ describe('exoskeleton.jsonApi', function() {
     jsowned.should.deep.eql(gudMeta)
   })
   it('.errorOf() should return an error keyed mongoose schema.', function() {
-    var jsowned = jsonApi.errorOf(meta, "This is an error.")
+    var jsowned = jsonApi.errorOf(meta, 'This is an error.')
     var errMeta = {
       jsonapi: {
         version: '1.0',

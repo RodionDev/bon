@@ -31,7 +31,7 @@ describe('exoskeleton.boney', function() {
     })
   })
   it('.errorOf() return a simple message', function() {
-    var boned = boney.errorOf(meta, "This is an error.")
+    var boned = boney.errorOf(meta, 'This is an error.')
     boned.should.deep.eql({
       msg: 'Thing This is an error.',
     })
