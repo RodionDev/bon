@@ -1,33 +1,9 @@
 {
+  "author": "Tim Bushell",
+  "description": "REST API for Schema.org mongoose schema spidered the elioWay.",
   "name": "@elioway/bones",
   "title": "bones",
   "version": "1.2.4",
-  "description": "REST API for Schema.org mongoose schema spidered the elioWay.",
-  "main": "./bones/server.js",
-  "scripts": {
-    "test": "nyc mocha --recursive",
-    "devstart": "nodemon ./bones/server.js",
-    "format": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/eliodata/bones.git"
-  },
-  "keywords": [
-    "REST",
-    "SEO",
-    "schema",
-    "express",
-    "mongoose",
-    "javascript",
-    "nodejs"
-  ],
-  "author": "Tim Bushell",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://gitlab.com/eliodata/bones/issues"
-  },
-  "homepage": "https://gitlab.com/eliodata/bones/blob/master/README.md",
   "dependencies": {
     "@elioway/spider": "^1.2.5",
     "body-parser": "^1.19.0",
@@ -47,5 +23,39 @@
     "prettier": "1.16.4",
     "sinon": "^6.1.4",
     "sinon-mongoose": "^2.2.1"
+  },
+  "homepage": "https://gitlab.com/eliodata/bones/blob/master/README.md",
+  "keywords": [
+    "REST",
+    "SEO",
+    "schema",
+    "express",
+    "mongoose",
+    "javascript",
+    "nodejs"
+  ],
+  "license": "MIT",
+  "modules": {
+    "host": "eliodata",
+    "core": [
+      "bones",
+      "flesh",
+      "icarus"
+    ],
+    "tool": [
+      "generator-flesh",
+      "spider",
+      "art",
+      "cells",
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/eliodata/bones.git"
+  },
+  "scripts": {
+    "test": "nyc mocha --recursive",
+    "devstart": "nodemon ./bones/server.js",
+    "format": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
   }
 }

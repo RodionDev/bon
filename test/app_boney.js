@@ -3,7 +3,7 @@ const Thing = require('../bones/endoskeletons/ThingOnAShoeString/models/Thing')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const importFresh = require('import-fresh')
-const suites = require('./utils/mongoose_suite')
+const suites = require('./utils/moogooseTestSuite')
 const should = chai.should()
 chai.use(chaiHttp)
 suites.moogooseTestSuite('bones.app.boney', function() {

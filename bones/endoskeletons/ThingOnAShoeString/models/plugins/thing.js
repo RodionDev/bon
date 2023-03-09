@@ -2,10 +2,10 @@
 let mongoose = require('mongoose')
 module.exports = exports = function thing(schema, options) {
   schema.add({
-    disambiguatingDescription: {
+    name: {
       type: String,
     },
-    name: {
+    disambiguatingDescription: {
       type: String,
     },
   })

@@ -5,10 +5,10 @@
 ```shell
 mkdir elio
 cd elio
-mkdir eliosin
-cd eliosin
-git clone https://gitlab.com/eliosin/adon.git
-cd adon
+mkdir eliodata
+cd eliodata
+git clone https://gitlab.com/eliodata/bones.git
+cd bones
 yarn
-gulp
+yarn devstart
 ```
