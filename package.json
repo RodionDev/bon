@@ -24,7 +24,7 @@
     "sinon": "^6.1.4",
     "sinon-mongoose": "^2.2.1"
   },
-  "homepage": "https://gitlab.com/eliodata/bones/blob/master/README.md",
+  "homepage": "https://gitlab.com/eliothing/bones/blob/master/README.md",
   "keywords": [
     "REST",
     "SEO",
@@ -36,7 +36,7 @@
   ],
   "license": "MIT",
   "modules": {
-    "host": "eliodata",
+    "host": "eliothing",
     "core": [
       "bones",
       "flesh",
@@ -46,12 +46,12 @@
       "generator-flesh",
       "spider",
       "art",
-      "cells",
+      "cells"
     ]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/eliodata/bones.git"
+    "url": "https://gitlab.com/eliothing/bones.git"
   },
   "scripts": {
     "test": "nyc mocha --recursive",
