@@ -61,7 +61,7 @@ exports.update_a_thing = function(req, res) {
       .then(thing => {
         thing.save().then(thing => {
           res.send(exoSkeleton.outOf(meta, thing))
-        })        
+        })
       })
       .catch(err => {
         errHandler(err, res, meta)
