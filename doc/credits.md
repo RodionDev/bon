@@ -16,6 +16,7 @@
 - [passportjs:node authentication](http://www.passportjs.org/)
 - [sriracha:express and mongoose admin backend](https://github.com/hdngr/sriracha)
 - [mangostana:mongoose documents relationships](https://www.npmjs.com/package/mangostana)
+- [lucasfcosta:Testing-NodeJS-APIs](https://lucasfcosta.com/2017/04/06/Testing-NodeJS-APIs.html)
 - <https://www.npmjs.com/package/mongoose-relationship>
 - <https://docs.mongodb.com/manual/tutorial/model-tree-structures-with-materialized-paths/>
 - <https://www.npmjs.com/package/mongoose-mpath>
