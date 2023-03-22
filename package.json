@@ -4,6 +4,13 @@
   "name": "@elioway/bones",
   "title": "bones",
   "version": "1.2.4",
+  "chisel": {
+    "host": "eliothing",
+    "Python": [
+      "banjo",
+      "django_dna"
+    ]
+  },
   "dependencies": {
     "@elioway/spider": "^1.2.5",
     "body-parser": "^1.19.0",
@@ -35,20 +42,6 @@
     "nodejs"
   ],
   "license": "MIT",
-  "modules": {
-    "host": "eliothing",
-    "core": [
-      "bones",
-      "flesh",
-      "icarus"
-    ],
-    "tool": [
-      "generator-flesh",
-      "spider",
-      "art",
-      "cells"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/eliothing/bones.git"
