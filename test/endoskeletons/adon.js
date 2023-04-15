@@ -4,6 +4,7 @@ let sinon = require('sinon')
 let mongoose = require('mongoose')
 require('sinon-mongoose')
 let Thing = require('../../bones/endoskeletons/ThingOnAShoeString/models/Thing.js')
+console.log(Thing)
 let mockThing = {
   name: 'Thing 1',
   alternateName: 'This is really Thing 1',
