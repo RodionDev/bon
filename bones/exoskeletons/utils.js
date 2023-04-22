@@ -1,5 +1,5 @@
 'use strict'
-var singularPronoun = function(schemaName) {
+var singularPronoun = function (schemaName) {
   if (schemaName.endsWith('s')) {
     schemaName = schemaName.slice(0, -1)
   }

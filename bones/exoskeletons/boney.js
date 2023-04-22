@@ -1,28 +1,28 @@
 'use strict'
 const utils = require('./utils')
-var Acquire = function(req) {
+var Acquire = function (req) {
   return req.body
 }
-var OfThing = function(meta, data) {
+var OfThing = function (meta, data) {
   return data.toObject()
 }
-var ListOfThings = function(meta, data) {
+var ListOfThings = function (meta, data) {
   let list = []
   for (let record in data) {
     list.push(OfThing(meta, data[record]))
   }
   return list
 }
-var MetaOfThing = function(meta) {
+var MetaOfThing = function (meta) {
   return meta.Thing.schema.paths
 }
-var DeleteOfThing = function(meta, data) {
+var DeleteOfThing = function (meta, data) {
   return { msg: `${meta.schemaName} successfully deleted` }
 }
-var ErrorOfThing = function(meta, errMsg) {
+var ErrorOfThing = function (meta, errMsg) {
   return { msg: `${meta.schemaName} ${errMsg}` }
 }
-var MongooseCall = function(method, req, res, mongooseCall) {
+var MongooseCall = function (method, req, res, mongooseCall) {
   let endoSkeleton =
     `../endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)

@@ -20,7 +20,7 @@ function _jsonApiExoSkeleton(meta, data) {
   }
   return newData
 }
-var jsonApiOfThing = function(meta, data) {
+var jsonApiOfThing = function (meta, data) {
   return {
     jsonapi: {
       version: '1.0',
@@ -29,7 +29,7 @@ var jsonApiOfThing = function(meta, data) {
     meta: meta.Thing.schema.paths,
   }
 }
-var jsonApiListOfThings = function(meta, data) {
+var jsonApiListOfThings = function (meta, data) {
   let list = []
   for (let record in data) {
     list.push(_jsonApiExoSkeleton(meta, data[record]))
@@ -42,7 +42,7 @@ var jsonApiListOfThings = function(meta, data) {
     meta: meta.Thing.schema.paths,
   }
 }
-var jsonApiMetaOfThing = function(meta) {
+var jsonApiMetaOfThing = function (meta) {
   return {
     jsonapi: {
       version: '1.0',
@@ -50,7 +50,7 @@ var jsonApiMetaOfThing = function(meta) {
     meta: meta.Thing.schema.paths,
   }
 }
-var jsonApiErrorOfThing = function(meta, errMsg) {
+var jsonApiErrorOfThing = function (meta, errMsg) {
   return {
     jsonapi: {
       version: '1.0',
