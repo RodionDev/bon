@@ -7,15 +7,13 @@
   "chisel": {
     "host": "eliothing",
     "Python": [
+      "crispr",
       "dna-django",
       "genes"
     ],
     "Tools": [
       "generator-thing"
     ]
-  },
-  "devDependencies": {
-    "prettier": "1.16.4"
   },
   "dependencies": {
     "@elioway/spider": "^1.2.5",
