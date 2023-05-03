@@ -5,7 +5,7 @@
   "title": "bones",
   "version": "1.2.4",
   "chisel": {
-    "host": "eliothing",
+    "host": "eliobones",
     "Python": [
       "crispr",
       "dna-django",
@@ -35,7 +35,7 @@
     "sinon": "^9.0.2",
     "sinon-mongoose": "^2.3.0"
   },
-  "homepage": "https://gitlab.com/eliothing/bones/blob/master/README.md",
+  "homepage": "https://gitlab.com/eliobones/bones/blob/master/README.md",
   "keywords": [
     "REST",
     "SEO",
@@ -48,7 +48,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/eliothing/bones.git"
+    "url": "https://gitlab.com/eliobones/bones.git"
   },
   "scripts": {
     "test": "nyc mocha --recursive",
