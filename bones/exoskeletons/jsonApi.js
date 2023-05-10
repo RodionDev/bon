@@ -1,5 +1,5 @@
-'use strict'
-const boney = require('./boney')
+"use strict"
+const boney = require("./boney")
 function jsonApiAcquire(req) {
   let data = boney.acquire(req).data
   let mongooseReadyData = {}
@@ -10,12 +10,12 @@ function jsonApiAcquire(req) {
 }
 function _jsonApiExoSkeleton(meta, data) {
   let newData = {}
-  newData['type'] = meta.schemaName
-  newData['id'] = data._id
-  newData['attributes'] = {}
+  newData["type"] = meta.schemaName
+  newData["id"] = data._id
+  newData["attributes"] = {}
   for (var key in data.toObject()) {
-    if (key !== '_id' && key !== '__v' && key !== 'toObject') {
-      newData['attributes'][key] = data[key]
+    if (key !== "_id" && key !== "__v" && key !== "toObject") {
+      newData["attributes"][key] = data[key]
     }
   }
   return newData
@@ -23,7 +23,7 @@ function _jsonApiExoSkeleton(meta, data) {
 var jsonApiOfThing = function (meta, data) {
   return {
     jsonapi: {
-      version: '1.0',
+      version: "1.0",
     },
     data: _jsonApiExoSkeleton(meta, data),
     meta: meta.Thing.schema.paths,
@@ -36,7 +36,7 @@ var jsonApiListOfThings = function (meta, data) {
   }
   return {
     jsonapi: {
-      version: '1.0',
+      version: "1.0",
     },
     data: list,
     meta: meta.Thing.schema.paths,
@@ -45,7 +45,7 @@ var jsonApiListOfThings = function (meta, data) {
 var jsonApiMetaOfThing = function (meta) {
   return {
     jsonapi: {
-      version: '1.0',
+      version: "1.0",
     },
     meta: meta.Thing.schema.paths,
   }
@@ -53,18 +53,18 @@ var jsonApiMetaOfThing = function (meta) {
 var jsonApiErrorOfThing = function (meta, errMsg) {
   return {
     jsonapi: {
-      version: '1.0',
+      version: "1.0",
     },
     errors: [`${meta.schemaName} ${errMsg}`],
   }
 }
 function jsonApiAnatomyOf(method, req, res, mongooseCall) {
-  res.setHeader('Access-Control-Allow-Origin', process.env['ALLOWED_HOST'])
+  res.setHeader("Access-Control-Allow-Origin", process.env["ALLOWED_HOST"])
   res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept',
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
   )
-  res.header('Access-Control-Allow-Methods', method)
+  res.header("Access-Control-Allow-Methods", method)
   boney.thenMongoose(method, req, res, mongooseCall)
 }
 module.exports = {

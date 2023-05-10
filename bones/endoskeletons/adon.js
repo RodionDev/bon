@@ -1,48 +1,48 @@
-const slug = require('mollusc')
-var uniquefy = require('../../lib/uniquefy')
+const slug = require("mollusc")
+var uniquefy = require("../../lib/uniquefy")
 module.exports = exports = function adon(schema, options) {
   schema.add({
     slug: {
       type: String,
       unique: [
         true,
-        'A Thing with this description cannot be disambiguated from another record.',
+        "A Thing with this description cannot be disambiguated from another record.",
       ],
       index: true,
-      maxlength: [255, 'A 255 character or less unique slug for the item.'],
+      maxlength: [255, "A 255 character or less unique slug for the item."],
     },
     seoKeywords: {
       type: String,
       maxlength: [
         255,
-        'A 255 character or less unique set of keywords for the item.',
+        "A 255 character or less unique set of keywords for the item.",
       ],
     },
     engaged: {
       type: String,
-      default: 'false',
+      default: "false",
     },
   })
-  schema.path('name').required(true)
-  schema.path('disambiguatingDescription').required(true)
-  schema.pre('save', function (next) {
+  schema.path("name").required(true)
+  schema.path("disambiguatingDescription").required(true)
+  schema.pre("save", function (next) {
     this.slug = slug(this.disambiguatingDescription)
     this.seoKeywords = uniquefy.uniquefy(this.slug)
     next()
   })
-  schema.method('engage', function (callback) {
+  schema.method("engage", function (callback) {
     return this.update({
       engaged: true,
     }).exec(callback)
   })
-  schema.method('disengage', function (callback) {
+  schema.method("disengage", function (callback) {
     return this.update({
       engaged: false,
     }).exec(callback)
   })
-  schema.static('findByDisambiguating', function (
+  schema.static("findByDisambiguating", function (
     disambiguatingDescription,
-    callback,
+    callback
   ) {
     return this.findOne({
       slug: slug(disambiguatingDescription),

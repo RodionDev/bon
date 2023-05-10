@@ -1,5 +1,5 @@
-'use strict'
-const utils = require('./utils')
+"use strict"
+const utils = require("./utils")
 var Acquire = function (req) {
   return req.body
 }
@@ -24,7 +24,7 @@ var ErrorOfThing = function (meta, errMsg) {
 }
 var MongooseCall = function (method, req, res, mongooseCall) {
   let endoSkeleton =
-    `../endoskeletons/` + process.env['ENDOSKELETON'] + `/models`
+    `../endoskeletons/` + process.env["ENDOSKELETON"] + `/models`
   var schemaName = utils.singularPronoun(req.params.thing)
   var Thing = require(`${endoSkeleton}/${schemaName}`)
   var meta = {

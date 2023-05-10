@@ -53,6 +53,6 @@
   "scripts": {
     "test": "nyc mocha --recursive",
     "devstart": "nodemon ./bones/server.js",
-    "format": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
+    "prettier": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
   }
 }
