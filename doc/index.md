@@ -1,6 +1,6 @@
 # bones
 > "Can you get this done by Wednesday?" **Rosalind Codrington**
-**bones** REST API for Schema.org mongoose schema spidered the elioWay.
+**bones** REST API for <https://schema.org> mongoose schema spidered the elioWay.
 ![experimental](https://elioway.gitlab.io/artwork/icon/experimental/favicon.png "experimental")
 <div><a href="installing.html">
   <button>Installing</button>
