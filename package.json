@@ -1,6 +1,6 @@
 {
   "author": "Tim Bushell",
-  "description": "REST API for Schema.org mongoose schema spidered the elioWay.",
+  "description": "Reusable Code for elioBones projects, the elioWay.",
   "name": "@elioway/bones",
   "title": "bones",
   "version": "1.2.4",
@@ -16,7 +16,6 @@
     ]
   },
   "dependencies": {
-    "@elioway/spider": "^1.2.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
