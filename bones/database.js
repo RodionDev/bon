@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const {
   MONGODB_URL
 } = process.env;
+console.log(`Found connection string: ${MONGODB_URL}`)
 function dbconnect() {
   mongoose.connect(MONGODB_URL, {
     useNewUrlParser: true,
