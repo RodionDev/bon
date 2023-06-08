@@ -12,7 +12,13 @@ function dbconnect(mongoDbUrl) {
 function dbclose() {
   return mongoose.disconnect();
 }
+function dbclear() {
+  for (var i in mongoose.connection.collections) {
+    mongoose.connection.collections[i].deleteMany(() => {})
+  }
+}
 module.exports = {
   dbconnect,
-  dbclose
+  dbclose,
+  dbclear
 };
