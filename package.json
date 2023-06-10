@@ -4,16 +4,30 @@
   "name": "@elioway/bones",
   "title": "bones",
   "version": "1.3.2",
-  "chisel": {
-    "host": "eliobones",
-    "Python": [
-      "crispr",
-      "dna-django",
-      "genes"
+  "__________": "______________________________",
+  "kleio": {
+    "art": {
+      "elioName": "bones",
+      "pluginName": "bones",
+      "splashQuote": "REST Api, the elioWay"
+    },
+    "branciaos": [
+      "bones",
+      "eliobones"
     ],
-    "Tools": [
-      "generator-thing"
-    ]
+    "chisel": {
+      "Home": "eliobones"
+    },
+    "twig": {
+      "workingBranch": "main",
+      "mergeIntoBranch": "main"
+    }
+  },
+  "main": "main",
+  "scripts": {
+    "test": "nyc mocha --recursive",
+    "devstart": "nodemon ./bones/server.js",
+    "prettier": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -34,6 +48,17 @@
     "sinon": "^9.0.2",
     "sinon-mongoose": "^2.3.0"
   },
+  "chisel": {
+    "host": "eliobones",
+    "Python": [
+      "crispr",
+      "dna-django",
+      "genes"
+    ],
+    "Tools": [
+      "generator-thing"
+    ]
+  },
   "homepage": "https://gitlab.com/eliobones/bones/blob/master/README.md",
   "keywords": [
     "REST",
@@ -48,10 +73,5 @@
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/eliobones/bones.git"
-  },
-  "scripts": {
-    "test": "nyc mocha --recursive",
-    "devstart": "nodemon ./bones/server.js",
-    "prettier": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
   }
 }

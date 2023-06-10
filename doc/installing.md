@@ -1,6 +1,5 @@
 # Installing adon
-## Prerequisites
-- [mongodb](mongo-db.html)
+- [Prerequisites](./prerequisites)
 ## Installation
 ```shell
 git clone https://gitlab.com/elioway/elioway.gitlab.io.git elioway
