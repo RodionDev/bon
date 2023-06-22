@@ -11,19 +11,11 @@ module.exports = () => {
   return async (req, res) => {
     let thingType = req.params.engage
     let thingBuilder = new ThingBuilder(
-      getSchema("9.0/schemaorg-all-http"),
+      "9.0/schemaorg-all-http",
       schemaDomainUrl
     )
     let things = thingBuilder.things([thingType], sanitizeOptions(req.query))
     let schemedT = things[thingType]
-    let thinner = Object.keys(settings.slim)
-      .filter(skimkey => skimkey !== "_id")
-      .reduce(function (acc, slimkey) {
-        if (schemedT[slimkey]) {
-          acc[slimkey] = schemedT[slimkey]
-        }
-        return acc
-      }, {})
-    res.send(thinner)
+    res.send(schemedT)
   }
 }

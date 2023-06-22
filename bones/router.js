@@ -1,6 +1,6 @@
 "use strict"
 const { Router } = require("express")
-const ThingModel = require("./ThingModel")
+const ThingModel = require("./Thing.json")
 const crudify = require("./crudify")
 const settings = require("./settings")
 let apiRouter = Router()

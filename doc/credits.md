@@ -21,5 +21,6 @@
 - <https://www.npmjs.com/package/mongoose-mpath>
 - [joi schema definitions](https://hapi.dev/module/joi/)
 - <https://github.com/DigiPie/mocha-chai-mongoose/tree/master/server/src/config>
+- <https://rethinkdb.com/faq>
 ## Artwork
 - <https://commons.wikimedia.org/wiki/File:Pteromyini_spec.,_Flying_squirrel,_skeleton,_Naturalis,_Leiden,_the_Netherlands.jpg>

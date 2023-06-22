@@ -34,7 +34,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.9.20",
+    "nedb": "^1.8.0",
     "request": "^2.88.2"
   },
   "devDependencies": {
@@ -44,9 +44,7 @@
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
-    "prettier": "2.0.5",
-    "sinon": "^9.0.2",
-    "sinon-mongoose": "^2.3.0"
+    "prettier": "2.0.5"
   },
   "chisel": {
     "host": "eliobones",
