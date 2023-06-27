@@ -1,5 +1,5 @@
 module.exports = {
-  thingTypeMatched: (body, thingType) => {
+  thingIsTypeT: (body, thingType) => {
     if (body.hasOwnProperty("engage")) {
       return Object.keys(body.engage).includes(thingType)
     } else {

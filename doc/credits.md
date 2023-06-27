@@ -1,10 +1,11 @@
 # bones Credits
 ## Core! thanks
 - [expressjs](https://expressjs.com/)
-- [mongoosejs](http://mongoosejs.com/)
 - [mochajs](https://mochajs.org/)
 - [chaijs](http://www.chaijs.com/)
 - [mollusc](https://www.npmjs.com/package/mollusc)
+- [Simple-JSONdb](https://github.com/nmaggioni/Simple-JSONdb)
+- [Cakebase](https://github.com/erwinkulasic/Cakebase)
 - [wikimedia:Death_Comes_to_the_Banquet_Table_](https://commons.wikimedia.org/wiki/File:Death_Comes_to_the_Banquet_Table_-_Memento_Mori_-_Martinelli_NOMA.jpg)
 ## These were helpful
 - [Basics of route controllers and Rest APIs](https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd)

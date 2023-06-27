@@ -16,7 +16,7 @@ module.exports = Thing => {
       createT.god = req.user._id
       createT.thing = thingType
       things.insert(createT, function(err, createdT) {
-          res.locals.thing.list.push(createdT._id)
+          res.locals.engagedThing.list.push(createdT._id)
           res.status(201).send(createdT)
       });
     }

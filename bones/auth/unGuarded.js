@@ -9,12 +9,11 @@ module.exports = T => {
   passport.use(
     "unguarded",
     new passportCustom.Strategy((req, callback) => {
-      let myThing = null
-      await things.findOne({ _id: SITE_ID }, function(e, thing) {
+      await things.findOne({ _id: SITE_ID }, function(e, guardedThing) {
         if (e) {
           return callback(e)
         } else {
-          return callback(null, thing)
+          return callback(null, guardedThing)
         }
       })
     })
