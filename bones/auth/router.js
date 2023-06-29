@@ -1,9 +1,9 @@
 "use strict"
 const { Router } = require("express")
 const ThingModel = require("../ThingModel")
-const loginT = require("../crudities/loginT")
-const logoutT = require("../crudities/logoutT")
-const signupT = require("../crudities/signupT")
+const loginT = require("../ribs/loginT")
+const logoutT = require("../ribs/logoutT")
+const signupT = require("../ribs/signupT")
 const authRouter = Router()
 authRouter.post("/login", loginT(ThingModel))
 authRouter.get("/logout", logoutT(ThingModel)) 

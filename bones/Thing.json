@@ -1,40 +1,38 @@
 {
-  "Thing": {
-    "potentialAction": {
-      "type": "Text"
-    },
-    "identifier": {
-      "type": "Text"
-    },
-    "sameAs": {
-      "type": "URL"
-    },
-    "url": {
-      "type": "URL"
-    },
-    "image": {
-      "type": "URL"
-    },
-    "alternateName": {
-      "type": "Text"
-    },
-    "name": {
-      "type": "Text"
-    },
-    "description": {
-      "type": "Text"
-    },
-    "mainEntityOfPage": {
-      "type": "URL"
-    },
-    "disambiguatingDescription": {
-      "type": "Text"
-    },
-    "subjectOf": {
-      "type": "Text"
-    },
-    "additionalType": {
-      "type": "URL"
-    }
+  "potentialAction": {
+    "type": "Text"
+  },
+  "identifier": {
+    "type": "Text"
+  },
+  "sameAs": {
+    "type": "URL"
+  },
+  "url": {
+    "type": "URL"
+  },
+  "image": {
+    "type": "URL"
+  },
+  "alternateName": {
+    "type": "Text"
+  },
+  "name": {
+    "type": "Text"
+  },
+  "description": {
+    "type": "Text"
+  },
+  "mainEntityOfPage": {
+    "type": "URL"
+  },
+  "disambiguatingDescription": {
+    "type": "Text"
+  },
+  "subjectOf": {
+    "type": "Text"
+  },
+  "additionalType": {
+    "type": "URL"
   }
 }

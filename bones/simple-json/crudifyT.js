@@ -1,20 +1,3 @@
-/**
-* @file Subroute with endpoints to handle JSON.Model cruddy operations, the elioWay.
-* @author Tim Bushell
-*
-* @usage
-* ============================================================================ *
-const { Router } = require('express')
-const { JSON } = require('JSON')
-const crudifyT = require('@elioway/bones/bones/ribs/crudifyT')
-let T = {  thing: "Thing" }
-let apiRouter = Router()
-apiRouter.use(`/Thing`, crudifyT(T))
-* ============================================================================ *
-*
-* @param {JSON.Model} T the Thing JSON Model object.
-* @returns {express.Router}
-*/
 "use strict"
 const { Router } = require("express")
 const isTypeT = require("../back/isTypeT")
@@ -26,7 +9,6 @@ const engageT = require("./engageT")
 const getT = require("./getT")
 const listT = require("./listT")
 const updateT = require("./updateT")
-
 module.exports = T => {
   let crudRouter = Router()
   crudRouter.get("/:engage/", allT(T))

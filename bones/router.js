@@ -1,8 +1,8 @@
 "use strict"
 const { Router } = require("express")
 const ThingModel = require("./Thing.json")
-const crudify = require("./crudify")
+const ribs = require("./ribs/crudify")
 const settings = require("./settings")
 let apiRouter = Router()
-apiRouter.use("", settings.guard(ThingModel), crudify(ThingModel))
+apiRouter.use("", settings.guard(ThingModel), ribs(ThingModel))
 module.exports = apiRouter
