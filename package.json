@@ -26,7 +26,7 @@
   "main": "main",
   "scripts": {
     "test": "nyc mocha --recursive",
-    "devstart": "nodemon ./bones/server.js",
+    "dev": "nodemon ./bones/server.js",
     "prettier": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
   },
   "dependencies": {

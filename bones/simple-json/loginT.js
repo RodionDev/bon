@@ -1,6 +1,6 @@
 "use strict"
-const JSONdb = require('simple-json-db');
-const db = new JSONdb('../database.json');
+const JSONdb = require("simple-json-db")
+const db = new JSONdb("../database.json")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -17,7 +17,7 @@ module.exports = Thing => {
       let err = credentialsMissingError()
       res.status(err.name).json(err).end()
     } else {
-      const user = db.JSON().find(t => t.username === username);
+      const user = db.JSON().find(t => t.username === username)
       if (!user) {
         let err = credentialsError()
         res.status(err.name).json(err).end()
@@ -55,5 +55,6 @@ module.exports = Thing => {
         let err = credentialsError()
         res.status(err.name).json(err).end()
       }
+    }
   }
 }

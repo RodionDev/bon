@@ -1,6 +1,6 @@
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const { createError, thingTypeError } = require("../utils/responseMessages")
 const { thingTypeMatched } = require("../utils/validations")
 module.exports = Thing => {
@@ -15,10 +15,10 @@ module.exports = Thing => {
       createT.createdBy = req.params._id
       createT.god = req.user._id
       createT.thing = thingType
-      things.insert(createT, function(err, createdT) {
-          res.locals.engagedThing.list.push(createdT._id)
-          res.status(201).send(createdT)
-      });
+      things.insert(createT, function (err, createdT) {
+        res.locals.engagedThing.list.push(createdT._id)
+        res.status(201).send(createdT)
+      })
     }
   }
 }

@@ -1,9 +1,7 @@
 "use strict"
-const JSONdb = require('simple-json-db');
-const db = new JSONdb('../database.json');
-const {
-  deleteSuccess,
-} = require("../utils/responseMessages")
+const JSONdb = require("simple-json-db")
+const db = new JSONdb("../database.json")
+const { deleteSuccess } = require("../utils/responseMessages")
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage

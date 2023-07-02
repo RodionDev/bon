@@ -1,7 +1,5 @@
 "use strict"
-const {
-  thingTypeError,
-} = require("../utils/responseMessages")
+const { thingTypeError } = require("../utils/responseMessages")
 const { thingIsTypeT } = require("../utils/validations")
 module.exports = Thing => {
   return async (req, res) => {

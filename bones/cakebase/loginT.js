@@ -1,5 +1,5 @@
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
+const Cakebase = require("cakebase")("../database.json")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -16,7 +16,7 @@ module.exports = Thing => {
       let err = credentialsMissingError()
       res.status(err.name).json(err).end()
     } else {
-      const user = Cakebase.get(e => e.username === username);
+      const user = Cakebase.get(e => e.username === username)
       if (!user) {
         let err = credentialsError()
         res.status(err.name).json(err).end()
@@ -54,5 +54,6 @@ module.exports = Thing => {
         let err = credentialsError()
         res.status(err.name).json(err).end()
       }
+    }
   }
 }

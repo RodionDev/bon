@@ -1,5 +1,5 @@
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
+const Cakebase = require("cakebase")("../database.json")
 const { createError, thingTypeError } = require("../utils/responseMessages")
 const { thingTypeMatched } = require("../utils/validations")
 module.exports = Thing => {

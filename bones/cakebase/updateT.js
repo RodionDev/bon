@@ -1,5 +1,5 @@
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
+const Cakebase = require("cakebase")("../database.json")
 const {
   updateError,
   updateSuccess,
@@ -13,7 +13,7 @@ module.exports = Thing => {
     let updateT = req.body
     updateT.updated = Date.now()
     updateT.updatedBy = req.user._id
-    let updatedT = Cakebase.update(e => e._id === req.params._id, updateT);
+    let updatedT = Cakebase.update(e => e._id === req.params._id, updateT)
     let success = updateSuccess(thingType)
     res.status(success.name).send(updatedT)
   }

@@ -1,6 +1,6 @@
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const {
   deleteError,
   deleteSuccess,
@@ -10,7 +10,7 @@ const { thingTypeMatched } = require("../utils/validations")
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage
-    await things.findOne({ _id: req.params._id }, function(e, deletedableT) {
+    await things.findOne({ _id: req.params._id }, function (e, deletedableT) {
       if (e) {
         let err = deleteError(e)
         res.status(err.name).json(err)
@@ -18,7 +18,10 @@ module.exports = Thing => {
         let err = thingTypeError("delete", thingType)
         res.status(err.name).json(err)
       } else {
-        things.remove({ _id: { $regex: req.params._id } }, function(e, numDeleted) {
+        things.remove({ _id: { $regex: req.params._id } }, function (
+          e,
+          numDeleted
+        ) {
           if (e) {
             let err = deleteError(e)
             res.status(err.name).json(err)

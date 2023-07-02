@@ -1,6 +1,6 @@
 "use strict"
-const JSONdb = require('simple-json-db');
-const db = new JSONdb('../database.json');
+const JSONdb = require("simple-json-db")
+const db = new JSONdb("../database.json")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const { logoutSuccess } = require("../utils/responseMessages")

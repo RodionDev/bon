@@ -1,6 +1,6 @@
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const {
   updateError,
   updateSuccess,
@@ -18,7 +18,10 @@ module.exports = Thing => {
       let updateT = req.body
       updateT.updated = Date.now()
       updateT.updatedBy = req.user._id
-      things.update({ _id: req.params._id }, updateT, {}, function (e, numReplaced) {
+      things.update({ _id: req.params._id }, updateT, {}, function (
+        e,
+        numReplaced
+      ) {
         if (e) {
           let err = updateError(e)
           res.status(err.name).json(err).end()
@@ -26,7 +29,7 @@ module.exports = Thing => {
           let success = updateSuccess(thingType)
           res.status(success.name).send(success)
         }
-      });
+      })
     }
   }
 }

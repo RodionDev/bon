@@ -1,8 +1,5 @@
 "use strict"
-const {
-  deleteError,
-  deleteSuccess,
-} = require("../utils/responseMessages")
+const { deleteError, deleteSuccess } = require("../utils/responseMessages")
 module.exports = Thing => {
   return async (req, res) => {
     let thingType = req.params.engage

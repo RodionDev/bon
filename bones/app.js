@@ -7,6 +7,7 @@ const routerApi = require("./router")
 const routerAuth = require("./auth/router")
 const routerSchema = require("./schema/router")
 const app = express()
+app.locals.fs = require("fs")
 app
   .use(cors())
   .use(bodyParser.json())

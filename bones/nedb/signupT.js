@@ -1,6 +1,6 @@
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const {
   signUpError,

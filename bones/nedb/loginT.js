@@ -1,6 +1,6 @@
 "use strict"
-var Datastore = require('nedb');
-var things = new Datastore();
+var Datastore = require("nedb")
+var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -17,7 +17,7 @@ module.exports = Thing => {
       let err = credentialsMissingError()
       res.status(err.name).json(err).end()
     } else {
-      await things.findOne({ username: username }, function(e, user) {
+      await things.findOne({ username: username }, async function (e, user) {
         if (!user) {
           let err = credentialsError()
           res.status(err.name).json(err).end()
@@ -56,5 +56,6 @@ module.exports = Thing => {
           res.status(err.name).json(err).end()
         }
       })
+    }
   }
 }

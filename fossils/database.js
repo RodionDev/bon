@@ -1,16 +1,16 @@
-"use strict";
-const mongoose = require("mongoose");
+"use strict"
+const mongoose = require("mongoose")
 function dbconnect(mongoDbUrl) {
   mongoose.connect(mongoDbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
-    useFindAndModify: false
-  });
-  return mongoose.connection;
+    useFindAndModify: false,
+  })
+  return mongoose.connection
 }
 function dbclose() {
-  return mongoose.disconnect();
+  return mongoose.disconnect()
 }
 function dbclear() {
   for (var i in mongoose.connection.collections) {
@@ -20,5 +20,5 @@ function dbclear() {
 module.exports = {
   dbconnect,
   dbclose,
-  dbclear
-};
+  dbclear,
+}

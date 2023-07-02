@@ -1,6 +1,6 @@
 "use strict"
-const Cakebase = require('cakebase')("../database.json");
-var things = new Datastore();
+const Cakebase = require("cakebase")("../database.json")
+var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const {
   signUpError,

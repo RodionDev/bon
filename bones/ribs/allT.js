@@ -6,7 +6,6 @@ module.exports = Thing => {
     let thingType = req.params.engage
     let engagedThing = res.locals.engagedThing
     res.locals.engagedThing
-    res.status(200).send({
-    })
+    res.status(200).send({})
   }
 }
