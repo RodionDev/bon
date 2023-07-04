@@ -1,7 +1,7 @@
 "use strict"
 const unGuarded = require("./auth/unGuarded")
 const { PermitLevels, BasePermits, AnonPermits } = require("./auth/permits")
-const { BONES, BONES_DEPTH, EXTRA_PRIMITIVE, SITE_ID } = process.env
+const { SITE_ID } = process.env
 module.exports = {
   guard: unGuarded,
   permits: AnonPermits,
@@ -19,9 +19,6 @@ module.exports = {
       return queryString
     },
   },
-  bones: BONES.split(",").filter(b => b),
-  depth: BONES_DEPTH || 0,
-  extraPrimitive: EXTRA_PRIMITIVE.split(",").filter(b => b),
   siteId: SITE_ID,
   slim: [
     "disambiguatingDescription",
