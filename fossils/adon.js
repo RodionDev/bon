@@ -40,12 +40,12 @@ module.exports = exports = function adon(schema, options) {
       engaged: false,
     }).exec(callback)
   })
-  schema.static("findByDisambiguating", function (
-    disambiguatingDescription,
-    callback
-  ) {
-    return this.findOne({
-      slug: slug(disambiguatingDescription),
-    }).exec(callback)
-  })
+  schema.static(
+    "findByDisambiguating",
+    function (disambiguatingDescription, callback) {
+      return this.findOne({
+        slug: slug(disambiguatingDescription),
+      }).exec(callback)
+    }
+  )
 }

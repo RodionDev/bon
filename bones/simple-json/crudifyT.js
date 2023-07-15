@@ -1,7 +1,7 @@
 "use strict"
 const { Router } = require("express")
-const isTypeT = require("../back/isTypeT")
-const permitTo = require("../back/permitTo")
+const isTypeT = require("../spine/isTypeT")
+const permitT = require("../spine/permitT")
 const allT = require("./allT")
 const createT = require("./createT")
 const deleteT = require("./deleteT")
@@ -16,40 +16,40 @@ module.exports = T => {
     "/:engage/:_id/",
     engageT(T),
     isTypeT(T),
-    permitTo("get", T),
+    permitT("get", T),
     getT(T)
   )
   crudRouter.get(
     "/:engage/:_id/list/",
     engageT(T),
-    permitTo("get", T),
+    permitT("get", T),
     listT(T)
   )
   crudRouter.get(
     "/:engage/:_id/listof/:T/",
     engageT(T),
-    permitTo("get", T),
+    permitT("get", T),
     listT(T)
   )
   crudRouter.post(
     "/:engage/:_id/:T/",
     engageT(T),
     isTypeT(T),
-    permitTo("create", T),
+    permitT("create", T),
     createT(T)
   )
   crudRouter.patch(
     "/:engage/:_id/",
     engageT(T),
     isTypeT(T),
-    permitTo("update", T),
+    permitT("update", T),
     updateT(T)
   )
   crudRouter.delete(
     "/:engage/:_id/",
     engageT(T),
     isTypeT(T),
-    permitTo("delete", T),
+    permitT("delete", T),
     deleteT(T)
   )
   return crudRouter

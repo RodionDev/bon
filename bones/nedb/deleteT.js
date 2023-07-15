@@ -18,18 +18,18 @@ module.exports = Thing => {
         let err = thingTypeError("delete", thingType)
         res.status(err.name).json(err)
       } else {
-        things.remove({ _id: { $regex: req.params._id } }, function (
-          e,
-          numDeleted
-        ) {
-          if (e) {
-            let err = deleteError(e)
-            res.status(err.name).json(err)
-          } else {
-            let success = deleteSuccess(thingType)
-            res.status(success.name).json(success)
+        things.remove(
+          { _id: { $regex: req.params._id } },
+          function (e, numDeleted) {
+            if (e) {
+              let err = deleteError(e)
+              res.status(err.name).json(err)
+            } else {
+              let success = deleteSuccess(thingType)
+              res.status(success.name).json(success)
+            }
           }
-        })
+        )
       }
     })
   }

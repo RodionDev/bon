@@ -20,16 +20,16 @@ describe("Model adon methods", function () {
       })
       .chain("exec")
       .yields(null, "RESULT")
-    Thing.findByDisambiguating("DISAMBIGUATING DESCRIPTION", function (
-      err,
-      result
-    ) {
-      ThingMock.verify()
-      ThingMock.restore()
-      assert.equal(result, "RESULT")
-      assert.equal(err, null)
-      done()
-    })
+    Thing.findByDisambiguating(
+      "DISAMBIGUATING DESCRIPTION",
+      function (err, result) {
+        ThingMock.verify()
+        ThingMock.restore()
+        assert.equal(result, "RESULT")
+        assert.equal(err, null)
+        done()
+      }
+    )
   })
 })
 describe("Model adon statics", function () {
