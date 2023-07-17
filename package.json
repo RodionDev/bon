@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "@elioway/thing": "../../eliothing/thing",
-    "body-parser": "^1.19.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
     "cakebase": "^1.0.8",
     "chokidar": "^3.4.3",
     "cors": "^2.8.5",
@@ -51,7 +51,6 @@
     "passport-local": "^1.0.0",
     "pino-http": "^5.3.0",
     "require-dir": "^1.2.0",
-    "request": "^2.88.2",
     "simple-json-db": "^1.2.2"
   },
   "devDependencies": {
@@ -66,7 +65,8 @@
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
-    "prettier": "2.0.5"
+    "prettier": "2.0.5",
+    "supertest": "^6.1.4"
   },
   "chisel": {
     "host": "eliobones",
