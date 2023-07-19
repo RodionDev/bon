@@ -6,12 +6,12 @@ module.exports = exports = function adon(schema, options) {
   schema.pre("save", function (next) {
     next()
   })
-  schema.static(
-    "findByDisambiguating",
-    function (disambiguatingDescription, callback) {
-      return this.findOne({
-        slug: slug(disambiguatingDescription),
-      }).exec(callback)
-    }
-  )
+  schema.static("findByDisambiguating", function (
+    disambiguatingDescription,
+    callback
+  ) {
+    return this.findOne({
+      slug: slug(disambiguatingDescription),
+    }).exec(callback)
+  })
 }

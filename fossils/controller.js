@@ -69,20 +69,20 @@ exports.update_a_thing = function (req, res) {
   })
 }
 exports.delete_a_thing = function (req, res) {
-  exoSkeleton.thenMongoose(
-    "DELETE",
+  exoSkeleton.thenMongoose("DELETE", req, res, function (
     req,
     res,
-    function (req, res, Thing, meta) {
-      Thing.deleteOne({
-        _id: req.params.thingId,
+    Thing,
+    meta
+  ) {
+    Thing.deleteOne({
+      _id: req.params.thingId,
+    })
+      .then(thing => {
+        res.send(exoSkeleton.deleteOf(meta, thing))
       })
-        .then(thing => {
-          res.send(exoSkeleton.deleteOf(meta, thing))
-        })
-        .catch(err => {
-          errHandler(err, res, meta)
-        })
-    }
-  )
+      .catch(err => {
+        errHandler(err, res, meta)
+      })
+  })
 }

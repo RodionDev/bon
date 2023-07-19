@@ -18,20 +18,18 @@ module.exports = Thing => {
       let updateT = req.body
       updateT.updated = Date.now()
       updateT.updatedBy = req.user._id
-      things.update(
-        { _id: req.params._id },
-        updateT,
-        {},
-        function (e, numReplaced) {
-          if (e) {
-            let err = updateError(e)
-            res.status(err.name).json(err).end()
-          } else {
-            let success = updateSuccess(thingType)
-            res.status(success.name).send(success)
-          }
+      things.update({ _id: req.params._id }, updateT, {}, function (
+        e,
+        numReplaced
+      ) {
+        if (e) {
+          let err = updateError(e)
+          res.status(err.name).json(err).end()
+        } else {
+          let success = updateSuccess(thingType)
+          res.status(success.name).send(success)
         }
-      )
+      })
     }
   }
 }

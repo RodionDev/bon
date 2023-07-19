@@ -37,12 +37,7 @@ module.exports = T => {
     permitT("get", T),
     getT(T)
   )
-  crudRouter.get(
-    "/:engage/:_id/list/",
-    engageT(T),
-    permitT("get", T),
-    listT(T)
-  )
+  crudRouter.get("/:engage/:_id/list/", engageT(T), permitT("get", T), listT(T))
   crudRouter.get(
     "/:engage/:_id/listof/:T/",
     engageT(T),

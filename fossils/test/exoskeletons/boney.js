@@ -43,14 +43,14 @@ describe("exoskeleton.boney", function () {
       },
     }
     var mock_res = {}
-    boney.thenMongoose(
-      "GET",
-      mock_req,
-      mock_res,
-      function (req, res, Thing, meta) {
-        req.should.deep.eql(mock_req)
-        meta.schemaName.should.eql("Thing")
-      }
-    )
+    boney.thenMongoose("GET", mock_req, mock_res, function (
+      req,
+      res,
+      Thing,
+      meta
+    ) {
+      req.should.deep.eql(mock_req)
+      meta.schemaName.should.eql("Thing")
+    })
   })
 })
