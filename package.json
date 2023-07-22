@@ -7,8 +7,8 @@
   "__________": "______________________________",
   "tew": {
     "art": {
-      "elioName": "bones",
-      "pluginName": "bones",
+      "name": "bones",
+      "potentialAction": "bones",
       "splashQuote": "REST Api, the elioWay"
     },
     "branciaos": [
