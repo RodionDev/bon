@@ -33,12 +33,10 @@ mochaSuite("bones | crudities | getT | GET /:engage/:_id", () => {
           createdBy: tokenBody._id,
           flag1: 1,
           permits: { get: PermitLevels.GOD },
-          engage: {
             Person: {
               birthDate: new Date(2001, 1, 1).toISOString(),
               email: "apprentice1@eliomail.com",
             },
-          },
         }
         Thing.create(thing, (err, apprentice) => {
           chai

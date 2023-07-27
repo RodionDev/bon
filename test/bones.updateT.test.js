@@ -76,7 +76,6 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
         Thing.create(
           {
             disambiguatingDescription: "Eat victuals.",
-            engage: {
               Action: {
                 actionStatus: "ActiveActionStatus",
                 startTime: "2030-10-10T01:02:03.000Z",
@@ -84,7 +83,6 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
               ConsumeAction: {
                 expectsAcceptanceOf: "Taste",
               },
-            },
             god: tokenBody._id,
             name: "Victuals",
             permits: { update: PermitLevels.GOD },
@@ -95,7 +93,6 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
               .request(app)
               .patch(`/ConsumeAction/${apprentice._id}`)
               .send({
-                engage: {
                   Action: {
                     actionStatus: "CompletedActionStatus", 
                     endTime: "2030-10-31T01:02:03.000Z", 
@@ -104,7 +101,6 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                   ConsumeAction: {
                     expectsAcceptanceOf: "Taste",
                   },
-                },
                 name: "Food tasting", 
               })
               .set("Authorization", tokenBody.token)
@@ -125,7 +121,6 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                     res.should.have.status(200)
                     fieldsShouldEqual(res.body, {
                       disambiguatingDescription: "Eat victuals.",
-                      engage: {
                         Action: {
                           actionStatus: "CompletedActionStatus",
                           endTime: "2030-10-31T01:02:03.000Z",
@@ -134,7 +129,6 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                         ConsumeAction: {
                           expectsAcceptanceOf: "Taste",
                         },
-                      },
                       name: "Food tasting", 
                     })
                     done()

@@ -144,11 +144,9 @@ mochaSuite("POST /auth/Thing/signup", () => {
       .request(app)
       .post("/auth/Person/signup")
       .send({
-        engage: {
           Action: {
             actionStatus: "ActiveActionStatus",
           },
-        },
         name: "Wizard",
         password: "letmein",
         username: "wizard1",
