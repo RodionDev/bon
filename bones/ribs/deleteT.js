@@ -1,16 +1,21 @@
-"use strict"
-const { deleteError, deleteSuccess } = require("../utils/responseMessages")
-module.exports = Thing => {
-  return async (req, res) => {
-    let thingType = req.params.engage
-    let engagedThing = res.locals.engagedThing
-    await engagedThing.delete()
-    if (e) {
-      let err = deleteError(e)
-      res.status(err.name).json(err)
+const authT = require("../spine/authT")
+const deleteT = (packet, db, cb) => {
+  authT("deleteT", packet, db, (permitted, err, _) => {
+    if (permitted) {
+      let { identifier, mainEntityOfPage } = packet
+      db.delete(mainEntityOfPage, identifier, err => {
+        if (!err) {
+          cb(200, { Message: `${identifier} Thing deleted.` })
+        } else {
+          cb(500, {
+            Error: `Could not delete ${identifier} Thing.`,
+            Reason: err,
+          })
+        }
+      })
     } else {
-      let success = deleteSuccess(thingType)
-      res.status(success.name).json(success)
+      cb(400, err)
     }
-  }
+  })
 }
+module.exports = deleteT

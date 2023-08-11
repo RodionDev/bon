@@ -1,7 +1,6 @@
-"use strict"
-const slug = require("mollusc")
-const keywordExtractor = require("keyword-extractor")
-exports.uniquefy = function (slimy) {
+import slug from "mollusc"
+import keywordExtractor from "keyword-extractor"
+export const uniquefy = slimy => {
   var unslime = slug(slimy).split("-").sort().join(" ")
   unslime = keywordExtractor.extract(unslime, {
     language: "english",
