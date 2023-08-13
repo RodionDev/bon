@@ -15,14 +15,15 @@ const login = (packet, db, cb) => {
         if (hashedPassword == engagedData.password) {
           let permit = makePermitIdentifier()
           let validUntil = Date.now() + 1000 * 60 * 60
-          let tokenData = {
+          let permitPacket = {
             identifier: permit,
+            mainEntityOfPage: "Permit",
             Permit: {
               validUntil,
               permitAudience: identifier,
             },
           }
-          db.create("Permit", permit, tokenData, err => {
+          db.create(permitPacket, err => {
             if (!err) {
               cb(200, tokenData)
             } else {

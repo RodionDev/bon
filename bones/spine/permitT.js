@@ -15,7 +15,7 @@ const isLISTED = (engagedData, permitAudience) => {
   )
 }
 const permitT = (rib, packet, db, engagedData, cb) => {
-  let { identifier, mainEntityOfPage, permit } = packet
+  let { identifier, mainEntityOfPage } = packet
   let permittedLevel = PERMITLEVELS.GOD
   if (engagedData.hasOwnProperty("permits")) {
     permittedLevel = engagedData.permits[rib]
@@ -27,8 +27,9 @@ const permitT = (rib, packet, db, engagedData, cb) => {
       }
     }
   }
+  let permit = engagedData.permit
   if (permit) {
-    db.read("Permit", permit, (err, tokenData) => {
+    db.read(permit, (err, tokenData) => {
       if (!err && tokenData) {
         let { permitAudience, validUntil } = tokenData.Permit
         if (validUntil > Date.now()) {

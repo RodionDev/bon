@@ -3,24 +3,24 @@ const path = require("path")
 const helpers = require("../bones/helpers")
 const db = {}
 db.baseDir = path.join(__dirname, "/../.data")
-db.makeFilePath = (THINGTYPE, identifier) => {
-  const filePath = `${db.baseDir}/${THINGTYPE}`
-  if (!fs.existsSync(filePath)) {
-    fs.mkdirSync(filePath, { recursive: true })
+db.makeFilePath = packet => {
+  let { identifier } = packet
+  if (!fs.existsSync(db.baseDir)) {
+    fs.mkdirSync(db.baseDir, { recursive: true })
   }
-  return `${filePath}/${identifier}.json`
+  return path.join(db.baseDir, `${identifier}.json`)
 }
-db.exists = (THINGTYPE, identifier, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.exists = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.exists(filePath, cb)
 }
-db.create = (THINGTYPE, identifier, data, cb) => {
-  db.exists(THINGTYPE, identifier, (exists, err) => {
+db.create = (packet, cb) => {
+  db.exists(packet, (exists, err) => {
     if (!exists && !err) {
-      const filePath = db.makeFilePath(THINGTYPE, identifier)
+      const filePath = db.makeFilePath(packet)
       fs.open(filePath, "wx", (err, fileRef) => {
         if (!err && fileRef) {
-          let stringData = JSON.stringify(data, null, "\t")
+          let stringData = JSON.stringify(packet, null, "\t")
           fs.writeFile(fileRef, stringData, err => {
             if (!err) {
               fs.close(fileRef, err => {
@@ -45,8 +45,8 @@ db.create = (THINGTYPE, identifier, data, cb) => {
     }
   })
 }
-db.read = (THINGTYPE, identifier, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.read = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.readFile(filePath, "utf-8", (err, data) => {
     if (!err && data) {
       cb(false, helpers.parseJsonToObject(data))
@@ -57,9 +57,9 @@ db.read = (THINGTYPE, identifier, cb) => {
   })
 }
 db.list = (things, cb) => {
-  var promises = things.map(item => {
+  var promises = things.map(packet => {
     return new Promise((resolve, reject) => {
-      db.read(item.mainEntityOfPage, item.identifier, (err, data) => {
+      db.read(packet, (err, data) => {
         if (!err) {
           resolve(data)
         } else {
@@ -78,18 +78,18 @@ db.list = (things, cb) => {
       cb("Could not `read` files for list.")
     })
 }
-db.update = (THINGTYPE, identifier, data, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.update = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.open(filePath, "r+", (err, fileRef) => {
     if (!err && fileRef) {
-      let stringData = JSON.stringify(data, null, "\t")
+      let stringData = JSON.stringify(packet, null, "\t")
       fs.ftruncate(fileRef, err => {
         if (!err) {
           fs.writeFile(fileRef, stringData, err => {
             if (!err) {
               fs.close(fileRef, err => {
                 if (!err) {
-                  cb(false, data)
+                  cb(false, packet)
                 } else {
                   console.error("db.update", err)
                   cb("Could not `close` file for update.")
@@ -109,8 +109,8 @@ db.update = (THINGTYPE, identifier, data, cb) => {
     }
   })
 }
-db.delete = (THINGTYPE, identifier, cb) => {
-  const filePath = db.makeFilePath(THINGTYPE, identifier)
+db.delete = (packet, cb) => {
+  const filePath = db.makeFilePath(packet)
   fs.unlink(filePath, err => {
     if (!err) {
       cb(false)

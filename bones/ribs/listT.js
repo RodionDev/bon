@@ -2,7 +2,7 @@ const authT = require("../spine/authT")
 const listT = (packet, db, cb) => {
   authT("listT", packet, db, (permitted, err, engagedData) => {
     if (permitted && engagedData) {
-      let { identifier, mainEntityOfPage } = packet
+      let { identifier } = packet
       if (engagedData.ItemList.itemListElement) {
         let engagedList = [...engagedData.ItemList.itemListElement]
         if (mainEntityOfPage) {

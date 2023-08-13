@@ -2,14 +2,14 @@ const authT = require("../spine/authT")
 const unlistT = (packet, db, cb) => {
   authT("unlistT", packet, db, (permitted, err, engagedData) => {
     if (permitted && engagedData) {
-      let { engagedIdentifier, identifier, packet, mainEntityOfPage } = packet
+      let { identifier } = packet
       let engagedList = new Set(engagedData.ItemList.itemListElement || [])
       let listKey = [...engagedList.values()].find(
         item => item.identifier === identifier
       )
       if (listKey && engagedList.delete(listKey)) {
         engagedData.ItemList.itemListElement = [...engagedList]
-        db.update(mainEntityOfPage, engagedIdentifier, engagedData, err => {
+        db.update(engagedData, err => {
           if (!err) {
             delete engagedData.password
             cb(200, engagedData)

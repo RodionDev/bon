@@ -1,8 +1,7 @@
 const engageT = (packet, db, cb) => {
-  console.log("engageT", { packet })
-  let { identifier, mainEntityOfPage } = packet
+  let { identifier } = packet
   if (identifier) {
-    db.read(mainEntityOfPage, identifier, (err, engagedData) => {
+    db.read(packet, (err, engagedData) => {
       if (!err && engagedData) {
         cb(true, {}, engagedData)
       } else {

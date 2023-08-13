@@ -3,7 +3,7 @@ const logoutT = (packet, db, cb) => {
   authT("logoutT", packet, db, (permitted, err, _) => {
     if (permitted) {
       let { identifier } = packet
-      db.delete("Permit", header.permit, err => {
+      db.delete({ identifier, mainEntityOfPage: "Permit" }, err => {
         if (!err) {
           cb(200, { Message: `${identifier} Thing logout.` })
         } else {

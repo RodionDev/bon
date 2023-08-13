@@ -2,8 +2,8 @@ const authT = require("../spine/authT")
 const deleteT = (packet, db, cb) => {
   authT("deleteT", packet, db, (permitted, err, _) => {
     if (permitted) {
-      let { identifier, mainEntityOfPage } = packet
-      db.delete(mainEntityOfPage, identifier, err => {
+      db.delete(packet, err => {
+        let { identifier } = packet
         if (!err) {
           cb(200, { Message: `${identifier} Thing deleted.` })
         } else {
