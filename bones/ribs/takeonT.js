@@ -7,9 +7,9 @@ const takeonT = (packet, db, cb) => {
       let { identifier } = packet
       db.exists(packet, (exists, err) => {
         if (!exists) {
-          db.create(packet, err => {
+          db.create(packet, (err, createPacket) => {
             if (!err) {
-              enlistT(packet, db, cb)
+              enlistT(createPacket, db, cb)
             } else {
               cb(500, {
                 Error: `Could not create ${identifier} Thing.`,

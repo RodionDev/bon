@@ -1,8 +1,5 @@
 const ribs = require("./ribs")
-const { camelCase } = require("./helpers")
 const crudifyT = (rib, packet, db, cb) => {
-  packet.mainEntityOfPage = packet.mainEntityOfPage !== "Thing" ? packet.mainEntityOfPage || "ItemList" : "ItemList" 
-  packet.additionalType = camelCase(packet.identifier)
   if (rib === "pingT") {
     cb(200, {
       identifier: "elioBones",

@@ -1,7 +1,10 @@
 const fs = require("fs")
 const path = require("path")
+const ThingBuilder = require("@elioway/thing/thing-builder")
+const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 const helpers = require("../bones/helpers")
 const db = {}
+db.log = (msg) => {} 
 db.baseDir = path.join(__dirname, "/../.data")
 db.makeFilePath = packet => {
   let { identifier } = packet
@@ -20,14 +23,27 @@ db.create = (packet, cb) => {
       const filePath = db.makeFilePath(packet)
       fs.open(filePath, "wx", (err, fileRef) => {
         if (!err && fileRef) {
-          let stringData = JSON.stringify(packet, null, "\t")
+          let thingBuilder = new ThingBuilder(
+            "schemaorg/data/releases/9.0/schemaorg-all-http",
+            schemaDomainUrl
+          )
+          let Thing = thingBuilder.Thing([packet.mainEntityOfPage])
+          let thinglet = thingBuilder.thinglet(
+            Thing[packet.mainEntityOfPage],
+            packet.mainEntityOfPage
+          )
+          let createPacket = {
+            ...thinglet,
+            ...packet,
+          }
+          let stringData = JSON.stringify(createPacket, null, "\t")
           fs.writeFile(fileRef, stringData, err => {
             if (!err) {
               fs.close(fileRef, err => {
                 if (!err) {
-                  cb(false)
+                  cb(false, createPacket)
                 } else {
-                  console.error("db.create", err)
+                  db.log("db.create", err)
                   cb("Could not `close` file for create.")
                 }
               })
@@ -36,7 +52,7 @@ db.create = (packet, cb) => {
             }
           })
         } else {
-          console.error("db.create", err)
+          db.log("db.create", err)
           cb("Could not `open` file for create.")
         }
       })
@@ -51,7 +67,7 @@ db.read = (packet, cb) => {
     if (!err && data) {
       cb(false, helpers.parseJsonToObject(data))
     } else {
-      console.error("db.read", err)
+      db.log("db.read", err)
       cb(err, data)
     }
   })
@@ -74,7 +90,7 @@ db.list = (things, cb) => {
       cb(false, list)
     })
     .catch(err => {
-      console.error("db.list", err)
+      db.log("db.list", err)
       cb("Could not `read` files for list.")
     })
 }
@@ -91,7 +107,7 @@ db.update = (packet, cb) => {
                 if (!err) {
                   cb(false, packet)
                 } else {
-                  console.error("db.update", err)
+                  db.log("db.update", err)
                   cb("Could not `close` file for update.")
                 }
               })
@@ -104,7 +120,7 @@ db.update = (packet, cb) => {
         }
       })
     } else {
-      console.error("db.update", err)
+      db.log("db.update", err)
       cb("Could not `open` file for update.")
     }
   })
@@ -115,7 +131,7 @@ db.delete = (packet, cb) => {
     if (!err) {
       cb(false)
     } else {
-      console.error(err)
+      db.log(err)
       cb("Could not `delete` file.")
     }
   })

@@ -45,7 +45,7 @@ helpers.pick = (obj, propList) => {
 }
 helpers.camelCase = (str) => {
   if (!str) return ""
-  str = str.split("").reduce((a, x) => x + (a === a.toUpperCase() ? a+" " : a))
+  str = str.split("").reduce((a, s) => a + (s === s.toUpperCase() ? s+" " : s))
   str = str.replace(/  /g, " ", )
   str = str.toLowerCase();
   const words = str.split(' ');
