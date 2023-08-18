@@ -1,16 +1,22 @@
+const { errorPayload } = require("../helpers")
 const authT = require("../spine/authT")
 const readT = (packet, db, cb) => {
-  authT("readT", packet, db, (permitted, err, engagedData) => {
-    if (permitted && engagedData) {
-      if (permitted && engagedData) {
-        delete engagedData.password
-        cb(200, engagedData)
+  authT(
+    "readT",
+    { identifier: packet.identifier },
+    db,
+    (permitted, err, engagedData) => {
+      if (!err) {
+        if (permitted && engagedData) {
+          delete engagedData.password
+          cb(200, engagedData)
+        } else {
+          cb(404, errorPayload("Not permitted", err))
+        }
       } else {
-        cb(404, err)
+        cb(404, errorPayload(err))
       }
-    } else {
-      cb(404, err)
     }
-  })
+  )
 }
 module.exports = readT

@@ -6,9 +6,24 @@ const bones = require("../bones")
 const flesh = require("../flesh")
 const { camelCase } = require("../bones/helpers")
 const PERMITLEVELS = require("../bones/permits")
-const boneOfHisBone = (argv) => {
+yargs
+  .scriptName("bones")
+  .usage("$0 <rib> [identifier] [listIdentifier] --schemaProps")
+  .parserConfiguration({
+    "short-option-groups": true,
+    "camel-case-expansion": false,
+    "dot-notation": true,
+    "parse-numbers": true,
+    "parse-positional-numbers": true,
+    "boolean-negation": true,
+    "deep-merge-config": false,
+  })
+const initializeT = argv => {
   let thing = { ...argv } || {}
-  thing.mainEntityOfPage = thing.mainEntityOfPage !== "Thing" ? thing.mainEntityOfPage || "ItemList" : "ItemList"
+  thing.mainEntityOfPage =
+    thing.mainEntityOfPage !== "Thing"
+      ? thing.mainEntityOfPage || "ItemList"
+      : "ItemList"
   thing.additionalType = camelCase(thing.identifier)
   thing.permits = {
     deleteT: PERMITLEVELS.ANON,
@@ -27,53 +42,37 @@ const boneOfHisBone = (argv) => {
   console.log(thing)
   return thing
 }
-const engageCommands = {
-  takeupT: ["create"],
-  updateT: ["update", "patch"],
-  readT: ["get"],
-  deleteT: ["delete"],
-  pingT: ["ping"],
+const ribs = {
+  takeupT: { aliases: ["create"], positionals: ["identifier"] },
+  updateT: { aliases: ["update", "patch"], positionals: ["identifier"] },
+  readT: { aliases: ["get"], positionals: ["identifier"] },
+  deleteT: { aliases: ["delete"], positionals: ["identifier"] },
+  pingT: { aliases: ["ping"], positionals: [] },
+  takeonT: {
+    aliases: ["createThen", "enlistT"],
+    positionals: ["subjectOf", "identifier"],
+  },
+  listT: { aliases: ["list"], positionals: ["identifier"] },
+  enlistT: {
+    aliases: ["add", "addTolist"],
+    positionals: ["subjectOf", "identifier"],
+  },
+  unlistT: {
+    aliases: ["remove", "removeFromlist"],
+    positionals: ["subjectOf", "identifier"],
+  },
+  fieldT: {
+    aliases: ["link", "relateTo"],
+    positionals: ["identifier", "fieldName"],
+  },
 }
-const listCommands = {
-  takeonT: ["createAndList"],
-  listT: ["list"],
-  listOfT: ["listType"],
-  enlistT: ["add"],
-  unlistT: ["remove"],
-}
-yargs
-  .scriptName("bones")
-  .usage("$0 <rib> <mainEntityOfPage> [identifier] [listIdentifier]")
-  .parserConfiguration({
-    "short-option-groups": true,
-    "camel-case-expansion": false,
-    "dot-notation": true,
-    "parse-numbers": true,
-    "parse-positional-numbers": true,
-    "boolean-negation": true,
-    "deep-merge-config": false,
-  })
-Object.keys(engageCommands).forEach(rib => {
+Object.entries(ribs).forEach(([ribName, ribConfig]) => {
+  let { aliases, positionals } = ribConfig
   yargs.command({
-    command: rib,
-    aliases: engageCommands[rib],
-    desc: `engage > ${rib}`,
-    builder: yargs => {},
-    handler: argv => bones(rib, boneOfHisBone(argv), db, flesh),
-  })
-})
-Object.keys(listCommands).forEach(rib => {
-  yargs.command({
-    command: rib,
-    aliases: listCommands[rib],
-    desc: `engage > list > ${rib}`,
-    builder: yargs => {
-      yargs.positional("engagedIdentifier", {
-        type: "string",
-        describe: "the engaged thing's id needed for list operations",
-      })
-    },
-    handler: argv => bones(rib, boneOfHisBone(argv), db, flesh),
+    command: `${ribName} ${positionals.map(pos => `[${pos}]`).join(" ")}`,
+    aliases: aliases,
+    desc: `${aliases.join(" ")} a thing`,
+    handler: argv => bones(ribName, initializeT(argv), db, flesh),
   })
 })
 yargs.demandCommand().help().argv

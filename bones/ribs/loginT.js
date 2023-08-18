@@ -1,8 +1,11 @@
 const {
+  errorPayload,
   hash,
   hasRequiredFields,
   makeIdentifier,
   makePermitIdentifier,
+  successPayload,
+  errorPayload,
 } = require("../helpers")
 const engageT = require("../spine/engageT")
 const login = (packet, db, cb) => {
@@ -27,28 +30,24 @@ const login = (packet, db, cb) => {
             if (!err) {
               cb(200, tokenData)
             } else {
-              cb(400, {
-                Error: `Error creating permit for ${identifier} Thing.`,
-                Reason: err,
-              })
+              cb(
+                400,
+                errorPayload(
+                  `Error creating permit for ${identifier} Thing`,
+                  err
+                )
+              )
             }
           })
         } else {
-          cb(400, {
-            Error: `${identifier} Thing's password was incorrect.`,
-          })
+          cb(400, errorPayload(`${identifier} Thing's password was incorrect`))
         }
       } else {
-        cb(400, {
-          Error: `Could not find ${identifier} Thing.`,
-          Reason: err,
-        })
+        cb(400, errorPayload(`Could not find ${identifier} Thing`, err))
       }
     })
   } else {
-    cb(400, {
-      Error: `Thing missing required fields for login.`,
-    })
+    cb(400, errorPayload(`Thing missing required fields for login`))
   }
 }
 module.exports = login

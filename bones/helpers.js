@@ -43,15 +43,76 @@ helpers.pick = (obj, propList) => {
     return a
   }, {})
 }
-helpers.camelCase = (str) => {
+helpers.camelCase = str => {
   if (!str) return ""
-  str = str.split("").reduce((a, s) => a + (s === s.toUpperCase() ? s+" " : s))
-  str = str.replace(/  /g, " ", )
-  str = str.toLowerCase();
-  const words = str.split(' ');
+  str = str
+    .split("")
+    .reduce((a, s) => a + (s === s.toUpperCase() ? s + " " : s))
+  str = str.replace(/  /g, " ")
+  str = str.toLowerCase()
+  const words = str.split(" ")
   for (let i = 0; i < words.length; i++) {
-    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
   }
-  return words.join('');
+  return words.join("")
+}
+helpers.summariseT = obj => {
+  let engage = []
+  for (const key in obj) {
+    let property = obj[key]
+    if (Array.isArray(property)) {
+      obj[key] = `${property.length} items`
+    } else if (key === "ItemList") {
+      obj[key] = `${property.itemListElement.length} items`
+    } else if (key[0] === key[0].toUpperCase()) {
+      engage.push(key)
+      delete obj[key]
+    } else if (
+      !obj[key] ||
+      (typeof obj[key] !== "string" &&
+        typeof obj[key] !== "number" &&
+        typeof obj[key] !== "boolean")
+    ) {
+      delete obj[key]
+    }
+  }
+  if (engage) {
+    obj.engage = engage.join(",")
+  }
+  return obj
+}
+helpers.errorPayload = (identifier, error, potentialAction) => {
+  if (potentialAction) {
+    potentialAction = {
+      identifier: potentialAction,
+      actionStatus: "PotentialActionStatus",
+    }
+  }
+  error = error ? error : identifier
+  return {
+    identifier: identifier,
+    mainEntityOfPage: "Action",
+    potentialAction,
+    Action: {
+      error: error,
+      actionStatus: "FailedActionStatus",
+    },
+  }
+}
+helpers.successPayload = (identifier, potentialAction) => {
+  if (potentialAction) {
+    potentialAction = {
+      identifier: potentialAction,
+      actionStatus: "PotentialActionStatus",
+    }
+  }
+  return {
+    identifier: identifier,
+    mainEntityOfPage: "Action",
+    potentialAction,
+    Action: {
+      actionStatus: "CompletedActionStatus",
+    },
+  }
 }
 module.exports = helpers

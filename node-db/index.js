@@ -4,7 +4,7 @@ const ThingBuilder = require("@elioway/thing/thing-builder")
 const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 const helpers = require("../bones/helpers")
 const db = {}
-db.log = (msg) => {} 
+db.log = msg => {} 
 db.baseDir = path.join(__dirname, "/../.data")
 db.makeFilePath = packet => {
   let { identifier } = packet
@@ -91,10 +91,11 @@ db.list = (things, cb) => {
     })
     .catch(err => {
       db.log("db.list", err)
-      cb("Could not `read` files for list.")
+      cb("Could not `read` files for list. " + err)
     })
 }
 db.update = (packet, cb) => {
+  packet.ItemList.numberOfItems = packet.ItemList.itemListElement.length
   const filePath = db.makeFilePath(packet)
   fs.open(filePath, "r+", (err, fileRef) => {
     if (!err && fileRef) {

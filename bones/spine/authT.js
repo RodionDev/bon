@@ -1,3 +1,4 @@
+const { errorPayload } = require("../helpers")
 const engageT = require("./engageT")
 const permitT = require("./permitT")
 const authT = (rib, packet, db, cb) => {
@@ -7,11 +8,11 @@ const authT = (rib, packet, db, cb) => {
         if (permitted) {
           cb(true, {}, engagedData)
         } else {
-          cb(false, err)
+          cb(false, errorPayload(err))
         }
       })
     } else {
-      cb(false, err)
+      cb(false, errorPayload("The thing could not be found"))
     }
   })
 }

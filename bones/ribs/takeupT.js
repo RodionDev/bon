@@ -1,4 +1,10 @@
-const { hash, hasRequiredFields, makeIdentifier, url } = require("../helpers")
+const {
+  errorPayload,
+  hash,
+  hasRequiredFields,
+  makeIdentifier,
+  url,
+} = require("../helpers")
 const takeupT = (packet, db, cb) => {
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
@@ -12,18 +18,18 @@ const takeupT = (packet, db, cb) => {
             delete createPacket.password
             cb(200, createPacket)
           } else {
-            cb(500, {
-              Error: `Could not create ${identifier} Thing.`,
-              Reason: err,
-            })
+            cb(500, errorPayload(`Could not create ${identifier} Thing`, err))
           }
         })
       } else {
-        cb(400, { Error: `${identifier} Thing already exists. Please login.` })
+        cb(
+          400,
+          errorPayload(`${identifier} Thing already exists. Please login`)
+        )
       }
     })
   } else {
-    cb(400, { Error: `Thing missing required fields.` })
+    cb(400, errorPayload(`Thing missing required fields`))
   }
 }
 module.exports = takeupT

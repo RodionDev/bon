@@ -1,3 +1,4 @@
+const { errorPayload } = require("../helpers")
 const PERMITLEVELS = require("../permits")
 const isGOD = (engagedData, permitAudience) => {
   return (
@@ -41,22 +42,27 @@ const permitT = (rib, packet, db, engagedData, cb) => {
           ) {
             cb(true)
           } else {
-            cb(false, {
-              Error: `Permission denied. ${permittedLevel} level required.`,
-            })
+            cb(
+              false,
+              errorPayload(
+                "Level denied",
+                `Permission denied. ${permittedLevel} level required`,
+                "Seek permission from owner"
+              )
+            )
           }
         } else {
-          cb(false, { Error: "Permit not valid." })
+          cb(false, errorPayload("Permit not valid"))
         }
       } else {
-        cb(false, { Error: "Permit not found." })
+        cb(false, errorPayload("Permit not found", err))
       }
     })
   } else {
     if (permittedLevel === PERMITLEVELS.ANON) {
       cb(true)
     } else {
-      cb(false, { Error: "No `permitIdentifier` and no anonymous access." })
+      cb(false, errorPayload("No `permitIdentifier` and no anonymous access"))
     }
   }
 }
