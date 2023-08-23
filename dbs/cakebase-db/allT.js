@@ -5,8 +5,8 @@ module.exports = Thing => {
     try {
       res.status(200).send(Cakebase.getAll())
     } catch (e) {
-      let err = createError(e)
-      res.status(err.name).json(err).end()
+      let Err = createError(e)
+      res.status(Err.name).json(Err).end()
     }
   }
 }

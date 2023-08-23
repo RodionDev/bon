@@ -1,6 +1,5 @@
 "use strict"
-const JSONdb = require("simple-json-db")
-const db = new JSONdb("../database.json")
+const Cakebase = require("cakebase")("../database.json")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const {
@@ -14,13 +13,13 @@ module.exports = Thing => {
     const newT = req.body
     const { username, password } = newT
     if (!username || !password) {
-      let err = credentialsMissingError()
-      res.status(err.name).json(err).end()
+      let Err = credentialsMissingError()
+      res.status(Err.name).json(Err).end()
     } else {
-      const user = db.JSON().find(t => t.username === username)
+      const user = Cakebase.get(e => e.username === username)
       if (!user) {
-        let err = credentialsError()
-        res.status(err.name).json(err).end()
+        let Err = credentialsError()
+        res.status(Err.name).json(Err).end()
         return
       }
       const isMatch = await bcrypt.compare(password, user.password)
@@ -35,8 +34,8 @@ module.exports = Thing => {
           { expiresIn: 36000 },
           (e, token) => {
             if (e) {
-              let err = loginTokenError(e)
-              res.status(err.name).json(err).end()
+              let Err = loginTokenError(e)
+              res.status(Err.name).json(Err).end()
             } else {
               res
                 .status(200)
@@ -52,8 +51,8 @@ module.exports = Thing => {
           }
         )
       } else {
-        let err = credentialsError()
-        res.status(err.name).json(err).end()
+        let Err = credentialsError()
+        res.status(Err.name).json(Err).end()
       }
     }
   }

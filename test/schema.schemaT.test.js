@@ -13,8 +13,8 @@ mochaSuite("bones | crudities | schemaT | GET /schema/:Thing", () => {
     chai
       .request(app)
       .get(`/schema/Person`)
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(200)
         fieldsShouldEqual(res.body, {
           actionStatus: "CompletedActionStatus",

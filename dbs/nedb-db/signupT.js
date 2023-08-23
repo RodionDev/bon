@@ -1,5 +1,5 @@
 "use strict"
-const Cakebase = require("cakebase")("../database.json")
+var Datastore = require("nedb")
 var things = new Datastore()
 const bcrypt = require("bcryptjs")
 const {
@@ -14,20 +14,28 @@ module.exports = Thing => {
     const signupT = req.body
     const { username, password } = signupT
     if (!username || !password) {
-      let err = credentialsMissingError()
-      res.status(err.name).json(err)
+      let Err = credentialsMissingError()
+      res.status(Err.name).json(Err)
     } else if (!thingTypeMatched(signupT, thingType)) {
-      let err = thingTypeError("signup", thingType)
-      res.status(err.name).json(err)
+      let Err = thingTypeError("signup", thingType)
+      res.status(Err.name).json(Err)
     } else {
       const salt = await bcrypt.genSalt(10)
       const hash = await bcrypt.hash(password, salt)
       signupT.created = Date.now()
       signupT.password = hash
       signupT.thing = thingType
-      let signedupT = Cakebase.set(signupT)
-      delete signedupT.password
-      res.status(201).send(signedupT)
+      await things.insert(signupT, (e, signedupT) => {
+        if (e) {
+          let Err = signUpError(e)
+          res.status(Err.name).json(Err)
+        } else {
+          let rtnT = signedupT.toObject()
+          delete rtnT.password
+          rtnT.permits = Object.fromEntries(signedupT.permits)
+          res.status(201).send(rtnT)
+        }
+      })
     }
   }
 }

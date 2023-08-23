@@ -36,8 +36,8 @@ mochaSuite("mochaSuite | signupLogin | Usage Example Test", () => {
           .post(`/Thing/${tokenBody._id}/Thing`)
           .send({ name: "Apprentice" })
           .set("Authorization", tokenBody.token)
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(201)
             res.body.name.should.be.equal("Apprentice")
             done()
@@ -56,13 +56,13 @@ mochaSuite("mochaSuite | signupLogin | Usage Example Test", () => {
         let Thing = mongoose.models.Thing
         Thing.create(
           { name: "The Wizard's Apprentice", god: tokenBody._id },
-          (err, apprentice) => {
+          (Err, apprentice) => {
             chai
               .request(app)
               .get(`/Thing/${apprentice._id}`)
               .set("Authorization", tokenBody.token)
-              .end((err, res) => {
-                should.not.exist(err)
+              .end((Err, res) => {
+                should.not.exist(Err)
                 res.should.have.status(200)
                 res.body.name.should.be.equal("The Wizard's Apprentice")
                 done()

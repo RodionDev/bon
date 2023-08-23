@@ -8,14 +8,14 @@ module.exports = Thing => {
     let thingType = req.params.T
     let createT = req.body
     if (!thingTypeMatched(createT, thingType)) {
-      let err = thingTypeError("create", thingType)
-      res.status(err.name).json(err).end()
+      let Err = thingTypeError("create", thingType)
+      res.status(Err.name).json(Err).end()
     } else {
       createT.created = Date.now()
       createT.createdBy = req.params._id
       createT.god = req.user._id
       createT.thing = thingType
-      things.insert(createT, function (err, createdT) {
+      things.insert(createT, function (Err, createdT) {
         res.locals.engagedThing.list.push(createdT._id)
         res.status(201).send(createdT)
       })

@@ -21,13 +21,13 @@ mochaSuite("bones | crudities | deleteT | DELETE /:engage/:_id", () => {
             god: tokenBody._id,
             permits: { delete: PermitLevels.GOD },
           },
-          (err, apprentice) => {
+          (Err, apprentice) => {
             chai
               .request(app)
               .delete(`/Action/${apprentice._id}`)
               .set("Authorization", tokenBody.token)
-              .end((err, res) => {
-                should.not.exist(err)
+              .end((Err, res) => {
+                should.not.exist(Err)
                 res.should.have.status(206)
                 fieldsShouldEqual(res.body, {
                   actionStatus: "CompletedActionStatus",

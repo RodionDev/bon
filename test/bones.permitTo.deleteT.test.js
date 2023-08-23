@@ -18,12 +18,12 @@ mochaSuite(
           name: "Wizard's Apprentice",
           permits: { delete: PermitLevels.ANON },
         },
-        (err, apprentice) => {
+        (Err, apprentice) => {
           chai
             .request(app)
             .delete(`/Thing/${apprentice._id}`)
-            .end((err, res) => {
-              should.not.exist(err)
+            .end((Err, res) => {
+              should.not.exist(Err)
               res.should.have.status(206)
               fieldsShouldEqual(res.body, {
                 actionStatus: "CompletedActionStatus",
@@ -46,12 +46,12 @@ mochaSuite(
           name: "Wizard's Apprentice",
           permits: { delete: PermitLevels.AUTH },
         },
-        (err, apprentice) => {
+        (Err, apprentice) => {
           chai
             .request(app)
             .delete(`/Thing/${apprentice._id}`)
-            .end((err, res) => {
-              should.not.exist(err)
+            .end((Err, res) => {
+              should.not.exist(Err)
               res.should.have.status(401)
               res.text.should.equal("Unauthorized")
               done()
@@ -68,13 +68,13 @@ mochaSuite(
               name: "Wizard's Apprentice",
               permits: { delete: PermitLevels.AUTH },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .delete(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(206)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "CompletedActionStatus",
@@ -102,13 +102,13 @@ mochaSuite(
               name: "Wizard's Apprentice",
               permits: { delete: PermitLevels.LISTED },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .delete(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(403)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "FailedActionStatus",
@@ -133,13 +133,13 @@ mochaSuite(
               list: [tokenBody._id],
               permits: { delete: PermitLevels.LISTED },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .delete(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(206)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "CompletedActionStatus",
@@ -163,13 +163,13 @@ mochaSuite(
               god: tokenBody._id,
               permits: { delete: PermitLevels.LISTED },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .delete(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(206)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "CompletedActionStatus",
@@ -197,13 +197,13 @@ mochaSuite(
               name: "Wizard's Apprentice",
               permits: { delete: PermitLevels.GOD },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .delete(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(403)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "FailedActionStatus",
@@ -228,13 +228,13 @@ mochaSuite(
               god: tokenBody._id,
               permits: { delete: PermitLevels.GOD },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .delete(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(206)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "CompletedActionStatus",

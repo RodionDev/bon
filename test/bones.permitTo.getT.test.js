@@ -18,12 +18,12 @@ mochaSuite(
           name: "Wizard's Apprentice",
           permits: { get: PermitLevels.ANON },
         },
-        (err, apprentice) => {
+        (Err, apprentice) => {
           chai
             .request(app)
             .get(`/Thing/${apprentice._id}`)
-            .end((err, res) => {
-              should.not.exist(err)
+            .end((Err, res) => {
+              should.not.exist(Err)
               res.should.have.status(200)
               fieldsShouldEqual(res.body, { name: "Wizard's Apprentice" })
               done()
@@ -42,12 +42,12 @@ mochaSuite(
           name: "Wizard's Apprentice",
           permits: { get: PermitLevels.AUTH },
         },
-        (err, apprentice) => {
+        (Err, apprentice) => {
           chai
             .request(app)
             .get(`/Thing/${apprentice._id}`)
-            .end((err, res) => {
-              should.not.exist(err)
+            .end((Err, res) => {
+              should.not.exist(Err)
               res.should.have.status(401)
               res.text.should.equal("Unauthorized")
               done()
@@ -64,13 +64,13 @@ mochaSuite(
               name: "Wizard's Apprentice",
               permits: { get: PermitLevels.AUTH },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .get(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(200)
                   fieldsShouldEqual(res.body, { name: "Wizard's Apprentice" })
                   done()
@@ -94,13 +94,13 @@ mochaSuite(
               name: "Wizard's Apprentice",
               permits: { get: PermitLevels.LISTED },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .get(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(403)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "FailedActionStatus",
@@ -125,13 +125,13 @@ mochaSuite(
               list: [tokenBody._id],
               permits: { get: PermitLevels.LISTED },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .get(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(200)
                   fieldsShouldEqual(res.body, { name: "Wizard's Apprentice" })
                   done()
@@ -151,13 +151,13 @@ mochaSuite(
               god: tokenBody._id,
               permits: { get: PermitLevels.LISTED },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .get(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(200)
                   fieldsShouldEqual(res.body, { name: "Wizard's Apprentice" })
                   done()
@@ -181,13 +181,13 @@ mochaSuite(
               name: "Wizard's Apprentice",
               permits: { get: PermitLevels.GOD },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .get(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(403)
                   fieldsShouldEqual(res.body, {
                     actionStatus: "FailedActionStatus",
@@ -212,13 +212,13 @@ mochaSuite(
               god: tokenBody._id,
               permits: { get: PermitLevels.GOD },
             },
-            (err, apprentice) => {
+            (Err, apprentice) => {
               chai
                 .request(app)
                 .get(`/Thing/${apprentice._id}`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(200)
                   fieldsShouldEqual(res.body, { name: "Wizard's Apprentice" })
                   done()

@@ -12,8 +12,8 @@ module.exports = Thing => {
     const signupT = req.body
     const { username, password } = signupT
     if (!username || !password) {
-      let err = credentialsMissingError()
-      res.status(err.name).json(err)
+      let Err = credentialsMissingError()
+      res.status(Err.name).json(Err)
     } else {
       const salt = await bcrypt.genSalt(10)
       const hash = await bcrypt.hash(password, salt)

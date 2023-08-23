@@ -4,6 +4,7 @@ const enlistT = require("./enlistT")
 const listT = require("./listT")
 const loginT = require("./loginT")
 const logoutT = require("./logoutT")
+const pingT = require("./pingT")
 const readT = require("./readT")
 const schemaT = require("./schemaT")
 const takeupT = require("./takeupT")
@@ -16,6 +17,7 @@ module.exports = {
   listT,
   loginT,
   logoutT,
+  pingT,
   readT,
   schemaT,
   takeupT,

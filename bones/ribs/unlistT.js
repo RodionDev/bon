@@ -5,17 +5,19 @@ const unlistT = (packet, db, cb) => {
     "unlistT",
     { identifier: packet.subjectOf },
     db,
-    (permitted, err, engagedData) => {
-      if (permitted && engagedData) {
+    (permitted, authError, engagedData) => {
+      if (permitted && db.canExist(engagedData)) {
         let { identifier } = packet
-        let engagedList = new Set(engagedData.ItemList.itemListElement || [])
-        let listKey = [...engagedList.values()].find(
-          item => item.identifier === identifier
+        let engagedList = new Set(
+          engagedData.ItemList.itemListElement.map(e => e.identifier) || []
         )
-        if (listKey && engagedList.delete(listKey)) {
-          engagedData.ItemList.itemListElement = [...engagedList]
-          db.update(engagedData, err => {
-            if (!err) {
+        if (engagedList.delete(identifier)) {
+          engagedData.ItemList.itemListElement =
+            engagedData.ItemList.itemListElement.filter(
+              e => e.identifier !== identifier
+            )
+          db.update(engagedData, updateErr => {
+            if (!updateErr) {
               delete engagedData.password
               cb(200, engagedData)
             } else {
@@ -23,7 +25,7 @@ const unlistT = (packet, db, cb) => {
                 500,
                 errorPayload(
                   `Could not unlistT ${engagedIdentifier} Thing`,
-                  err
+                  updateErr
                 )
               )
             }
@@ -32,7 +34,7 @@ const unlistT = (packet, db, cb) => {
           cb(200, errorPayload(`${identifier} Thing wasn't listed`))
         }
       } else {
-        cb(400, errorPayload(err))
+        cb(404, authError)
       }
     }
   )

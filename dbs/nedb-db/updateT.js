@@ -12,8 +12,8 @@ module.exports = Thing => {
     let thingType = req.params.engage
     let engagedThing = res.locals.engagedThing
     if (!thingTypeMatched(thing, thingType)) {
-      let err = thingTypeError("update", thingType)
-      res.status(err.name).json(err).end()
+      let Err = thingTypeError("update", thingType)
+      res.status(Err.name).json(Err).end()
     } else {
       let updateT = req.body
       updateT.updated = Date.now()
@@ -24,8 +24,8 @@ module.exports = Thing => {
         {},
         function (e, numReplaced) {
           if (e) {
-            let err = updateError(e)
-            res.status(err.name).json(err).end()
+            let Err = updateError(e)
+            res.status(Err.name).json(Err).end()
           } else {
             let success = updateSuccess(thingType)
             res.status(success.name).send(success)

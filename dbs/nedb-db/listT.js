@@ -9,8 +9,8 @@ module.exports = Thing => {
     let engagedThing = res.locals.engagedThing
     await things.find({ _id: { $in: thing.list } }, function (e, thingList) {
       if (e) {
-        let err = getError(e)
-        res.status(err.name).json(err).end()
+        let Err = getError(e)
+        res.status(Err.name).json(Err).end()
       } else {
         res.status(200).send(thingList)
       }

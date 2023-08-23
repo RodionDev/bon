@@ -38,13 +38,13 @@ mochaSuite("bones | crudities | getT | GET /:engage/:_id", () => {
             email: "apprentice1@eliomail.com",
           },
         }
-        Thing.create(thing, (err, apprentice) => {
+        Thing.create(thing, (Err, apprentice) => {
           chai
             .request(app)
             .get(`/Person/${apprentice._id}`)
             .set("Authorization", tokenBody.token)
-            .end((err, res) => {
-              should.not.exist(err)
+            .end((Err, res) => {
+              should.not.exist(Err)
               res.should.have.status(200)
               fieldsShouldEqual(res.body, thing)
               done()

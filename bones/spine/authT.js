@@ -2,17 +2,17 @@ const { errorPayload } = require("../helpers")
 const engageT = require("./engageT")
 const permitT = require("./permitT")
 const authT = (rib, packet, db, cb) => {
-  engageT(packet, db, (exists, err, engagedData) => {
+  engageT(packet, db, (exists, engageErr, engagedData) => {
     if (exists) {
-      permitT(rib, packet, db, engagedData, (permitted, err) => {
-        if (permitted) {
-          cb(true, {}, engagedData)
+      permitT(rib, packet, db, engagedData, (permitted, permitErr) => {
+        if (permitted && db.canExist(engagedData)) {
+          cb(true, null, engagedData)
         } else {
-          cb(false, errorPayload(err))
+          cb(false, errorPayload(permitErr), {})
         }
       })
     } else {
-      cb(false, errorPayload("The thing could not be found"))
+      cb(false, errorPayload("The thing could not be found", engageErr))
     }
   })
 }

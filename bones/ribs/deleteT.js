@@ -5,11 +5,11 @@ const deleteT = (packet, db, cb) => {
     "deleteT",
     { identifier: packet.identifier },
     db,
-    (permitted, err, _) => {
+    (permitted, authError, _) => {
       if (permitted) {
-        db.delete(packet, err => {
+        db.delete(packet, deleteError => {
           let { identifier } = packet
-          if (!err) {
+          if (!deleteError) {
             cb(
               200,
               successPayload(
@@ -18,11 +18,14 @@ const deleteT = (packet, db, cb) => {
               )
             )
           } else {
-            cb(500, errorPayload(`Could not delete ${identifier} Thing`, err))
+            cb(
+              500,
+              errorPayload(`Could not delete ${identifier} Thing`, deleteError)
+            )
           }
         })
       } else {
-        cb(400, errorPayload("Not permitted", err))
+        cb(400, authError)
       }
     }
   )

@@ -23,8 +23,7 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
             name: "The Wizard's Apprentice",
             permits: { update: PermitLevels.GOD },
           },
-          (err, apprentice) => {
-            console.log(err)
+          (Err, apprentice) => {
             chai
               .request(app)
               .patch(`/Thing/${apprentice._id}`)
@@ -35,8 +34,8 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                 permits: { update: PermitLevels.AUTH }, 
               })
               .set("Authorization", tokenBody.token)
-              .end((err, res) => {
-                should.not.exist(err)
+              .end((Err, res) => {
+                should.not.exist(Err)
                 res.should.have.status(206)
                 fieldsShouldEqual(res.body, {
                   actionStatus: "CompletedActionStatus",
@@ -47,8 +46,8 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                   .request(app)
                   .get(`/Thing/${apprentice._id}`)
                   .set("Authorization", tokenBody.token)
-                  .end((err, res) => {
-                    should.not.exist(err)
+                  .end((Err, res) => {
+                    should.not.exist(Err)
                     res.should.have.status(200)
                     res.body.updated
                       .slice(0, 4)
@@ -88,7 +87,7 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
             permits: { update: PermitLevels.GOD },
             thing: "ConsumeAction",
           },
-          (err, apprentice) => {
+          (Err, apprentice) => {
             chai
               .request(app)
               .patch(`/ConsumeAction/${apprentice._id}`)
@@ -104,8 +103,8 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                 name: "Food tasting", 
               })
               .set("Authorization", tokenBody.token)
-              .end((err, res) => {
-                should.not.exist(err)
+              .end((Err, res) => {
+                should.not.exist(Err)
                 res.should.have.status(206)
                 fieldsShouldEqual(res.body, {
                   actionStatus: "CompletedActionStatus",
@@ -116,8 +115,8 @@ mochaSuite("bones | crudities | updateT | PATCH /:engage/:_id", () => {
                   .request(app)
                   .get(`/Thing/${apprentice._id}`)
                   .set("Authorization", tokenBody.token)
-                  .end((err, res) => {
-                    should.not.exist(err)
+                  .end((Err, res) => {
+                    should.not.exist(Err)
                     res.should.have.status(200)
                     fieldsShouldEqual(res.body, {
                       disambiguatingDescription: "Eat victuals.",

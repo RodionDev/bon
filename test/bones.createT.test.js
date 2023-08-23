@@ -27,7 +27,7 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
             god: tokenBody._id,
             permits: { get: PermitLevels.GOD },
           },
-          (err, university) => {
+          (Err, university) => {
             chai
               .request(app)
               .post(`/Thing/${university._id}/Person`)
@@ -41,8 +41,8 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
                 name: "Apprentice1",
               })
               .set("Authorization", tokenBody.token)
-              .end((err, res) => {
-                should.not.exist(err)
+              .end((Err, res) => {
+                should.not.exist(Err)
                 res.should.have.status(201)
                 should.not.exist(res.body.password)
                 Object.keys(res.body).should.have.members([
@@ -106,8 +106,8 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
             name: "Victuals",
           })
           .set("Authorization", tokenBody.token)
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(201)
             fieldsShouldEqual(res.body, {
               disambiguatingDescription: "Eat victuals.",
@@ -140,8 +140,8 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
           .post(`/Thing/${tokenBody._id}/Thing`)
           .send({ alternateName: "some words" })
           .set("Authorization", tokenBody.token)
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(400)
             fieldsShouldEqual(res.body, {
               actionStatus: "FailedActionStatus",
@@ -176,8 +176,8 @@ mochaSuite("bones | crudities | createT | POST /:engage/:_id/:Thing/", () => {
             name: "Apprentices",
           })
           .set("Authorization", tokenBody.token)
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(409)
             fieldsShouldEqual(res.body, {
               actionStatus: "FailedActionStatus",

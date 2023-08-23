@@ -6,6 +6,7 @@
 - [mollusc](https://www.npmjs.com/package/mollusc)
 - [Simple-JSONdb](https://github.com/nmaggioni/Simple-JSONdb)
 - [Cakebase](https://github.com/erwinkulasic/Cakebase)
+- <https://chat.openai.com/chat>
 - [wikimedia:Death*Comes_to_the_Banquet_Table*](https://commons.wikimedia.org/wiki/File:Death_Comes_to_the_Banquet_Table_-_Memento_Mori_-_Martinelli_NOMA.jpg)
 ## These were helpful
 - [Basics of route controllers and Rest APIs](https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd)

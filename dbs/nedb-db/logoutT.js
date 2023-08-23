@@ -8,7 +8,7 @@ const { JWT_SECRET } = process.env
 module.exports = Thing => {
   return async (req, res) => {
     res.clearCookie("access_token")
-    let err = logoutSuccess()
-    res.status(err.name).json(err)
+    let Err = logoutSuccess()
+    res.status(Err.name).json(Err)
   }
 }

@@ -35,7 +35,7 @@ mochaSuite("bones | crudities | listT | GET /:engage/:_id/list/listof", () => {
     signupLogin(
       { name: "Wizard", username: "tester", password: "letmein" },
       tokenBody => {
-        Thing.create(this.apprentices, (err, list) => {
+        Thing.create(this.apprentices, (Err, list) => {
           Thing.create(
             {
               name: "Wizard University",
@@ -43,13 +43,13 @@ mochaSuite("bones | crudities | listT | GET /:engage/:_id/list/listof", () => {
               permits: { get: PermitLevels.GOD },
               list: list.map(doc => doc._id),
             },
-            (err, university) => {
+            (Err, university) => {
               chai
                 .request(app)
                 .get(`/Thing/${university._id}/list`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(200)
                   res.body.length.should.equal(3)
                   Object.keys(res.body[0]).should.have.members(
@@ -67,7 +67,7 @@ mochaSuite("bones | crudities | listT | GET /:engage/:_id/list/listof", () => {
     signupLogin(
       { name: "Wizard", username: "tester", password: "letmein" },
       tokenBody => {
-        Thing.create(this.apprentices, (err, list) => {
+        Thing.create(this.apprentices, (Err, list) => {
           Thing.create(
             {
               name: "Wizard University",
@@ -75,13 +75,13 @@ mochaSuite("bones | crudities | listT | GET /:engage/:_id/list/listof", () => {
               permits: { get: PermitLevels.GOD },
               list: list.map(doc => doc._id),
             },
-            (err, university) => {
+            (Err, university) => {
               chai
                 .request(app)
                 .get(`/Thing/${university._id}/listof/SportsEvent`)
                 .set("Authorization", tokenBody.token)
-                .end((err, res) => {
-                  should.not.exist(err)
+                .end((Err, res) => {
+                  should.not.exist(Err)
                   res.should.have.status(200)
                   res.body.length.should.equal(1)
                   res.body[0].thing.should.equal("SportsEvent")

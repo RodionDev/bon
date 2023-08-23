@@ -14,13 +14,13 @@ module.exports = Thing => {
     const newT = req.body
     const { username, password } = newT
     if (!username || !password) {
-      let err = credentialsMissingError()
-      res.status(err.name).json(err).end()
+      let Err = credentialsMissingError()
+      res.status(Err.name).json(Err).end()
     } else {
       await things.findOne({ username: username }, async function (e, user) {
         if (!user) {
-          let err = credentialsError()
-          res.status(err.name).json(err).end()
+          let Err = credentialsError()
+          res.status(Err.name).json(Err).end()
           return
         }
         const isMatch = await bcrypt.compare(password, user.password)
@@ -35,8 +35,8 @@ module.exports = Thing => {
             { expiresIn: 36000 },
             (e, token) => {
               if (e) {
-                let err = loginTokenError(e)
-                res.status(err.name).json(err).end()
+                let Err = loginTokenError(e)
+                res.status(Err.name).json(Err).end()
               } else {
                 res
                   .status(200)
@@ -52,8 +52,8 @@ module.exports = Thing => {
             }
           )
         } else {
-          let err = credentialsError()
-          res.status(err.name).json(err).end()
+          let Err = credentialsError()
+          res.status(Err.name).json(Err).end()
         }
       })
     }

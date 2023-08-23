@@ -10,36 +10,43 @@ const takeonT = (packet, db, cb) => {
     "takeonT",
     { identifier: packet.subjectOf },
     db,
-    (permitted, err, engagedData) => {
-      if (hasRequiredFields(packet, ["identifier"])) {
-        let { identifier } = packet
-        db.exists(packet, (exists, err) => {
-          if (!exists) {
-            db.create(
-              {
-                ...packet,
-                subjectOf: engagedData.identifier,
-              },
-              (err, createPacket) => {
-                if (!err) {
-                  enlistT(createPacket, db, cb)
-                } else {
-                  cb(
-                    500,
-                    errorPayload(`Could not create ${identifier} Thing`, err)
-                  )
+    (permitted, authError, engagedData) => {
+      if (permitted && db.canExist(engagedData)) {
+        if (hasRequiredFields(packet, ["identifier"])) {
+          let { identifier } = packet
+          db.exists(packet, (exists, existsErr) => {
+            if (!exists) {
+              db.create(
+                {
+                  ...packet,
+                  subjectOf: engagedData.identifier,
+                },
+                (createErr, createPacket) => {
+                  if (!createErr) {
+                    enlistT(createPacket, db, cb)
+                  } else {
+                    cb(
+                      500,
+                      errorPayload(
+                        `Could not create ${identifier} Thing`,
+                        createErr
+                      )
+                    )
+                  }
                 }
-              }
-            )
-          } else {
-            enlistT(packet, db, cb)
-          }
-        })
+              )
+            } else {
+              enlistT(packet, db, cb)
+            }
+          })
+        } else {
+          cb(
+            400,
+            errorPayload(`${identifier} Thing is missing the required fields`)
+          )
+        }
       } else {
-        cb(
-          400,
-          errorPayload(`${identifier} Thing is missing the required fields`)
-        )
+        cb(404, authError)
       }
     }
   )

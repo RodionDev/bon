@@ -13,12 +13,15 @@ const takeupT = (packet, db, cb) => {
         if (packet.password) {
           packet.password = hash(packet.password.trim())
         }
-        db.create(packet, (err, createPacket) => {
-          if (!err) {
+        db.create(packet, (createErr, createPacket) => {
+          if (!createErr) {
             delete createPacket.password
             cb(200, createPacket)
           } else {
-            cb(500, errorPayload(`Could not create ${identifier} Thing`, err))
+            cb(
+              500,
+              errorPayload(`Could not create ${identifier} Thing`, createErr)
+            )
           }
         })
       } else {

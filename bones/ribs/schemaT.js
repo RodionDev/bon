@@ -4,8 +4,8 @@ const schemaT = (packet, db, cb) => {
   mainEntityOfPage = mainEntityOfPage || "Thing"
   try {
     cb(200, require(`../../Things/${mainEntityOfPage}.json`))
-  } catch (err) {
-    cb(404, errorPayload(`${mainEntityOfPage} Schema not found`, err))
+  } catch (schemaError) {
+    cb(404, errorPayload(`${mainEntityOfPage} Schema not found`, schemaError))
   }
 }
 module.exports = schemaT

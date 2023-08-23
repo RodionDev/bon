@@ -5,8 +5,8 @@ const updateT = (packet, db, cb) => {
     "updateT",
     { identifier: packet.identifier },
     db,
-    (permitted, err, engagedData) => {
-      if (permitted && engagedData) {
+    (permitted, authError, engagedData) => {
+      if (permitted && db.canExist(engagedData)) {
         if (packet.password) {
           packet.password = hash(password)
         }
@@ -14,20 +14,23 @@ const updateT = (packet, db, cb) => {
           ...engagedData,
           ...packet,
         }
-        db.update(updatePacket, err => {
-          if (!err) {
+        db.update(updatePacket, updateErr => {
+          if (!updateErr) {
             delete updatePacket.password
             cb(200, updatePacket)
           } else {
             let { identifier } = packet
             cb(
               500,
-              errorPayload(`${identifier} Thing could not be updated`, err)
+              errorPayload(
+                `${identifier} Thing could not be updated`,
+                updateErr
+              )
             )
           }
         })
       } else {
-        cb(404, errorPayload(err))
+        cb(404, authError)
       }
     }
   )

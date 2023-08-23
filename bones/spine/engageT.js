@@ -2,11 +2,11 @@ const { errorPayload } = require("../helpers")
 const engageT = (packet, db, cb) => {
   let { identifier } = packet
   if (identifier) {
-    db.read(packet, (err, engagedData) => {
-      if (!err && engagedData) {
-        cb(true, {}, engagedData)
+    db.read(packet, (readErr, engagedData) => {
+      if (!readErr && db.canExist(engagedData)) {
+        cb(true, null, engagedData)
       } else {
-        cb(false, errorPayload(`${identifier} Thing not found`, err))
+        cb(false, errorPayload(`${identifier} Thing not found`, readErr))
       }
     })
   } else {

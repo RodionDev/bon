@@ -5,16 +5,21 @@ const readT = (packet, db, cb) => {
     "readT",
     { identifier: packet.identifier },
     db,
-    (permitted, err, engagedData) => {
-      if (!err) {
-        if (permitted && engagedData) {
+    (permitted, authError, engagedData) => {
+      if (permitted) {
+        if (db.canExist(engagedData)) {
           delete engagedData.password
-          cb(200, engagedData)
+          let { sameAs } = packet
+          if (sameAs) {
+            cb(200, engagedData[sameAs])
+          } else {
+            cb(200, engagedData)
+          }
         } else {
-          cb(404, errorPayload("Not permitted", err))
+          cb(666, errorPayload("Empty record", "", "Undelete record"))
         }
       } else {
-        cb(404, errorPayload(err))
+        cb(404, authError)
       }
     }
   )

@@ -20,15 +20,15 @@ mochaSuite("bones | crudities | loginT | POST /auth/login", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
+      .end((Err, res) => {
         chai
           .request(app)
           .post("/auth/login")
           .send({ username: "wizard", password: "letmein" })
           .set("Content-Type", "application/json")
           .set("Accept", "application/json")
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(200)
             should.not.exist(res.body.password)
             Object.keys(res.body).should.have.members([
@@ -59,8 +59,8 @@ mochaSuite("bones | crudities | loginT | POST /auth/login", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(400)
         fieldsShouldEqual(res.body, {
           actionStatus: "FailedActionStatus",
@@ -80,8 +80,8 @@ mochaSuite("bones | crudities | loginT | POST /auth/login", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
-        should.not.exist(err)
+      .end((Err, res) => {
+        should.not.exist(Err)
         res.should.have.status(400)
         fieldsShouldEqual(res.body, {
           actionStatus: "FailedActionStatus",
@@ -103,14 +103,14 @@ mochaSuite("bones | crudities | loginT | POST /auth/login", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
+      .end((Err, res) => {
         chai
           .request(app)
           .post("/auth/login")
           .send({ username: "wizard", password: "wrongpass" })
           .set("Accept", "application/json")
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(401)
             fieldsShouldEqual(res.body, {
               actionStatus: "FailedActionStatus",
@@ -134,7 +134,7 @@ mochaSuite("bones | crudities | loginT | POST /auth/login", () => {
       })
       .set("Content-Type", "application/json")
       .set("Accept", "application/json")
-      .end((err, res) => {
+      .end((Err, res) => {
         chai
           .request(app)
           .post("/auth/login")
@@ -143,8 +143,8 @@ mochaSuite("bones | crudities | loginT | POST /auth/login", () => {
             password: "letmein",
           })
           .set("Accept", "application/json")
-          .end((err, res) => {
-            should.not.exist(err)
+          .end((Err, res) => {
+            should.not.exist(Err)
             res.should.have.status(401)
             fieldsShouldEqual(res.body, {
               actionStatus: "FailedActionStatus",

@@ -12,18 +12,18 @@ module.exports = Thing => {
     let thingType = req.params.engage
     await things.findOne({ _id: req.params._id }, function (e, deletedableT) {
       if (e) {
-        let err = deleteError(e)
-        res.status(err.name).json(err)
+        let Err = deleteError(e)
+        res.status(Err.name).json(Err)
       } else if (!thingTypeMatched(deletedableT, thingType)) {
-        let err = thingTypeError("delete", thingType)
-        res.status(err.name).json(err)
+        let Err = thingTypeError("delete", thingType)
+        res.status(Err.name).json(Err)
       } else {
         things.remove(
           { _id: { $regex: req.params._id } },
           function (e, numDeleted) {
             if (e) {
-              let err = deleteError(e)
-              res.status(err.name).json(err)
+              let Err = deleteError(e)
+              res.status(Err.name).json(Err)
             } else {
               let success = deleteSuccess(thingType)
               res.status(success.name).json(success)

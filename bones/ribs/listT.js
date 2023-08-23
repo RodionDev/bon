@@ -5,18 +5,18 @@ const listT = (packet, db, cb) => {
     "listT",
     { identifier: packet.identifier },
     db,
-    (permitted, err, engagedData) => {
-      if (permitted && engagedData) {
-        let { identifier, mainEntityOfPage } = packet
+    (permitted, authError, engagedData) => {
+      if (permitted && db.canExist(engagedData)) {
+        let { identifier, sameAs } = packet
         if (engagedData.ItemList.itemListElement) {
           let engagedList = [...engagedData.ItemList.itemListElement]
-          if (mainEntityOfPage) {
+          if (sameAs) {
             engagedList = engagedList.filter(
-              item => item.mainEntityOfPage === mainEntityOfPage
+              item => item.mainEntityOfPage === sameAs
             )
           }
-          db.list(engagedList, (err, listData) => {
-            if (!err) {
+          db.list(engagedList, (listError, listData) => {
+            if (!listError) {
               cb(
                 200,
                 listData.map(listedThing => summariseT(listedThing))
@@ -24,7 +24,10 @@ const listT = (packet, db, cb) => {
             } else {
               cb(
                 500,
-                errorPayload(`Could not get ${identifier} Thing's list`, err)
+                errorPayload(
+                  `Could not get ${identifier} Thing's list`,
+                  listError
+                )
               )
             }
           })
@@ -32,7 +35,7 @@ const listT = (packet, db, cb) => {
           cb(200, successPayload(`${identifier} Thing list is empty`))
         }
       } else {
-        cb(400, errorPayload(err))
+        cb(404, authError)
       }
     }
   )
