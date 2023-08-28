@@ -14,10 +14,11 @@ const updateT = (packet, db, cb) => {
           ...engagedData,
           ...packet,
         }
-        db.update(updatePacket, updateErr => {
+        console.log({updatePacket})
+        db.update(updatePacket, (updateErr,updatedThing) => {
           if (!updateErr) {
-            delete updatePacket.password
-            cb(200, updatePacket)
+            delete updatedThing.password
+            cb(200, updatedThing)
           } else {
             let { identifier } = packet
             cb(

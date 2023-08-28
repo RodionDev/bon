@@ -1,0 +1,28 @@
+{
+	"additionalType": "God",
+	"alternateName": "",
+	"description": "",
+	"disambiguatingDescription": "",
+	"identifier": "god",
+	"image": "",
+	"mainEntityOfPage": "Thing",
+	"name": "",
+	"potentialAction": "",
+	"sameAs": "",
+	"subjectOf": "creation",
+	"url": "",
+	"ItemList": {
+		"itemListElement": []
+	},
+	"permits": {
+		"enlistT": "ANON",
+		"listT": "ANON",
+		"listOfT": "ANON",
+		"readT": "ANON",
+		"schemaT": "ANON",
+		"takeonT": "ANON",
+		"takeupT": "ANON",
+		"updateT": "ANON",
+		"unlistT": "ANON"
+	}
+}

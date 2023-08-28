@@ -11,6 +11,7 @@ const enlistT = (packet, db, cb) => {
         let engagedList = new Set(
           engagedData.ItemList.itemListElement.map(e => e.identifier) || []
         )
+        console.log({engagedList,identifier })
         if (!engagedList.has(identifier)) {
           engagedList.add(packet)
           engagedData.ItemList.itemListElement = [...engagedList]

@@ -1,0 +1,70 @@
+{
+	"additionalType": "Creation",
+	"alternateName": "",
+	"description": "",
+	"disambiguatingDescription": "",
+	"identifier": "creation",
+	"image": "",
+	"mainEntityOfPage": "Thing",
+	"name": "Yahwah",
+	"potentialAction": "",
+	"sameAs": "",
+	"subjectOf": "creation",
+	"url": "",
+	"ItemList": {
+		"itemListElement": [
+			{
+				"additionalType": "God",
+				"alternateName": "",
+				"description": "",
+				"disambiguatingDescription": "",
+				"identifier": "god",
+				"image": "",
+				"mainEntityOfPage": "Thing",
+				"name": "",
+				"potentialAction": "",
+				"sameAs": "",
+				"subjectOf": "creation",
+				"url": "",
+				"ItemList": {
+					"itemListElement": []
+				},
+				"permits": {
+					"enlistT": "ANON",
+					"listT": "ANON",
+					"listOfT": "ANON",
+					"readT": "ANON",
+					"schemaT": "ANON",
+					"takeonT": "ANON",
+					"takeupT": "ANON",
+					"updateT": "ANON",
+					"unlistT": "ANON"
+				}
+			}
+		],
+		"numberOfItems": 1
+	},
+	"EntryPoint": {
+		"actionApplication": "",
+		"actionPlatform": "",
+		"application": "",
+		"contentType": "",
+		"encodingType": "",
+		"httpMethod": "",
+		"urlTemplate": ""
+	},
+	"Intangible": {
+		"name": "The Mysterious One"
+	},
+	"permits": {
+		"enlistT": "ANON",
+		"listT": "ANON",
+		"listOfT": "ANON",
+		"readT": "ANON",
+		"schemaT": "ANON",
+		"takeonT": "ANON",
+		"takeupT": "ANON",
+		"updateT": "ANON",
+		"unlistT": "ANON"
+	}
+}
