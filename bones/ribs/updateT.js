@@ -14,8 +14,8 @@ const updateT = (packet, db, cb) => {
           ...engagedData,
           ...packet,
         }
-        console.log({updatePacket})
-        db.update(updatePacket, (updateErr,updatedThing) => {
+        console.log({ updatePacket })
+        db.update(updatePacket, (updateErr, updatedThing) => {
           if (!updateErr) {
             delete updatedThing.password
             cb(200, updatedThing)

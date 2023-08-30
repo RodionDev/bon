@@ -1,20 +1,23 @@
 const { successPayload, errorPayload } = require("../helpers")
 const authT = require("../spine/authT")
 const enlistT = (packet, db, cb) => {
+  console.log({ packet })
   authT(
     "enlistT",
     { identifier: packet.subjectOf },
     db,
     (permitted, authError, engagedData) => {
+      console.log({ permitted, engagedData })
       if (permitted && db.canExist(engagedData)) {
         let { identifier } = packet
         let engagedList = new Set(
           engagedData.ItemList.itemListElement.map(e => e.identifier) || []
         )
-        console.log({engagedList,identifier })
         if (!engagedList.has(identifier)) {
-          engagedList.add(packet)
-          engagedData.ItemList.itemListElement = [...engagedList]
+          engagedData.ItemList.itemListElement = [
+            ...engagedData.ItemList.itemListElement,
+            packet,
+          ]
           db.update(engagedData, updateErr => {
             if (!updateErr) {
               delete engagedData.password

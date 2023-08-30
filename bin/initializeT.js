@@ -6,7 +6,6 @@ const initializeT = (argv, ribs, envVars) => {
   let { subjectOf } = envVars
   thing.mainEntityOfPage = thing.mainEntityOfPage || "Thing"
   thing.additionalType = camelCase(thing.identifier)
-  thing.subjectOf = subjectOf
   thing.ItemList = {}
   thing.ItemList.itemListElement = []
   thing.permits = {
