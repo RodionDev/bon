@@ -5,6 +5,7 @@ const crudifyT = (rib, packet, db, cb) => {
     cb(
       404,
       errorPayload(
+        rib,
         "Rib not found",
         `No endpoint found with the name ${rib}`,
         "Check server setup"

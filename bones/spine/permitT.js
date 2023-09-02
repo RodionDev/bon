@@ -26,6 +26,8 @@ const permitT = (rib, packet, db, engagedData, cb) => {
       } else {
         permittedLevel = PERMITLEVELS.GOD
       }
+    } else if (!permittedLevel) {
+      permittedLevel = PERMITLEVELS.GOD
     }
   }
   let permit = engagedData.permit
@@ -45,6 +47,7 @@ const permitT = (rib, packet, db, engagedData, cb) => {
             cb(
               false,
               errorPayload(
+                "permitT",
                 "Level denied",
                 `Permission denied. ${permittedLevel} level required`,
                 "Seek permission from owner"
@@ -52,17 +55,20 @@ const permitT = (rib, packet, db, engagedData, cb) => {
             )
           }
         } else {
-          cb(false, errorPayload("Permit not valid"))
+          cb(false, errorPayload("permitT", "Permit not valid"))
         }
       } else {
-        cb(false, errorPayload("Permit not found", readErr))
+        cb(false, errorPayload("permitT", "Permit not found", readErr))
       }
     })
   } else {
     if (permittedLevel === PERMITLEVELS.ANON) {
       cb(true)
     } else {
-      cb(false, errorPayload("No `permitIdentifier` and no anonymous access"))
+      cb(
+        false,
+        errorPayload("permitT", "No `permitIdentifier` and no anonymous access")
+      )
     }
   }
 }

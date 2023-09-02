@@ -24,6 +24,7 @@ const unlistT = (packet, db, cb) => {
               cb(
                 500,
                 errorPayload(
+                  "unlistT",
                   `Could not unlistT ${engagedIdentifier} Thing`,
                   updateErr
                 )
@@ -31,7 +32,7 @@ const unlistT = (packet, db, cb) => {
             }
           })
         } else {
-          cb(200, errorPayload(`${identifier} Thing wasn't listed`))
+          cb(200, errorPayload("unlistT", `${identifier} Thing wasn't listed`))
         }
       } else {
         cb(404, authError)

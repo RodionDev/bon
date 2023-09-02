@@ -84,7 +84,7 @@ helpers.summariseT = obj => {
   }
   return obj
 }
-helpers.errorPayload = (identifier, error, potentialAction) => {
+helpers.errorPayload = (rib, identifier, error, potentialAction) => {
   if (potentialAction) {
     potentialAction = {
       identifier: potentialAction,
@@ -97,12 +97,13 @@ helpers.errorPayload = (identifier, error, potentialAction) => {
     mainEntityOfPage: "Action",
     potentialAction,
     Action: {
+      agent: rib,
       error: error,
       actionStatus: "FailedActionStatus",
     },
   }
 }
-helpers.successPayload = (identifier, potentialAction) => {
+helpers.successPayload = (rib, identifier, potentialAction) => {
   if (potentialAction) {
     potentialAction = {
       identifier: potentialAction,
@@ -114,6 +115,7 @@ helpers.successPayload = (identifier, potentialAction) => {
     mainEntityOfPage: "Action",
     potentialAction,
     Action: {
+      agent: rib,
       actionStatus: "CompletedActionStatus",
     },
   }

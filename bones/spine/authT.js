@@ -8,11 +8,14 @@ const authT = (rib, packet, db, cb) => {
         if (permitted && db.canExist(engagedData)) {
           cb(true, null, engagedData)
         } else {
-          cb(false, errorPayload(permitErr), {})
+          cb(false, errorPayload("authT", permitErr), {})
         }
       })
     } else {
-      cb(false, errorPayload("The thing could not be found", engageErr))
+      cb(
+        false,
+        errorPayload("authT", "The thing could not be found", engageErr)
+      )
     }
   })
 }

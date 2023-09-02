@@ -26,6 +26,7 @@ const enlistT = (packet, db, cb) => {
               cb(
                 500,
                 errorPayload(
+                  "enlistT",
                   `Could not enlist ${engagedData.identifier} Thing`,
                   updateErr,
                   "Check you are using the correct `identifier`"
@@ -34,7 +35,10 @@ const enlistT = (packet, db, cb) => {
             }
           })
         } else {
-          cb(200, successPayload(`${identifier} Thing already listed`))
+          cb(
+            200,
+            successPayload("enlistT", `${identifier} Thing already listed`)
+          )
         }
       } else {
         cb(404, authError)

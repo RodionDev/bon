@@ -20,19 +20,26 @@ const takeupT = (packet, db, cb) => {
           } else {
             cb(
               500,
-              errorPayload(`Could not create ${identifier} Thing`, createErr)
+              errorPayload(
+                "takeupT",
+                `Could not create ${identifier} Thing`,
+                createErr
+              )
             )
           }
         })
       } else {
         cb(
           400,
-          errorPayload(`${identifier} Thing already exists. Please login`)
+          errorPayload(
+            "takeupT",
+            `${identifier} Thing already exists. Please login`
+          )
         )
       }
     })
   } else {
-    cb(400, errorPayload(`Thing missing required fields`))
+    cb(400, errorPayload("takeupT", `Thing missing required fields`))
   }
 }
 module.exports = takeupT

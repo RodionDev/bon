@@ -1,7 +1,8 @@
-const pingT = (packet, db, cb) =>
+const pingT = (packet, db, cb) => {
   cb(200, {
-    identifier: "pingT",
+    ...packet,
     mainEntityOfPage: "Action",
     Action: { actionStatus: "CompletedActionStatus" },
   })
+}
 module.exports = pingT

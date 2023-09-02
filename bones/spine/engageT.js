@@ -6,13 +6,17 @@ const engageT = (packet, db, cb) => {
       if (!readErr && db.canExist(engagedData)) {
         cb(true, null, engagedData)
       } else {
-        cb(false, errorPayload(`${identifier} Thing not found`, readErr))
+        cb(
+          false,
+          errorPayload("engageT", `${identifier} Thing not found`, readErr)
+        )
       }
     })
   } else {
     cb(
       false,
       errorPayload(
+        "engageT",
         "Missing `identifier`",
         "No `identifier` parameter was included in the data packet"
       )
