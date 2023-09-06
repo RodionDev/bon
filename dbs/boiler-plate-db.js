@@ -1,7 +1,7 @@
 const boilerPlateDB = require("boiler-plate-db")
 const db = {}
 db.log = msg => {} 
-db.baseDir = path.join(__dirname, "/../.data")
+db.baseDir = path.join(__dirname, $DATADIR)
 db.makeFilePath = packet => {
   let { identifier } = packet
   return path.join(db.baseDir, `${identifier}.json`)

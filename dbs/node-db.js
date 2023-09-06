@@ -9,7 +9,7 @@ db.initialize = envVars => {
 }
 db.canExist = packet => typeof packet === "object" && packet.identifier
 db.log = (...msg) => {} 
-db.baseDir = path.join(__dirname, "/../.data")
+db.baseDir = path.join(__dirname, $DATADIR)
 db.makeFilePath = packet => {
   let { identifier } = packet
   if (!fs.existsSync(db.baseDir)) {

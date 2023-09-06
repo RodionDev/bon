@@ -1,0 +1,442 @@
+{
+  "additionalType": {
+    "type": "URL"
+  },
+  "alternateName": {
+    "type": "Text"
+  },
+  "description": {
+    "type": "Text"
+  },
+  "disambiguatingDescription": {
+    "type": "Text"
+  },
+  "identifier": {
+    "type": "Text"
+  },
+  "image": {
+    "type": "URL"
+  },
+  "mainEntityOfPage": {
+    "type": "URL"
+  },
+  "name": {
+    "type": "Text"
+  },
+  "potentialAction": {
+    "type": "Text"
+  },
+  "sameAs": {
+    "type": "URL"
+  },
+  "subjectOf": {
+    "type": "Text"
+  },
+  "url": {
+    "type": "URL"
+  },
+  "ItemList": {
+    "itemListElement": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "itemListOrder": {
+      "type": "Text"
+    },
+    "numberOfItems": {
+      "type": "Integer"
+    }
+  },
+  "Restaurant": {},
+  "Place": {
+    "additionalProperty": {
+      "type": "Text"
+    },
+    "address": {
+      "type": "Text"
+    },
+    "aggregateRating": {
+      "type": "Text"
+    },
+    "amenityFeature": {
+      "type": "Text"
+    },
+    "branchCode": {
+      "type": "Text"
+    },
+    "containedIn": {
+      "type": "Place",
+      "foreign": true
+    },
+    "containedInPlace": {
+      "type": "Place",
+      "foreign": true
+    },
+    "containsPlace": {
+      "type": "Place",
+      "foreign": true
+    },
+    "event": {
+      "type": "Text"
+    },
+    "events": {
+      "type": "Text"
+    },
+    "faxNumber": {
+      "type": "Text"
+    },
+    "geo": {
+      "type": "Text"
+    },
+    "geoContains": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoCoveredBy": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoCovers": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoCrosses": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoDisjoint": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoEquals": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoIntersects": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoOverlaps": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoTouches": {
+      "type": "Place",
+      "foreign": true
+    },
+    "geoWithin": {
+      "type": "Place",
+      "foreign": true
+    },
+    "globalLocationNumber": {
+      "type": "Text"
+    },
+    "hasDriveThroughService": {
+      "type": "Boolean"
+    },
+    "hasMap": {
+      "type": "URL"
+    },
+    "isAccessibleForFree": {
+      "type": "Boolean"
+    },
+    "isicV4": {
+      "type": "Text"
+    },
+    "latitude": {
+      "type": "Text"
+    },
+    "logo": {
+      "type": "URL"
+    },
+    "longitude": {
+      "type": "Text"
+    },
+    "map": {
+      "type": "URL"
+    },
+    "maps": {
+      "type": "URL"
+    },
+    "maximumAttendeeCapacity": {
+      "type": "Integer"
+    },
+    "openingHoursSpecification": {
+      "type": "Text"
+    },
+    "photo": {
+      "type": "Text"
+    },
+    "photos": {
+      "type": "Text"
+    },
+    "publicAccess": {
+      "type": "Boolean"
+    },
+    "review": {
+      "type": "Text"
+    },
+    "reviews": {
+      "type": "Text"
+    },
+    "slogan": {
+      "type": "Text"
+    },
+    "smokingAllowed": {
+      "type": "Boolean"
+    },
+    "specialOpeningHoursSpecification": {
+      "type": "Text"
+    },
+    "telephone": {
+      "type": "Text"
+    },
+    "tourBookingPage": {
+      "type": "URL"
+    }
+  },
+  "Organization": {
+    "actionableFeedbackPolicy": {
+      "type": "URL"
+    },
+    "address": {
+      "type": "Text"
+    },
+    "aggregateRating": {
+      "type": "Text"
+    },
+    "alumni": {
+      "type": "Text"
+    },
+    "areaServed": {
+      "type": "Place",
+      "foreign": true
+    },
+    "award": {
+      "type": "Text"
+    },
+    "awards": {
+      "type": "Text"
+    },
+    "brand": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "contactPoint": {
+      "type": "Text"
+    },
+    "contactPoints": {
+      "type": "Text"
+    },
+    "correctionsPolicy": {
+      "type": "URL"
+    },
+    "department": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "dissolutionDate": {
+      "type": "Date"
+    },
+    "diversityPolicy": {
+      "type": "URL"
+    },
+    "diversityStaffingReport": {
+      "type": "URL"
+    },
+    "duns": {
+      "type": "Text"
+    },
+    "email": {
+      "type": "Text"
+    },
+    "employee": {
+      "type": "Text"
+    },
+    "employees": {
+      "type": "Text"
+    },
+    "ethicsPolicy": {
+      "type": "URL"
+    },
+    "event": {
+      "type": "Text"
+    },
+    "events": {
+      "type": "Text"
+    },
+    "faxNumber": {
+      "type": "Text"
+    },
+    "founder": {
+      "type": "Text"
+    },
+    "founders": {
+      "type": "Text"
+    },
+    "foundingDate": {
+      "type": "Date"
+    },
+    "foundingLocation": {
+      "type": "Place",
+      "foreign": true
+    },
+    "funder": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "globalLocationNumber": {
+      "type": "Text"
+    },
+    "hasCredential": {
+      "type": "Text"
+    },
+    "hasMerchantReturnPolicy": {
+      "type": "Text"
+    },
+    "hasOfferCatalog": {
+      "type": "Text"
+    },
+    "hasPOS": {
+      "type": "Place",
+      "foreign": true
+    },
+    "hasProductReturnPolicy": {
+      "type": "Text"
+    },
+    "interactionStatistic": {
+      "type": "Text"
+    },
+    "isicV4": {
+      "type": "Text"
+    },
+    "knowsAbout": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "knowsLanguage": {
+      "type": "Text"
+    },
+    "legalName": {
+      "type": "Text"
+    },
+    "leiCode": {
+      "type": "Text"
+    },
+    "location": {
+      "type": "Place",
+      "foreign": true
+    },
+    "logo": {
+      "type": "URL"
+    },
+    "makesOffer": {
+      "type": "Text"
+    },
+    "member": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "memberOf": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "members": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "naics": {
+      "type": "Text"
+    },
+    "nonprofitStatus": {
+      "type": "Text"
+    },
+    "numberOfEmployees": {
+      "type": "Text"
+    },
+    "ownershipFundingInfo": {
+      "type": "Text"
+    },
+    "owns": {
+      "type": "Text"
+    },
+    "parentOrganization": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "publishingPrinciples": {
+      "type": "URL"
+    },
+    "review": {
+      "type": "Text"
+    },
+    "reviews": {
+      "type": "Text"
+    },
+    "seeks": {
+      "type": "Text"
+    },
+    "serviceArea": {
+      "type": "Place",
+      "foreign": true
+    },
+    "slogan": {
+      "type": "Text"
+    },
+    "sponsor": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "subOrganization": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "taxID": {
+      "type": "Text"
+    },
+    "telephone": {
+      "type": "Text"
+    },
+    "unnamedSourcesPolicy": {
+      "type": "URL"
+    },
+    "vatID": {
+      "type": "Text"
+    }
+  },
+  "LocalBusiness": {
+    "branchOf": {
+      "type": "Organization",
+      "foreign": true
+    },
+    "currenciesAccepted": {
+      "type": "Text"
+    },
+    "openingHours": {
+      "type": "Text"
+    },
+    "paymentAccepted": {
+      "type": "Text"
+    },
+    "priceRange": {
+      "type": "Text"
+    }
+  },
+  "FoodEstablishment": {
+    "acceptsReservations": {
+      "type": "Text"
+    },
+    "hasMenu": {
+      "type": "Text"
+    },
+    "menu": {
+      "type": "Text"
+    },
+    "servesCuisine": {
+      "type": "Text"
+    },
+    "starRating": {
+      "type": "Text"
+    }
+  }
+}
