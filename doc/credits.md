@@ -7,7 +7,7 @@
 - [Simple-JSONdb](https://github.com/nmaggioni/Simple-JSONdb)
 - [Cakebase](https://github.com/erwinkulasic/Cakebase)
 - <https://chat.openai.com/chat>
-- [wikimedia:Death*Comes_to_the_Banquet_Table*](https://commons.wikimedia.org/wiki/File:Death_Comes_to_the_Banquet_Table_-_Memento_Mori_-_Martinelli_NOMA.jpg)
+- [wikimedia:Death_Comes_to_the_Banquet_Table_](https://commons.wikimedia.org/wiki/File:Death_Comes_to_the_Banquet_Table_-_Memento_Mori_-_Martinelli_NOMA.jpg)
 ## These were helpful
 - [Basics of route controllers and Rest APIs](https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd)
 - [Basics of building node driven Rest APIs](https://www.djamseed.com/2016/03/30/building-restful-apis-with-express-and-mongodb/)
@@ -26,3 +26,5 @@
 - <https://rethinkdb.com/faq>
 ## Artwork
 - <https://commons.wikimedia.org/wiki/File:Pteromyini_spec.,_Flying_squirrel,_skeleton,_Naturalis,_Leiden,_the_Netherlands.jpg>
+- <https://publicdomainvectors.org/en/free-clipart/Up-and-down-scroll/38264.html>
+- <https://publicdomainvectors.org/en/free-clipart/Puzzle-pieces-circle/81089.html>

@@ -84,7 +84,7 @@ npm run bones -- updateT snake
 npm run bones -- listT god
 ### God blames the victims
 # NB: Record deleted, from DB.
-npm run bones -- deleteT adam
+npm run bones -- destroyT adam
 # This won't work: adam is deleted.
 npm run bones -- updateT adam
   --potentialAction="kicked out the garden"
@@ -100,7 +100,7 @@ npm run bones -- takeonT adam sin
 npm run bones -- listT adam
   --subjectOf=god
 # NB: Permanent deletion of record, and remnant in parent record.
-npm run bones -- deleteT eve
+npm run bones -- destroyT eve
 npm run bones -- unlistT god eve
 npm run bones -- listT god
 ```

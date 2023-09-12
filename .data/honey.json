@@ -19,7 +19,7 @@
     "actionStatus": "CompletedActionStatus"
   },
   "permits": {
-    "deleteT": "ANON",
+    "destroyT": "ANON",
     "enlistT": "ANON",
     "listT": "ANON",
     "listOfT": "ANON",

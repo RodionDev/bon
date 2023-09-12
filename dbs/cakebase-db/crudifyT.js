@@ -21,7 +21,7 @@ const isTypeT = require("../spine/isTypeT")
 const permitT = require("../spine/permitT")
 const allT = require("./allT")
 const createT = require("./createT")
-const deleteT = require("./deleteT")
+const destroyT = require("./destroyT")
 const engageT = require("./engageT")
 const getT = require("./getT")
 const listT = require("./listT")
@@ -63,7 +63,7 @@ module.exports = T => {
     engageT(T),
     isTypeT(T),
     permitT("delete", T),
-    deleteT(T)
+    destroyT(T)
   )
   return crudRouter
 }

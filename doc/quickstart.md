@@ -22,7 +22,7 @@ The following set up, for instance, mean "READONLY" unless authenticated.
 - All the ANON commands are for view only the engaged thing and the list.
 This implies the owner of this app wants to authorize others to help build the data, but not change the app.
 ```
-deleteT=GOD
+destroyT=GOD
 enlistT=AUTH
 listT=ANON
 pingT=ANON
@@ -69,7 +69,7 @@ Breakdown:
   - `bones <commandName> ...` **bones** is in the `$PATH` of your computer system. You'll be using this after installing it.
 - **commandName**'s are all equal. They perform one common operation from start to finish. They take the same parameters, for instance, in the same order. There aren't many because of the iterative data structure.
   It helps to group them mentally like this:
-  - `takeupT` `updateT` `readT` `deleteT` affects a thing's direct or subclassed properties.
+  - `takeupT` `updateT` `readT` `destroyT` affects a thing's direct or subclassed properties.
     - These require the `identifier` parameter.
     - `identifier` is the only required field.
   - `listT` `enlistT` `unlistT` `takeonT` deal with a thing's ItemList subclass.
@@ -77,7 +77,7 @@ Breakdown:
   - `schemaT` `pingT` return Schema, blank things, or just a hello.
 Notes:
 - `takeupT` is always the entry point. It serves like the "SignUp" page of traditional apps. It's used as in "I'm taking up a hobby/blogging/a lemonade stand" .
-- `updateT` `deleteT` permanently change data but there is backup feature described above.
+- `updateT` `destroyT` permanently change data but there is backup feature described above.
 - `readT` `listT` `schemaT` `pingT` commands can be run at any time.
 - `enlistT` `unlistT` are non destructive. Each reverses the state left by the other.
 - `takeonT` is a shortcut to _takeupT_+_enlistT_. It's like "take onboard".

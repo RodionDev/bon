@@ -9,7 +9,7 @@ const initializeT = (argv, ribs, envVars) => {
   thing.ItemList = {}
   thing.ItemList.itemListElement = []
   thing.permits = {
-    deleteT: PERMITLEVELS.ANON,
+    destroyT: PERMITLEVELS.ANON,
     enlistT: PERMITLEVELS.ANON,
     listT: PERMITLEVELS.ANON,
     listOfT: PERMITLEVELS.ANON,

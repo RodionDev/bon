@@ -43,7 +43,7 @@
           "target": ""
         },
         "permits": {
-          "deleteT": "ANON",
+          "destroyT": "ANON",
           "enlistT": "ANON",
           "listT": "ANON",
           "listOfT": "ANON",
@@ -64,7 +64,7 @@
           "itemListElement": []
         },
         "permits": {
-          "deleteT": "ANON",
+          "destroyT": "ANON",
           "enlistT": "ANON",
           "listT": "ANON",
           "listOfT": "ANON",
@@ -80,7 +80,7 @@
     "numberOfItems": 2
   },
   "permits": {
-    "deleteT": "ANON",
+    "destroyT": "ANON",
     "enlistT": "ANON",
     "listT": "ANON",
     "listOfT": "ANON",

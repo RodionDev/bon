@@ -10,7 +10,7 @@ const should = chai.should()
 chai.use(chaiHttp)
 let Thing = mongoose.models.Thing
 mochaSuite(
-  "bones | crudities | permitTo | deleteT | DELETE /:Thing/:_id | ANON",
+  "bones | crudities | permitTo | destroyT | DELETE /:Thing/:_id | ANON",
   () => {
     it.skip("gives permission to delete Things when not authenticated", done => {
       Thing.create(
@@ -38,7 +38,7 @@ mochaSuite(
   }
 )
 mochaSuite(
-  "bones | crudities | permitTo | deleteT | DELETE /:Thing/:_id | AUTH",
+  "bones | crudities | permitTo | destroyT | DELETE /:Thing/:_id | AUTH",
   () => {
     it("denies permission to delete Things when not authenticated", done => {
       Thing.create(
@@ -91,7 +91,7 @@ mochaSuite(
   }
 )
 mochaSuite(
-  "bones | crudities | permitTo | deleteT | DELETE /:Thing/:_id | LISTED",
+  "bones | crudities | permitTo | destroyT | DELETE /:Thing/:_id | LISTED",
   () => {
     it("denies permission to delete if authenticated is not in Thing's list", done => {
       signupLogin(
@@ -186,7 +186,7 @@ mochaSuite(
   }
 )
 mochaSuite(
-  "bones | crudities | permitTo | deleteT | DELETE /:Thing/:_id | GOD",
+  "bones | crudities | permitTo | destroyT | DELETE /:Thing/:_id | GOD",
   () => {
     it("denies permission to delete Things not owned by authenticated", done => {
       signupLogin(
