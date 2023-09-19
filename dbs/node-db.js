@@ -6,10 +6,10 @@ const WITHNOERROR = false
 const db = {}
 db.initialize = envVars => {
   db.envVars = envVars
+  db.baseDir = path.join(db.envVars.DATADIR )
 }
 db.canExist = packet => typeof packet === "object" && packet.identifier
 db.log = (...msg) => {} 
-db.baseDir = path.join(__dirname, $DATADIR)
 db.makeFilePath = packet => {
   let { identifier } = packet
   if (!fs.existsSync(db.baseDir)) {

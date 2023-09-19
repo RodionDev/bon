@@ -1,13 +1,11 @@
 const { successPayload, errorPayload } = require("../../src/helpers")
 const { authT } = require("../../spine")
 const enlistT = (packet, db, cb) => {
-  console.log({ packet })
   authT(
     "enlistT",
     { identifier: packet.subjectOf },
     db,
     (permitted, authError, engagedData) => {
-      console.log({ permitted, engagedData })
       if (permitted && db.canExist(engagedData)) {
         let { identifier } = packet
         let engagedList = new Set(

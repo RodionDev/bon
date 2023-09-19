@@ -5,7 +5,7 @@ const {
   makeIdentifier,
   makePermitIdentifier,
 } = require("../../src/helpers")
-const engageT = require("../../spine/engageT")
+const { engageT } = require("../../spine")
 const loginT = (packet, db, cb) => {
   if (hasRequiredFields(packet, ["identifier", "password"])) {
     engageT(packet, db, (exists, engageErr, engagedData) => {

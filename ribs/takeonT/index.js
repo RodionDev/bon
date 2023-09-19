@@ -4,7 +4,7 @@ const {
   makeIdentifier,
 } = require("../../src/helpers")
 const { authT } = require("../../spine")
-const enlistT = require("./enlistT")
+const enlistT = require("../enlistT")
 const takeonT = (packet, db, cb) => {
   authT(
     "takeonT",

@@ -1,0 +1,96 @@
+{
+  "additionalType": {
+    "type": "URL"
+  },
+  "alternateName": {
+    "type": "Text"
+  },
+  "description": {
+    "type": "Text"
+  },
+  "disambiguatingDescription": {
+    "type": "Text"
+  },
+  "identifier": {
+    "type": "Text"
+  },
+  "image": {
+    "type": "URL"
+  },
+  "mainEntityOfPage": {
+    "type": "URL"
+  },
+  "name": {
+    "type": "Text"
+  },
+  "potentialAction": {
+    "type": "Action",
+    "foreign": true
+  },
+  "sameAs": {
+    "type": "URL"
+  },
+  "subjectOf": {
+    "type": "Text"
+  },
+  "url": {
+    "type": "URL"
+  },
+  "ItemList": {
+    "itemListElement": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "itemListOrder": {
+      "type": "Text"
+    },
+    "numberOfItems": {
+      "type": "Integer"
+    }
+  },
+  "Action": {
+    "actionStatus": {
+      "type": "Text",
+      "enums": [
+        "FailedActionStatus",
+        "CompletedActionStatus",
+        "ActiveActionStatus",
+        "PotentialActionStatus"
+      ]
+    },
+    "agent": {
+      "type": "Text"
+    },
+    "endTime": {
+      "type": "Time"
+    },
+    "error": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "instrument": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "location": {
+      "type": "Text"
+    },
+    "object": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "participant": {
+      "type": "Text"
+    },
+    "result": {
+      "type": "Thing",
+      "foreign": true
+    },
+    "startTime": {
+      "type": "Time"
+    },
+    "target": {
+      "type": "Text"
+    }
+  }
+}

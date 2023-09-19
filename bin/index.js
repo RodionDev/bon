@@ -27,6 +27,7 @@ const ribs = {
     positionals: ["subjectOf", "identifier"],
   },
   updateT: { aliases: ["update", "patch"], positionals: ["identifier"] },
+  optimizeT: { aliases: [], positionals: ["identifier"] },
 }
 fs.readFile(".env", "utf8", (Err, envData) => {
   const envVars = envData

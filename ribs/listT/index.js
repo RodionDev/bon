@@ -1,4 +1,8 @@
-const { successPayload, errorPayload, summariseT } = require("../../src/helpers")
+const {
+  successPayload,
+  errorPayload,
+  summariseT,
+} = require("../../src/helpers")
 const { authT } = require("../../spine")
 const listT = (packet, db, cb) => {
   authT("listT", packet, db, (permitted, authError, engagedData) => {

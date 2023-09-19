@@ -1,94 +1,84 @@
 {
-  "additionalType": "Shopping",
-  "alternateName": "",
-  "description": "",
-  "disambiguatingDescription": "",
-  "identifier": "shopping",
-  "image": "",
-  "mainEntityOfPage": "Thing",
-  "name": "Don't forget the milk",
-  "potentialAction": "",
-  "sameAs": "",
-  "subjectOf": "",
-  "url": "",
-  "ItemList": {
-    "itemListElement": [
-      {
-        "additionalType": "Honey",
-        "alternateName": "",
-        "description": "",
-        "disambiguatingDescription": "",
-        "identifier": "honey",
-        "image": "",
-        "mainEntityOfPage": "Action",
-        "name": "",
-        "potentialAction": "",
-        "sameAs": "",
-        "subjectOf": "shopping",
-        "url": "",
-        "ItemList": {
-          "itemListElement": []
-        },
-        "Action": {
-          "actionStatus": "",
-          "agent": "",
-          "endTime": "",
-          "error": "",
-          "instrument": "",
-          "location": "",
-          "object": "",
-          "participant": "",
-          "result": "",
-          "startTime": "",
-          "target": ""
-        },
-        "permits": {
-          "destroyT": "ANON",
-          "enlistT": "ANON",
-          "listT": "ANON",
-          "listOfT": "ANON",
-          "readT": "ANON",
-          "schemaT": "ANON",
-          "takeonT": "ANON",
-          "takeupT": "ANON",
-          "updateT": "ANON",
-          "unlistT": "ANON"
-        }
-      },
-      {
-        "subjectOf": "shopping",
-        "identifier": "milk",
-        "mainEntityOfPage": "Thing",
-        "additionalType": "Milk",
-        "ItemList": {
-          "itemListElement": []
-        },
-        "permits": {
-          "destroyT": "ANON",
-          "enlistT": "ANON",
-          "listT": "ANON",
-          "listOfT": "ANON",
-          "readT": "ANON",
-          "schemaT": "ANON",
-          "takeonT": "ANON",
-          "takeupT": "ANON",
-          "updateT": "ANON",
-          "unlistT": "ANON"
-        }
-      }
-    ],
-    "numberOfItems": 2
-  },
-  "permits": {
-    "destroyT": "ANON",
-    "enlistT": "ANON",
-    "listT": "ANON",
-    "listOfT": "ANON",
-    "readT": "ANON",
-    "schemaT": "ANON",
-    "takeonT": "ANON",
-    "takeupT": "ANON",
-    "updateT": "ANON",
-    "unlistT": "ANON"
-  }
+	"additionalType": "Shopping",
+	"alternateName": "",
+	"description": "",
+	"disambiguatingDescription": "",
+	"identifier": "shopping",
+	"image": "",
+	"mainEntityOfPage": "Thing",
+	"name": "Don't forget the milk",
+	"potentialAction": "",
+	"sameAs": "",
+	"subjectOf": "",
+	"url": "",
+	"ItemList": {
+		"itemListElement": [
+			{
+				"subjectOf": "shopping",
+				"identifier": "bread",
+				"mainEntityOfPage": "Thing",
+				"additionalType": "Bread",
+				"ItemList": {
+					"itemListElement": []
+				},
+				"permits": {
+					"destroyT": "ANON",
+					"enlistT": "ANON",
+					"listT": "ANON",
+					"listOfT": "ANON",
+					"readT": "ANON",
+					"schemaT": "ANON",
+					"takeonT": "ANON",
+					"takeupT": "ANON",
+					"updateT": "ANON",
+					"unlistT": "ANON",
+					"optimizeT": "ANON"
+				}
+			},
+			{
+				"additionalType": "Milk",
+				"alternateName": "",
+				"description": "",
+				"disambiguatingDescription": "",
+				"identifier": "milk",
+				"image": "",
+				"mainEntityOfPage": "Thing",
+				"name": "",
+				"potentialAction": "",
+				"sameAs": "",
+				"subjectOf": "shopping",
+				"url": "",
+				"ItemList": {
+					"itemListElement": []
+				},
+				"permits": {
+					"destroyT": "ANON",
+					"enlistT": "ANON",
+					"listT": "ANON",
+					"listOfT": "ANON",
+					"readT": "ANON",
+					"schemaT": "ANON",
+					"takeonT": "ANON",
+					"takeupT": "ANON",
+					"updateT": "ANON",
+					"unlistT": "ANON",
+					"optimizeT": "ANON"
+				}
+			}
+		],
+		"numberOfItems": 2
+	},
+	"permits": {
+		"destroyT": "ANON",
+		"enlistT": "ANON",
+		"listT": "ANON",
+		"listOfT": "ANON",
+		"readT": "ANON",
+		"schemaT": "ANON",
+		"takeonT": "ANON",
+		"takeupT": "ANON",
+		"updateT": "ANON",
+		"unlistT": "ANON",
+		"optimizeT": "ANON"
+	}
 }

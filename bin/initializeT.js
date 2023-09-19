@@ -1,5 +1,5 @@
-const PERMITLEVELS = require("../bones/permits")
-const { camelCase } = require("../bones/helpers")
+const { camelCase } = require("../src/helpers")
+const PERMITLEVELS = require("../src/permits")
 const DAY = 1000 * 60 * 60 * 24
 const initializeT = (argv, ribs, envVars) => {
   let thing = { ...argv } || {}
@@ -19,6 +19,7 @@ const initializeT = (argv, ribs, envVars) => {
     takeupT: PERMITLEVELS.ANON, 
     updateT: PERMITLEVELS.ANON,
     unlistT: PERMITLEVELS.ANON,
+    optimizeT: PERMITLEVELS.ANON,
   }
   delete thing._
   delete thing.$0

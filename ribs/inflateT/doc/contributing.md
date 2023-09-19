@@ -17,4 +17,6 @@ source .env.fish
 pip install -r requirements/local.txt
 ```
 ### TODOS
-1. TODOS
+- Do inflateWikipediaPage with is content aware. Do birds. Do a TV program.
+- Do inflateGutenbergBook using summarise --"I didn't have time to read it"
+- Do inflateMP3s in your folder and make them playable.

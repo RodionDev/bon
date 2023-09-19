@@ -4,5 +4,5 @@ const permitT = require("./permitT")
 module.exports = {
   authT,
   engageT,
-  permitT
+  permitT,
 }

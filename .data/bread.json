@@ -1,0 +1,30 @@
+{
+	"additionalType": "Bread",
+	"alternateName": "",
+	"description": "",
+	"disambiguatingDescription": "",
+	"identifier": "bread",
+	"image": "",
+	"mainEntityOfPage": "Thing",
+	"name": "",
+	"potentialAction": "",
+	"sameAs": "",
+	"subjectOf": "",
+	"url": "",
+	"ItemList": {
+		"itemListElement": []
+	},
+	"permits": {
+		"destroyT": "ANON",
+		"enlistT": "ANON",
+		"listT": "ANON",
+		"listOfT": "ANON",
+		"readT": "ANON",
+		"schemaT": "ANON",
+		"takeonT": "ANON",
+		"takeupT": "ANON",
+		"updateT": "ANON",
+		"unlistT": "ANON",
+		"optimizeT": "ANON"
+	}
+}

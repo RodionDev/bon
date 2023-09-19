@@ -2,4 +2,6 @@
 - [inflateT Prerequisites](/optimize/inflateT/prerequisites.html)
 - [Installing inflateT](/optimize/inflateT/installing.html)
 ## Nutshell
-- Do inflateT the **elioWay**.
+- Do inflateWikipedia
+- Do inflateGutenberg
+- Do inflateMP3s
