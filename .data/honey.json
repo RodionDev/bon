@@ -1,18 +1,22 @@
 {
-	"additionalType": "Bread",
+	"additionalType": "Honey",
 	"alternateName": "",
 	"description": "",
 	"disambiguatingDescription": "",
-	"identifier": "bread",
+	"identifier": "honey",
 	"image": "",
 	"mainEntityOfPage": "Thing",
 	"name": "",
 	"potentialAction": "",
 	"sameAs": "",
-	"subjectOf": "",
+	"subjectOf": "shopping",
 	"url": "",
 	"ItemList": {
-		"itemListElement": []
+		"itemListElement": [],
+		"numberOfItems": 0
+	},
+	"Action": {
+		"actionStatus": "CompletedActionStatus"
 	},
 	"permits": {
 		"destroyT": "ANON",

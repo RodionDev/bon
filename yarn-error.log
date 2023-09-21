@@ -29,7 +29,7 @@ Trace:
 npm manifest: 
   {
     "author": "Tim Bushell",
-    "description": "Reusable Code for elioBones projects, the elioWay.",
+    "description": "Reusable Code for elioBones projects, **the elioWay**.",
     "name": "@elioway/bones",
     "version": "1.3.2",
     "tew": {

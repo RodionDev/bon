@@ -3,6 +3,7 @@ const engageT = (packet, db, cb) => {
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
+      console.log({ packet, readErr, engagedData })
       if (!readErr && db.canExist(engagedData)) {
         cb(true, null, engagedData)
       } else {

@@ -53,8 +53,12 @@ fs.readFile(".env", "utf8", (Err, envData) => {
     })
   Object.entries(ribs).forEach(([ribName, ribConfig]) => {
     let { aliases, positionals } = ribConfig
+    let commandPositionals = ""
+    if (positionals && positionals.length) {
+      commandPositionals = " " + positionals.map(pos => `[${pos}]`).join(" ")
+   }
     yargs.command({
-      command: `${ribName} ${positionals.map(pos => `[${pos}]`).join(" ")}`,
+      command: `${ribName}${commandPositionals}`,
       aliases: aliases,
       desc: `${aliases.join(" ")} a thing`,
       handler: argv =>

@@ -1,5 +1,5 @@
 /**
-* @file Subroute with endpoints to handle JSON.Model cruddy operations, the elioWay.
+* @file Subroute with endpoints to handle JSON.Model cruddy operations, **the elioWay**.
 * @author Tim Bushell
 *
 * @usage

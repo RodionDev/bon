@@ -1,12 +1,12 @@
 {
 	"additionalType": "Shopping",
-	"alternateName": "",
+	"alternateName": "Don't forget the milk!",
 	"description": "",
 	"disambiguatingDescription": "",
 	"identifier": "shopping",
 	"image": "",
 	"mainEntityOfPage": "Thing",
-	"name": "Don't forget the milk",
+	"name": "Today's Shopping List",
 	"potentialAction": "",
 	"sameAs": "",
 	"subjectOf": "",
@@ -14,35 +14,13 @@
 	"ItemList": {
 		"itemListElement": [
 			{
-				"subjectOf": "shopping",
-				"identifier": "bread",
-				"mainEntityOfPage": "Thing",
-				"additionalType": "Bread",
-				"ItemList": {
-					"itemListElement": []
-				},
-				"permits": {
-					"destroyT": "ANON",
-					"enlistT": "ANON",
-					"listT": "ANON",
-					"listOfT": "ANON",
-					"readT": "ANON",
-					"schemaT": "ANON",
-					"takeonT": "ANON",
-					"takeupT": "ANON",
-					"updateT": "ANON",
-					"unlistT": "ANON",
-					"optimizeT": "ANON"
-				}
-			},
-			{
-				"additionalType": "Milk",
+				"additionalType": "Honey",
 				"alternateName": "",
 				"description": "",
 				"disambiguatingDescription": "",
-				"identifier": "milk",
+				"identifier": "honey",
 				"image": "",
-				"mainEntityOfPage": "Thing",
+				"mainEntityOfPage": "Action",
 				"name": "",
 				"potentialAction": "",
 				"sameAs": "",
@@ -50,6 +28,19 @@
 				"url": "",
 				"ItemList": {
 					"itemListElement": []
+				},
+				"Action": {
+					"actionStatus": "",
+					"agent": "",
+					"endTime": "",
+					"error": "",
+					"instrument": "",
+					"location": "",
+					"object": "",
+					"participant": "",
+					"result": "",
+					"startTime": "",
+					"target": ""
 				},
 				"permits": {
 					"destroyT": "ANON",
@@ -66,7 +57,7 @@
 				}
 			}
 		],
-		"numberOfItems": 2
+		"numberOfItems": 1
 	},
 	"permits": {
 		"destroyT": "ANON",

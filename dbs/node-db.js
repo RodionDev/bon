@@ -82,7 +82,6 @@ db.read = (packet, cb) => {
       cb(WITHNOERROR, readThing)
     } else {
       db.log("db.read", readErr)
-      console.log({ packet })
       let subjectOf = packet.subjectOf
       if (subjectOf) {
         db.read({ identifier: subjectOf }, (readParentErr, parentThing) => {
