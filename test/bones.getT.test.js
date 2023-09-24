@@ -1,15 +1,11 @@
 const chai = require("chai")
-const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const Thing = mongoose.models.Thing
-const app = require("../bones/app")
+const { ribT } = require("../ribs")
 const fieldsShouldEqual = require("./behaviours/fieldsShouldEqual")
-const mochaSuite = require("./suites/mochaSuite")
 const { signupLogin } = require("./suites/signupLogin")
-const { PermitLevels } = require("../bones/auth/permits")
+const { PermitLevels } = require("../src/permits")
 const should = chai.should()
-chai.use(chaiHttp)
-mochaSuite("bones | crudities | getT | GET /:engage/:_id", () => {
+describe("bones | ribs | getT | GET /:engage/:_id", () => {
   it("returns 200 and gets a Thing", done => {
     signupLogin(
       { name: "Wizard", username: "tester", password: "letmein" },

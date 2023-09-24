@@ -1,7 +1,7 @@
 const { successPayload, errorPayload } = require("../../src/helpers")
-const { authT } = require("../../spine")
-const logoutT = (packet, db, cb) => {
-  authT("logoutT", packet, db, (permitted, authError, _) => {
+const logoutT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
+  authT("logoutT", packet, ribs, db, (permitted, authError, _) => {
     if (permitted) {
       let { identifier } = packet
       db.delete({ identifier, mainEntityOfPage: "Permit" }, deleteErr => {

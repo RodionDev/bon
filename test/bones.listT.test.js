@@ -1,16 +1,12 @@
 const chai = require("chai")
-const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const Thing = mongoose.models.Thing
-const app = require("../bones/app")
+const { ribT } = require("../ribs")
 const fieldsShouldEqual = require("./behaviours/fieldsShouldEqual")
-const mochaSuite = require("./suites/mochaSuite")
-const settings = require("../bones/settings")
-const { PermitLevels } = require("../bones/auth/permits")
+const settings = { settings: "huh?" }
+const { PermitLevels } = require("../src/permits")
 const { signupLogin } = require("./suites/signupLogin")
 const should = chai.should()
-chai.use(chaiHttp)
-mochaSuite("bones | crudities | listT | GET /:engage/:_id/list/listof", () => {
+describe("bones | ribs | listT | GET /:engage/:_id/list/listof", () => {
   beforeEach(() => {
     this.apprentices = ["DanceEvent", "EducationEvent", "SportsEvent"].map(
       actionName => {

@@ -15,7 +15,7 @@ const isLISTED = (engagedData, permitAudience) => {
       .includes(permitAudience)
   )
 }
-const permitT = (rib, packet, db, engagedData, cb) => {
+const permitT = (rib, packet, ribs, db, engagedData, cb) => {
   let { identifier, mainEntityOfPage } = packet
   let permittedLevel = PERMITLEVELS.GOD
   if (engagedData.hasOwnProperty("permits")) {

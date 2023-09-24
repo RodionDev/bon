@@ -1,22 +1,18 @@
 const fs = require("fs")
 const path = require("path")
-const { authT  } = require("../../spine")
-const updateT = require("../updateT")
-const inflateT = (packet, db, cb) => {
-  authT("inflateT", packet, db, (permitted, authError, engagedData) => {
+const inflateT = (packet, ribs, db, cb) => {
+  const { authT, updateT } = ribs
+  authT("inflateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
       fs.readdir(db.envVars.DATADIR, (err, files) => {
         let proms = files.map(
           possibleListedPath =>
             new Promise((resolve, reject) => {
-              let listedThingPath = path.join(
-                possibleListedPath,
-                "thing.json"
-              )
+              let listedThingPath = path.join(possibleListedPath, "thing.json")
               fs.exists(listedThingPath, exists => {
                 if (exists) {
                   fs.readFile(listedThingPath, (err, listedData) => {
-                    resolve(JSON.parse(listedData),)
+                    resolve(JSON.parse(listedData))
                   })
                 } else {
                   reject()
@@ -38,7 +34,7 @@ const inflateT = (packet, db, cb) => {
                   engagedData.ItemList.itemListElement.push(listedThing)
                 }
               })
-            updateT(              engagedThingPath, db, () =>  readT(200, db, db)          )
+            updateT(engagedThingPath, db, () => readT(200, db, db))
           })
           .catch(err => console.log({ err })) 
       }) 

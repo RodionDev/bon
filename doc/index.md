@@ -11,7 +11,7 @@ Its ribs are 12 endpoints. Thet are the beating heart of **elioWay** projects. Y
 Four **elioEngage** operations - for working with the top level object - the **engaged** "thing":
 <article>
   <a href="/eliobones/bones/ribs/takeupT/">
-  <img src="/eliobones/bones/ribs/takeupT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/takeupT/favicon.png">
   <div>
   <h4>
   <code>takeupT</code>
@@ -22,7 +22,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 <article>
   <a href="/eliobones/bones/ribs/updateT/">
-  <img src="/eliobones/bones/ribs/updateT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/updateT/favicon.png">
   <div>
   <h4>
   <code>updateT</code>
@@ -33,7 +33,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 <article>
   <a href="/eliobones/bones/ribs/readT/">
-  <img src="/eliobones/bones/ribs/readT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/readT/favicon.png">
   <div>
   <h4>
   <code>readT</code>
@@ -44,7 +44,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 <article>
   <a href="/eliobones/bones/ribs/destroyT/">
-  <img src="/eliobones/bones/ribs/destroyT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/destroyT/favicon.png">
   <div>
   <h4>
   <code>destroyT</code>
@@ -57,7 +57,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 Four **elioList** endpoints:
 <article>
   <a href="/eliobones/bones/ribs/listT/">
-  <img src="/eliobones/bones/ribs/listT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/listT/favicon.png">
   <div>
   <h4>
   <code>listT</code>
@@ -68,7 +68,7 @@ Four **elioList** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/unlistT/">
-  <img src="/eliobones/bones/ribs/unlistT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/unlistT/favicon.png">
   <div>
   <h4>
   <code>unlistT</code>
@@ -79,7 +79,7 @@ Four **elioList** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/takeonT/">
-  <img src="/eliobones/bones/ribs/takeonT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/takeonT/favicon.png">
   <div>
   <h4>
   <code>takeonT</code>
@@ -90,7 +90,7 @@ Four **elioList** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/enlistT/">
-  <img src="/eliobones/bones/ribs/enlistT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/enlistT/favicon.png">
   <div>
   <h4>
   <code>enlistT</code>
@@ -103,7 +103,7 @@ Four **elioList** endpoints:
 Two **elioSchema** endpoints:
 <article>
   <a href="/eliobones/bones/ribs/pingT/">
-  <img src="/eliobones/bones/ribs/pingT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/pingT/favicon.png">
   <div>
   <h4>
   <code>pingT</code>
@@ -114,7 +114,7 @@ Two **elioSchema** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/schemaT/">
-  <img src="/eliobones/bones/ribs/schemaT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/schemaT/favicon.png">
   <div>
   <h4>
   <code>schemaT</code>
@@ -127,7 +127,7 @@ Two **elioSchema** endpoints:
 Two **elioEngage** endpoints:
 <article>
   <a href="/eliobones/bones/ribs/loginT/">
-  <img src="/eliobones/bones/ribs/loginT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/loginT/favicon.png">
   <div>
   <h4>
   <code>loginT</code>
@@ -138,7 +138,7 @@ Two **elioEngage** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/logoutT/">
-  <img src="/eliobones/bones/ribs/logoutT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/logoutT/favicon.png">
   <div>
   <h4>
   <code>logoutT</code>
@@ -152,7 +152,7 @@ Two **elioEngage** endpoints:
 These are called internally by the endpoints, but could be called independently for other purposes:
 <article>
   <a href="/eliobones/bones/spine/engageT/">
-  <img src="/eliobones/bones/spine/engageT/apple-touch-icon.png">
+  <img src="/eliobones/bones/spine/engageT/favicon.png">
   <div>
   <h4>
   <code>engageT</code>
@@ -163,7 +163,7 @@ These are called internally by the endpoints, but could be called independently 
 </article>
 <article>
   <a href="/eliobones/bones/spine/authT/">
-  <img src="/eliobones/bones/spine/authT/apple-touch-icon.png">
+  <img src="/eliobones/bones/spine/authT/favicon.png">
   <div>
   <h4>
   <code>authT</code>
@@ -174,7 +174,7 @@ These are called internally by the endpoints, but could be called independently 
 </article>
 <article>
   <a href="/eliobones/bones/spine/permitT/">
-  <img src="/eliobones/bones/spine/permitT/apple-touch-icon.png">
+  <img src="/eliobones/bones/spine/permitT/favicon.png">
   <div>
   <h4>
   <code>permitT</code>
@@ -189,7 +189,7 @@ As long as the endpoint acts upon a complete `thing`, with or without a list, an
 Here are, for instance, three **elioOptimize** endpoints, the very least we could do. We expect you'll need more. You'll have to write those yourself and share them. We'll share any we write here as well. But for now... We feel it's the least we owe.
 <article>
   <a href="/eliobones/bones/ribs/xxxT/">
-  <img src="/eliobones/bones/ribs/inflateT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/inflateT/favicon.png">
   <div>
   <h4>
   <code>inflateT</code>
@@ -200,7 +200,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </article>
 <article>
   <a href="/eliobones/bones/ribs/optimizeT/">
-  <img src="/eliobones/bones/ribs/optimizeT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/optimizeT/favicon.png">
   <div>
   <h4>
   <code>optimizeT</code>
@@ -211,7 +211,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </article>
 <article>
   <a href="/eliobones/bones/ribs/undoT/">
-  <img src="/eliobones/bones/ribs/undoT/apple-touch-icon.png">
+  <img src="/eliobones/bones/ribs/undoT/favicon.png">
   <div>
   <h4>
   <code>undoT</code>

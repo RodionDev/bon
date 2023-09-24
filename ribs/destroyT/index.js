@@ -1,7 +1,7 @@
 const { successPayload, errorPayload } = require("../../src/helpers")
-const { authT } = require("../../spine")
-const destroyT = (packet, db, cb) => {
-  authT("destroyT", packet, db, (permitted, authError, _) => {
+const destroyT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
+  authT("destroyT", packet, ribs, db, (permitted, authError, _) => {
     if (permitted) {
       db.delete(packet, deleteError => {
         let { identifier } = packet

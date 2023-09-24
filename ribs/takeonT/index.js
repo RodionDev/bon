@@ -1,14 +1,15 @@
 const {
+  bigUp,
   errorPayload,
   hasRequiredFields,
   makeIdentifier,
 } = require("../../src/helpers")
-const { authT } = require("../../spine")
 const enlistT = require("../enlistT")
-const takeonT = (packet, db, cb) => {
+const takeonT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
   authT(
     "takeonT",
-    { identifier: packet.subjectOf },
+    { identifier: packet.subjectOf }, ribs,
     db,
     (permitted, authError, engagedData) => {
       if (permitted && db.canExist(engagedData)) {
@@ -16,28 +17,26 @@ const takeonT = (packet, db, cb) => {
           let { identifier } = packet
           db.exists(packet, (exists, existsErr) => {
             if (!exists) {
-              db.create(
-                {
-                  ...packet,
-                  subjectOf: engagedData.identifier,
-                },
-                (createErr, createPacket) => {
-                  if (!createErr) {
-                    enlistT(createPacket, db, cb)
-                  } else {
-                    cb(
-                      500,
-                      errorPayload(
-                        "takeonT",
-                        `Could not create ${identifier} Thing`,
-                        createErr
-                      )
+              let createPacket = {
+                ...bigUp(packet),
+                subjectOf: engagedData.identifier,
+              }
+              db.create(createPacket, (createErr, createPacket) => {
+                if (!createErr) {
+                  enlistT(createPacket, ribs, db, cb)
+                } else {
+                  cb(
+                    500,
+                    errorPayload(
+                      "takeonT",
+                      `Could not create ${identifier} Thing`,
+                      createErr
                     )
-                  }
+                  )
                 }
-              )
+              })
             } else {
-              enlistT(packet, db, cb)
+              enlistT(packet, ribs, db, cb)
             }
           })
         } else {

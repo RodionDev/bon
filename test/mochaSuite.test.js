@@ -1,14 +1,9 @@
 const chai = require("chai")
-const chaiHttp = require("chai-http")
-const request = require("supertest")
-const mongoose = require("mongoose")
-const app = require("../bones/app")
-const mochaSuite = require("./suites/mochaSuite")
+const { ribT } = require("../ribs")
 const { login, signupLogin } = require("./suites/signupLogin")
-const { PermitLevels } = require("../bones/auth/permits")
+const { PermitLevels } = require("../src/permits")
 const should = chai.should()
-chai.use(chaiHttp)
-mochaSuite("mochaSuite | signupLogin | Usage Example Test", () => {
+describe("describe | signupLogin | Usage Example Test", () => {
   it("bloody well gets the token which I can use in my tests", done => {
     signupLogin(
       {

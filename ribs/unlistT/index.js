@@ -1,9 +1,9 @@
 const { errorPayload } = require("../../src/helpers")
-const { authT } = require("../../spine")
-const unlistT = (packet, db, cb) => {
+const unlistT = (packet, ribs, db, cb) => {
+  const { authT } =ribs
   authT(
     "unlistT",
-    { identifier: packet.subjectOf },
+    { identifier: packet.subjectOf }, ribs,
     db,
     (permitted, authError, engagedData) => {
       if (permitted && db.canExist(engagedData)) {

@@ -1,6 +1,6 @@
 const should = require("chai").should()
 const sanitizeOptions = require("../bones/utils/sanitize-options")
-const settings = require("../bones/settings")
+const settings = { settings: "huh?" }
 let commentTests = [
   [{}, { comment: false }],
   [{ comment: false }, { comment: false }],

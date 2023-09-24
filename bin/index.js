@@ -2,35 +2,15 @@
 const fs = require("fs")
 const path = require("path")
 const yargs = require("yargs")
-const process = require("process")
-const db = require("../dbs/node-db")
-const bones = require("../src")
+const db = require("@elioway/node-db")
+const boneUp = require("../src/boneUp")
+const ribs = require("../ribs")
+const spine = require("../spine")
 const flesh = require("../flesh")
 const initializeT = require("./initializeT")
-const ribs = {
-  destroyT: { aliases: ["delete"], positionals: ["identifier"] },
-  enlistT: {
-    aliases: ["add", "addTolist"],
-    positionals: ["subjectOf", "identifier"],
-  },
-  listT: { aliases: ["list"], positionals: ["identifier"] },
-  pingT: { aliases: ["ping"], positionals: [] },
-  readT: { aliases: ["get"], positionals: ["identifier"] },
-  schemaT: { aliases: ["schema", "meta"], positionals: ["mainEntityOfPage"] },
-  takeonT: {
-    aliases: ["createThen", "enlistT"],
-    positionals: ["subjectOf", "identifier"],
-  },
-  takeupT: { aliases: ["create"], positionals: ["identifier"] },
-  unlistT: {
-    aliases: ["remove", "removeFromlist"],
-    positionals: ["subjectOf", "identifier"],
-  },
-  updateT: { aliases: ["update", "patch"], positionals: ["identifier"] },
-  optimizeT: { aliases: [], positionals: ["identifier"] },
-}
 fs.readFile(".env", "utf8", (Err, envData) => {
   const envVars = envData
+    .trim()
     .split("\n")
     .map(line => line.split("="))
     .reduce((acc, [key, value]) => {
@@ -51,18 +31,43 @@ fs.readFile(".env", "utf8", (Err, envData) => {
       "boolean-negation": true,
       "deep-merge-config": false,
     })
-  Object.entries(ribs).forEach(([ribName, ribConfig]) => {
+  const ribsConfig = {
+    destroyT: { aliases: ["delete"], positionals: ["identifier"] },
+    enlistT: {
+      aliases: ["add", "addTolist"],
+      positionals: ["subjectOf", "identifier"],
+    },
+    listT: { aliases: ["list"], positionals: ["identifier"] },
+    pingT: { aliases: ["ping"], positionals: [] },
+    readT: { aliases: ["get"], positionals: ["identifier"] },
+    schemaT: { aliases: ["schema", "scheme","meta"], positionals: ["mainEntityOfPage"] },
+    takeonT: {
+      aliases: ["createAdd"],
+      positionals: ["subjectOf", "identifier"],
+    },
+    takeupT: { aliases: ["create", "new"], positionals: ["identifier"] },
+    unlistT: {
+      aliases: ["remove", "removeFromlist"],
+      positionals: ["subjectOf", "identifier"],
+    },
+    updateT: { aliases: ["update", "patch"], positionals: ["identifier"] },
+    inflateT: { aliases: ["dirInflateT"], positionals: ["identifier"] },
+    optimizeT: { aliases: ["actionStatusOfT"], positionals: ["identifier"] },
+    undoT: { aliases: ["undo"], positionals: ["identifier"] },
+  }
+  Object.entries(ribsConfig).forEach(([ribName, ribConfig]) => {
     let { aliases, positionals } = ribConfig
     let commandPositionals = ""
     if (positionals && positionals.length) {
       commandPositionals = " " + positionals.map(pos => `[${pos}]`).join(" ")
-   }
+    }
+    ribsConfig[ribName].permit = envVars[ribName]
     yargs.command({
       command: `${ribName}${commandPositionals}`,
       aliases: aliases,
       desc: `${aliases.join(" ")} a thing`,
       handler: argv =>
-        bones(ribName, initializeT(argv, ribs, envVars), db, flesh),
+        boneUp(ribName, initializeT(argv, ribsConfig, envVars), {...ribs, ...spine}, db, flesh),
     })
   })
   yargs.demandCommand().help().argv

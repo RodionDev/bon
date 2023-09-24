@@ -53,7 +53,7 @@ npm manifest:
     },
     "scripts": {
       "chisel": "chisel",
-      "prettier": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\""
+      "prettier": "prettier --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\""
     }
   }
 

@@ -1,15 +1,10 @@
 const chai = require("chai")
-const chaiHttp = require("chai-http")
-const request = require("supertest")
-const mongoose = require("mongoose")
-const app = require("../bones/app")
+const { ribT } = require("../ribs")
 const fieldsShouldEqual = require("./behaviours/fieldsShouldEqual")
-const mochaSuite = require("./suites/mochaSuite")
-const settings = require("../bones/settings")
+const settings = { settings: "huh?" }
 const { signupLogin } = require("./suites/signupLogin")
 const should = chai.should()
-chai.use(chaiHttp)
-mochaSuite("POST /auth/Thing/signup", () => {
+describe("POST /auth/Thing/signup", () => {
   it("returns 201 and signups people", done => {
     chai
       .request(app)

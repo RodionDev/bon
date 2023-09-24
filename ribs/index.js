@@ -14,19 +14,19 @@ const inflateT = require("./inflateT")
 const optimizeT = require("./optimizeT")
 const undoT = require("./undoT")
 module.exports = {
-  takeonT,
   destroyT,
   enlistT,
-  inflateT,
   listT,
   loginT,
   logoutT,
-  optimizeT,
   pingT,
   readT,
   schemaT,
+  takeonT,
   takeupT,
   updateT,
   unlistT,
+  inflateT,
+  optimizeT,
   undoT,
 }

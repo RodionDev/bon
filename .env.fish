@@ -1,0 +1,15 @@
+set HASHINGSECRET 123
+set DATADIR "./.data"
+set destroyT ANON
+set enlistT ANON
+set listT ANON
+set readT ANON
+set schemaT ANON
+set pingT ANON
+set takeonT ANON
+set takeupT ANON
+set updateT ANON
+set unlistT ANON
+set optimizeT ANON
+set inflateT ANON
+set undoT ANON

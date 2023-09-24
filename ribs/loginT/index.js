@@ -5,10 +5,10 @@ const {
   makeIdentifier,
   makePermitIdentifier,
 } = require("../../src/helpers")
-const { engageT } = require("../../spine")
-const loginT = (packet, db, cb) => {
+const loginT = (packet, ribs, db, cb) => {
+  const { engageT } = ribs
   if (hasRequiredFields(packet, ["identifier", "password"])) {
-    engageT(packet, db, (exists, engageErr, engagedData) => {
+    engageT(packet, ribs, db, (exists, engageErr, engagedData) => {
       if (exists && db.canExist(engagedData)) {
         let password = packet.password.trim()
         let hashedPassword = hash(password)

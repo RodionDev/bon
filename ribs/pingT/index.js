@@ -1,4 +1,4 @@
-const pingT = (packet, db, cb) => {
+const pingT = (packet, ribs, db, cb) => {
   cb(200, {
     description: "Hello! Will you stay and be my friend?",
     mainEntityOfPage: "Action",

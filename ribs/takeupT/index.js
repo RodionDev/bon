@@ -5,13 +5,17 @@ const {
   makeIdentifier,
   url,
 } = require("../../src/helpers")
-const takeupT = (packet, db, cb) => {
+const takeupT = (packet, ribs, db, cb) => {
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
     db.exists(packet, exists => {
       if (!exists) {
         if (packet.password) {
           packet.password = hash(packet.password.trim())
+        }
+        let createPacket = {
+          ...bigUp(packet),
+          subjectOf: engagedData.identifier,
         }
         db.create(packet, (createErr, createPacket) => {
           if (!createErr) {

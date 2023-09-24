@@ -1,11 +1,11 @@
 const {
   successPayload,
   errorPayload,
-  summariseT,
+  summarizeT,
 } = require("../../src/helpers")
-const { authT } = require("../../spine")
-const listT = (packet, db, cb) => {
-  authT("listT", packet, db, (permitted, authError, engagedData) => {
+const listT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
+  authT("listT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
       let { identifier, sameAs } = packet
       if (engagedData.ItemList.itemListElement) {
@@ -19,7 +19,7 @@ const listT = (packet, db, cb) => {
           if (!listError) {
             cb(
               200,
-              listData.map(listedThing => summariseT(listedThing))
+              listData.map(listedThing => summarizeT(listedThing))
             )
           } else {
             cb(

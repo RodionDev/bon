@@ -1,5 +1,35 @@
 const crypto = require("crypto")
+const ThingBuilder = require("@elioway/thing/thing-builder")
+const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 var helpers = {}
+helpers.bigUp = thing => {
+  let thingBuilder = new ThingBuilder(
+    "schemaorg/data/releases/9.0/schemaorg-all-http",
+    schemaDomainUrl
+  )
+  let Thing = thingBuilder.Thing([packet.mainEntityOfPage])
+  let thinglet = thingBuilder.thinglet(
+    Thing[packet.mainEntityOfPage],
+    packet.mainEntityOfPage
+  )
+  return {
+    ...thinglet,
+    ...packet,
+  }
+}
+helpers.CamelCase = str => {
+  if (!str) return ""
+  str = str
+    .split("")
+    .reduce((a, s) => a + (s === s.toUpperCase() ? s + " " : s))
+  str = str.replace(/  /g, " ")
+  str = str.toLowerCase()
+  const words = str.split(" ")
+  for (let i = 0; i < words.length; i++) {
+    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
+  }
+  return words.join("")
+}
 helpers.hash = str => {
   let envData = fs.readFileSyync(".env", "utf8")
   const envVars = envData
@@ -18,8 +48,6 @@ helpers.hash = str => {
     return false
   }
 }
-helpers.url = (mainEntityOfPage, identifier) =>
-  `http:
 helpers.hasRequiredFields = (packet, fields) => {
   return fields.every(f => packet.hasOwnProperty(f) && packet[f])
 }
@@ -46,20 +74,7 @@ helpers.pick = (obj, propList) => {
     return a
   }, {})
 }
-helpers.camelCase = str => {
-  if (!str) return ""
-  str = str
-    .split("")
-    .reduce((a, s) => a + (s === s.toUpperCase() ? s + " " : s))
-  str = str.replace(/  /g, " ")
-  str = str.toLowerCase()
-  const words = str.split(" ")
-  for (let i = 0; i < words.length; i++) {
-    words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
-  }
-  return words.join("")
-}
-helpers.summariseT = obj => {
+helpers.summarizeT = obj => {
   let engage = []
   for (const key in obj) {
     let property = obj[key]
@@ -120,4 +135,6 @@ helpers.successPayload = (rib, identifier, potentialAction) => {
     },
   }
 }
+helpers.url = (mainEntityOfPage, identifier) =>
+  `http:
 module.exports = helpers

@@ -1,14 +1,9 @@
 const chai = require("chai")
-const chaiHttp = require("chai-http")
-const request = require("supertest")
-const mongoose = require("mongoose")
-const app = require("../bones/app")
+const { ribT } = require("../ribs")
 const fieldsShouldEqual = require("./behaviours/fieldsShouldEqual")
-const mochaSuite = require("./suites/mochaSuite")
 const { signupLogin } = require("./suites/signupLogin")
 const should = chai.should()
-chai.use(chaiHttp)
-mochaSuite("bones | crudities | logoutT | GET /auth/logout", () => {
+describe("bones | ribs | logoutT | GET /auth/logout", () => {
   it("returns 203 when logging out then prevents further access", done => {
     signupLogin(
       { name: "Tester", username: "tester", password: "letmein" },

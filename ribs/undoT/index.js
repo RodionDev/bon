@@ -1,8 +1,7 @@
 const { errorPayload, hash } = require("../../src/helpers")
-const { authT } = require("../../spine")
-const readT = require("../readT")
-const undoT = (packet, db, cb) => {
-  authT("undoT", packet, db, (permitted, authError, engagedData) => {
+const undoT = (packet, ribs, db, cb) => {
+  const { authT } = ribs
+  authT("undoT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
       cb(200, {
         identifier: "undoT",
@@ -13,10 +12,11 @@ const undoT = (packet, db, cb) => {
     }
   })
 }
-const savePointT = (packet, db, cb) => {
-  authT("savePointT", packet, db, (permitted, authError, engagedData) => {
+const savePointT = (packet, ribs, db, cb) => {
+  const { authT } =ribs
+  authT("savePointT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      readT({
+      cb(200,{
         identifier: "savePointT",
         name: "Coming Soon",
       })
@@ -25,7 +25,4 @@ const savePointT = (packet, db, cb) => {
     }
   })
 }
-module.exports = {
-  undoT,
-  savePointT
-}
+module.exports = undoT

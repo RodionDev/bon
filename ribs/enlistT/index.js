@@ -1,9 +1,9 @@
 const { successPayload, errorPayload } = require("../../src/helpers")
-const { authT } = require("../../spine")
-const enlistT = (packet, db, cb) => {
+const enlistT = (packet, ribs, db, cb) => {
+  const { authT, engageT } = ribs
   authT(
     "enlistT",
-    { identifier: packet.subjectOf },
+    { identifier: packet.subjectOf }, ribs,
     db,
     (permitted, authError, engagedData) => {
       if (permitted && db.canExist(engagedData)) {
@@ -12,26 +12,43 @@ const enlistT = (packet, db, cb) => {
           engagedData.ItemList.itemListElement.map(e => e.identifier) || []
         )
         if (!engagedList.has(identifier)) {
-          engagedData.ItemList.itemListElement = [
-            ...engagedData.ItemList.itemListElement,
-            packet,
-          ]
-          db.update(engagedData, updateErr => {
-            if (!updateErr) {
-              delete engagedData.password
-              cb(200, engagedData)
-            } else {
-              cb(
-                500,
-                errorPayload(
-                  "enlistT",
-                  `Could not enlist ${engagedData.identifier} Thing`,
-                  updateErr,
-                  "Check you are using the correct `identifier`"
+          engageT(
+            { identifier: packet.identifier },  ribs,
+            db,
+            (exists, engageErr, engagedListItem) => {
+              if (exists) {
+                engagedData.ItemList.itemListElement = [
+                  ...engagedData.ItemList.itemListElement,
+                  engagedListItem,
+                ]
+                db.update(engagedData, updateErr => {
+                  if (!updateErr) {
+                    delete engagedData.password
+                    cb(200, engagedData)
+                  } else {
+                    cb(
+                      500,
+                      errorPayload(
+                        "enlistT",
+                        `Could not enlist ${packet.identifier} Thing`,
+                        updateErr
+                      )
+                    )
+                  }
+                })
+              } else {
+                cb(
+                  500,
+                  errorPayload(
+                    "enlistT",
+                    `Could not find ${engagedData.identifier} Thing`,
+                    engageErr,
+                    "Record missing. Find it - or use `takeonT` instead"
+                  )
                 )
-              )
+              }
             }
-          })
+          )
         } else {
           cb(
             200,

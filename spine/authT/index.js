@@ -1,10 +1,9 @@
 const { errorPayload } = require("../../src/helpers")
-const engageT = require("../engageT")
-const permitT = require("../permitT")
-const authT = (rib, packet, db, cb) => {
-  engageT(packet, db, (exists, engageErr, engagedData) => {
+const authT = (rib, packet, ribs, db, cb) => {
+  const {engageT, permitT} = ribs
+  engageT(packet, ribs, db, (exists, engageErr, engagedData) => {
     if (exists) {
-      permitT(rib, packet, db, engagedData, (permitted, permitErr) => {
+      permitT(rib, packet, ribs, db, engagedData, (permitted, permitErr) => {
         if (permitted && db.canExist(engagedData)) {
           cb(true, null, engagedData)
         } else {

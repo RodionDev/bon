@@ -34,8 +34,7 @@
     "build": "npm run clean && babel ./bones --out-dir dist",
     "clean": "rm -rf ./dist && mkdir dist",
     "dev": "nodemon --exec babel-node ./bones/server.js",
-    "prettier": "prettier --write \"**/*.{js,json,scss,md,html}\" \"!package.json\"",
-    "start": "nodemon ./bones/server.js",
+    "prettier": "prettier --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\"",
     "test": "mocha --exit --timeout 10000"
   }
 }
