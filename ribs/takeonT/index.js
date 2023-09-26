@@ -4,12 +4,12 @@ const {
   hasRequiredFields,
   makeIdentifier,
 } = require("../../src/helpers")
-const enlistT = require("../enlistT")
 const takeonT = (packet, ribs, db, cb) => {
-  const { authT } = ribs
+  const { authT, enlistT } = ribs
   authT(
     "takeonT",
-    { identifier: packet.subjectOf }, ribs,
+    { identifier: packet.subjectOf },
+    ribs,
     db,
     (permitted, authError, engagedData) => {
       if (permitted && db.canExist(engagedData)) {

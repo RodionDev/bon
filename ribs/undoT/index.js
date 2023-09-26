@@ -13,10 +13,10 @@ const undoT = (packet, ribs, db, cb) => {
   })
 }
 const savePointT = (packet, ribs, db, cb) => {
-  const { authT } =ribs
+  const { authT } = ribs
   authT("savePointT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      cb(200,{
+      cb(200, {
         identifier: "savePointT",
         name: "Coming Soon",
       })

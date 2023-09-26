@@ -1,0 +1,22 @@
+{
+  "additionalType": "Bones",
+  "alternateName": "",
+  "description": "",
+  "disambiguatingDescription": "",
+  "identifier": "bones",
+  "image": "star.png",
+  "mainEntityOfPage": "ItemList",
+  "name": "bones",
+  "potentialAction": {
+    "mainEntityOfPage": "Action",
+    "identifier": "inflateT"
+  },
+  "sameAs": "",
+  "subjectOf": "eliobones",
+  "url": "http://github.com/bones",
+  "ItemList": {
+    "itemListElement": [],
+    "itemListOrder": "",
+    "numberOfItems": 0
+  }
+}

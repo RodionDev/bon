@@ -12,7 +12,7 @@ const readT = (packet, ribs, db, cb) => {
           cb(200, engagedData)
         }
       } else {
-        cb(666, errorPayload("readT", "Empty record", "", "Undelete record"))
+        cb(666, errorPayload("readT", "Empty record", "", "Undestroy the record"))
       }
     } else {
       cb(404, authError)

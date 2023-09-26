@@ -3,7 +3,8 @@ const enlistT = (packet, ribs, db, cb) => {
   const { authT, engageT } = ribs
   authT(
     "enlistT",
-    { identifier: packet.subjectOf }, ribs,
+    { identifier: packet.subjectOf },
+    ribs,
     db,
     (permitted, authError, engagedData) => {
       if (permitted && db.canExist(engagedData)) {
@@ -13,7 +14,8 @@ const enlistT = (packet, ribs, db, cb) => {
         )
         if (!engagedList.has(identifier)) {
           engageT(
-            { identifier: packet.identifier },  ribs,
+            { identifier: packet.identifier },
+            ribs,
             db,
             (exists, engageErr, engagedListItem) => {
               if (exists) {

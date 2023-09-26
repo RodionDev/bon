@@ -4,8 +4,8 @@ const logoutT = (packet, ribs, db, cb) => {
   authT("logoutT", packet, ribs, db, (permitted, authError, _) => {
     if (permitted) {
       let { identifier } = packet
-      db.delete({ identifier, mainEntityOfPage: "Permit" }, deleteErr => {
-        if (!deleteErr) {
+      db.destroy({ identifier, mainEntityOfPage: "Permit" }, destroyErr => {
+        if (!destroyErr) {
           cb(200, successPayload("logoutT", `${identifier} Thing logout`))
         } else {
           cb(
@@ -13,7 +13,7 @@ const logoutT = (packet, ribs, db, cb) => {
             errorPayload(
               "logoutT",
               `Could not logout ${identifier} Thing`,
-              deleteErr
+              destroyErr
             )
           )
         }

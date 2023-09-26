@@ -40,9 +40,6 @@ npm manifest:
     "bin": "./bin/index.js",
     "dependencies": {
       "@elioway/thing": "^1.0.1",
-      "commander": "^9.4.1",
-      "lodash": "^4.17.21",
-      "winston": "^3.8.2",
       "yargs": "^17.6.2"
     },
     "devDependencies": {
@@ -67,7 +64,6 @@ npm manifest:
       "clean": "rm -rf ./dist && mkdir dist",
       "dev": "nodemon --exec babel-node ./bones/server.js",
       "prettier": "prettier --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\"",
-      "start": "nodemon ./bones/server.js",
       "test": "mocha --exit --timeout 10000"
     }
   }
