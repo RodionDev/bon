@@ -27,4 +27,7 @@ mockRibs.updateT = (packet, ribs, db, cb) => cb(200, packet)
 mockRibs.inflateT = (packet, ribs, db, cb) => cb(200, packet)
 mockRibs.optimizeT = (packet, ribs, db, cb) => cb(200, packet)
 mockRibs.undoT = (packet, ribs, db, cb) => cb(200, packet)
+mockRibs.engageT = (packet, ribs, db, cb) => cb(200, packet)
+mockRibs.authT = (rib, packet, ribs, db, cb) => cb(200, packet)
+mockRibs.permitT = (rib, packet, ribs, db, cb) => cb(200, packet)
 module.exports = mockRibs

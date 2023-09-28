@@ -1,10 +1,10 @@
 const { errorPayload } = require("../../src/helpers")
 const engageT = (packet, ribs, db, cb) => {
   let { identifier } = packet
-  console.log("############## engageT", { packet, ribs, db })
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
       if (!readErr && db.canExist(engagedData)) {
+        console.log("!!!!!!", engagedData)
         cb(true, null, engagedData)
       } else {
         cb(

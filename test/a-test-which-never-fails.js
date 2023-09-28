@@ -7,8 +7,21 @@ describe("Never Fails", () => {
   })
 })
 describe("mockRibs | endpoint which NeverFail", () => {
-  Object.entries(mockRibs).forEach(([ribName, ribT]) => {
+  new Array(
+    "pingT",
+    "readT",
+    "schemaT",
+    "takeonT",
+    "takeupT",
+    "unlistT",
+    "updateT",
+    "inflateT",
+    "optimizeT",
+    "undoT",
+    "engageT"
+  ).forEach(ribName => {
     it(`mock endpoint \`${ribName}\` should not ever fail`, () => {
+      let ribT = mockRibs[ribName]
       let packet = { identifier: { type: "Text" } }
       let cb = (code, t) => t.should.eql(packet)
       ribT(packet, mockRibs, mockDb, cb)
@@ -16,7 +29,7 @@ describe("mockRibs | endpoint which NeverFail", () => {
   })
 })
 describe("mockDB NeverFails", () => {
-  it("mock \`exists\` should not ever fail", () => {
+  it("mock `exists` should not ever fail", () => {
     let { exists } = mockDb
     let packet = { identifier: 1 }
     let cb = (isError, t) => t.should.eql(packet)
@@ -31,7 +44,7 @@ describe("mockDB NeverFails", () => {
     }
     destroy(packet, cb)
   })
-  new Array("create", "read", "list", "update").forEach(dbCommandName=> {
+  new Array("create", "read", "list", "update").forEach(dbCommandName => {
     it(`mock db ${dbCommandName} should not ever fail`, () => {
       let packet = { identifier: 1 }
       let cb = (isError, t) => t.should.eql(packet)
