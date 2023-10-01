@@ -4,7 +4,7 @@ const engageT = (packet, ribs, db, cb) => {
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
       if (!readErr && db.canExist(engagedData)) {
-        console.log("!!!!!!", engagedData)
+        console.log({readErr, engagedData})
         cb(true, null, engagedData)
       } else {
         cb(
