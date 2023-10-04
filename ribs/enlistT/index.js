@@ -14,6 +14,7 @@ const enlistT = (packet, ribs, db, cb) => {
         )
         if (!engagedList.has(identifier)) {
           engageT(
+            "enlistT",
             { identifier: packet.identifier },
             ribs,
             db,

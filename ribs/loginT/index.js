@@ -8,7 +8,7 @@ const {
 const loginT = (packet, ribs, db, cb) => {
   const { engageT } = ribs
   if (hasRequiredFields(packet, ["identifier", "password"])) {
-    engageT(packet, ribs, db, (exists, engageErr, engagedData) => {
+    engageT("loginT", packet, ribs, db, (exists, engageErr, engagedData) => {
       if (exists && db.canExist(engagedData)) {
         let password = packet.password.trim()
         let hashedPassword = hash(password)

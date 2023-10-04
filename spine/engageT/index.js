@@ -1,27 +1,27 @@
 const { errorPayload } = require("../../src/helpers")
-const engageT = (packet, ribs, db, cb) => {
+const engageT = (rib, packet, ribs, db, cb) => {
+  console.log("the real engageT")
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
       if (!readErr && db.canExist(engagedData)) {
-        console.log({readErr, engagedData})
-        cb(true, null, engagedData)
+        cb(true, "", engagedData)
       } else {
-        cb(
-          false,
-          errorPayload("engageT", `${identifier} Thing not found`, readErr)
+        let failErrMessage = errorPayload(
+          "engageT",
+          `${identifier} Thing not found`,
+          readErr
         )
+        cb(false, failErrMessage)
       }
     })
   } else {
-    cb(
-      false,
-      errorPayload(
-        "engageT",
-        "Missing `identifier`",
-        "No `identifier` parameter was included in the data packet"
-      )
+    let failErrMessage = errorPayload(
+      "engageT",
+      "Missing `identifier`",
+      "No `identifier` parameter was included in the data packet"
     )
+    cb(false, failErrMessage)
   }
 }
 module.exports = engageT

@@ -15,7 +15,8 @@ const isLISTED = (engagedData, permitAudience) => {
       .includes(permitAudience)
   )
 }
-const permitT = (rib, packet, ribs, db, engagedData, cb) => {
+const permitT = (rib, packet, ribs, db, cb, engagedData) => {
+  console.log("the real permitT")
   let { identifier, mainEntityOfPage } = packet
   let permittedLevel = PERMITLEVELS.GOD
   if (engagedData.hasOwnProperty("permits")) {
@@ -42,7 +43,7 @@ const permitT = (rib, packet, ribs, db, engagedData, cb) => {
               PERMITLEVELS.LISTED === permittedLevel) ||
             PERMITLEVELS.AUTH === permittedLevel
           ) {
-            cb(true)
+            cb(true, "", engagedData)
           } else {
             cb(
               false,
@@ -63,7 +64,7 @@ const permitT = (rib, packet, ribs, db, engagedData, cb) => {
     })
   } else {
     if (permittedLevel === PERMITLEVELS.ANON) {
-      cb(true)
+      cb(true, "", engagedData)
     } else {
       cb(
         false,
