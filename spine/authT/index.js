@@ -11,7 +11,7 @@ const authT = (rib, packet, ribs, db, cb) => {
           cb(false, errorPayload("authT", permitErr))
         }
       }
-      permitT(rib, packet, ribs, db, permitCb, engagedData)
+      permitT(rib, engagedData, ribs, db, permitCb, packet)
     } else {
       cb(
         false,

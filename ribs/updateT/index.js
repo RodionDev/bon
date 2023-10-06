@@ -3,9 +3,6 @@ const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canExist(engagedData)) {
-      if (packet.password) {
-        packet.password = hash(password)
-      }
       let updatePacket = {
         ...engagedData,
         ...packet,

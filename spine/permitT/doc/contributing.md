@@ -17,4 +17,4 @@ source .env.fish
 pip install -r requirements/local.txt
 ```
 ### TODOS
-1. TODOS
+1. RegExp Pattern Matching in `permitT`.

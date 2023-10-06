@@ -4,16 +4,21 @@ const mockRibs = require("./mockRibs.js")
 const authT = require("../spine/authT")
 describe("authT", () => {
   it("authTs if permitT permits", () => {
+    let spareRibs = new Object({ ...mockRibs, authT: authT })
     let mock = { identifier: 1, mainEntityOfPage: "Person" }
     let cb = (wasSuccessfullyAuthed, ifFailErrMessage, authData) => {
       wasSuccessfullyAuthed.should.be.true
       ifFailErrMessage.should.eql("")
       authData.should.eql(mock)
     }
-    let macRibs = new Object({ ...mockRibs, authT: authT })
-    macRibs.authT("testT", mock, macRibs, mockDb, cb)
+    spareRibs.authT("testT", mock, spareRibs, mockDb, cb)
   })
   it("doesn't authTs if permitT doesn't permit", () => {
+    let spareRibs = new Object({
+      ...mockRibs,
+      authT: authT,
+      permitT: mockRibs.notPermittedT,
+    })
     let mock = { identifier: 1, mainEntityOfPage: "Person" }
     let cb = (wasSuccessfullyAuthed, ifFailErrMessage, authData) => {
       wasSuccessfullyAuthed.should.be.false
@@ -29,21 +34,6 @@ describe("authT", () => {
       })
       should.not.exist(authData)
     }
-    let macRibs = new Object({
-      ...mockRibs,
-      authT: authT,
-      permitT: mockRibs.notPermittedT,
-    })
-    macRibs.authT("testT", mock, macRibs, mockDb, cb)
-  })
-})
-describe("The authT Permit system", () => {
-  it("can allow ", () => {
-    let mock = { identifier: 1, mainEntityOfPage: "Person" }
-  })
-})
-describe("How it is rib agnostic.", () => {
-  it("can allow ", () => {
-    let mock = { identifier: 1, mainEntityOfPage: "Person" }
+    spareRibs.authT("testT", mock, spareRibs, mockDb, cb)
   })
 })
