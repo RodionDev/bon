@@ -2,12 +2,21 @@ const should = require("chai").should()
 const mockDb = require("./mockDB.js")
 const mockRibs = require("./mockRibs.js")
 const permitT = require("../spine/permitT")
+const { accessSpecsMaker, permitMaker } = require("../ribs/inviteT")
 let CBTRUE = isPermitted => isPermitted.should.be.true
 let CBFALSE = isPermitted => isPermitted.should.be.false
 describe("permitT", () => {
   it("doesn't permitT by default", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let mock = { identifier: 1, mainEntityOfPage: "Person" }
+    let mock = {
+      identifier: 1,
+      mainEntityOfPage: "Person",
+      ItemList: {
+        itemListElement: [],
+        itemListOrder: "",
+        numberOfItems: 0,
+      },
+    }
     let cb = (wasPermitted, ifPermissionFailedMessage, permittedData) => {
       wasPermitted.should.be.false
       ifPermissionFailedMessage.should.eql({
@@ -24,40 +33,47 @@ describe("permitT", () => {
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, cb, mock)
   })
-  it("can grant permission to anyone on any endpoint", () => {
+  it("can grant permission anon on any endpoint", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing"
-    let ACCESSFOR = "*"
-    let ACCESSTO = "mockThing"
-    let mock = {
-      identifier: ACCESSTO,
-      mainEntityOfPage: "ItemList",
-      ItemList: {
-        itemListElement: [
-          actionAccessSpecification(["*"], ACCESSCODE, ACCESSFOR, ""),
-        ],
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "*"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["*"].join(","),
+        eligibleRegion: permitIdentifier,
+        ineligibleRegion: "",
       },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
+    let mock = {
+      identifier: mockThingIdentifier,
+      mainEntityOfPage: "ItemList",
+      ItemList: { itemListElement: [specs] },
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE)
   })
-  it("can grant permission to anyone on specific endpoints", () => {
+  it("can grant permission anon on specific endpoints", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing"
-    let ACCESSFOR = "*"
-    let ACCESSTO = "mockThing" 
-    let mock = {
-      identifier: ACCESSTO,
-      mainEntityOfPage: "ItemList",
-      ItemList: {
-        itemListElement: [
-          actionAccessSpecification(
-            ["testT", "checkT"],
-            ACCESSCODE,
-            ACCESSFOR,
-            ""
-          ),
-        ],
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "*"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["testT", "checkT"].join(","),
+        eligibleRegion: permitIdentifier,
+        ineligibleRegion: "",
       },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
+    let mock = {
+      identifier: mockThingIdentifier,
+      mainEntityOfPage: "ItemList",
+      ItemList: { itemListElement: [specs] },
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE)
     spareRibs.permitT("checkT", mock, spareRibs, mockDb, CBTRUE)
@@ -65,161 +81,179 @@ describe("permitT", () => {
   })
   it("can grant permission to specific people", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing" 
-    let ACCESSFOR = "permitThing" 
-    let ACCESSTO = "mockThing" 
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "permitThing"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["testT"].join(","),
+        eligibleRegion: permitIdentifier,
+        ineligibleRegion: "",
+      },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: ACCESSTO,
+      identifier: mockThingIdentifier,
       mainEntityOfPage: "ItemList",
       ItemList: {
-        itemListElement: [
-          actionAccessSpecification(["testT"], ACCESSCODE, ACCESSFOR, ""),
-        ],
+        itemListElement: [specs],
       },
     }
-    let permit = permitMaker(ACCESSFOR, ACCESSTO, ACCESSCODE)
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE, permit)
     spareRibs.permitT("breakT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
   it("can revoke permission to specific people", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing" 
-    let ACCESSFOR = "permitThing" 
-    let ACCESSTO = "mockThing" 
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "permitThing"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["*"].join(","),
+        eligibleRegion: "",
+        ineligibleRegion: permitIdentifier,
+      },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: ACCESSTO,
+      identifier: mockThingIdentifier,
       mainEntityOfPage: "ItemList",
       ItemList: {
-        itemListElement: [
-          actionAccessSpecification(["testT"], ACCESSCODE, "", ACCESSFOR),
-        ],
+        itemListElement: [specs],
       },
     }
-    let permit = permitMaker(ACCESSFOR, ACCESSTO, ACCESSCODE)
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
   it("can revoke permission to otherwise elible people", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing" 
-    let ACCESSFOR = "permitThing" 
-    let ACCESSTO = "mockThing" 
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "permitThing"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["testT"].join(","),
+        eligibleRegion: permitIdentifier,
+        ineligibleRegion: permitIdentifier,
+      },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: ACCESSTO,
+      identifier: mockThingIdentifier,
       mainEntityOfPage: "ItemList",
       ItemList: {
-        itemListElement: [
-          actionAccessSpecification(
-            ["testT"],
-            ACCESSCODE,
-            ACCESSFOR,
-            ACCESSFOR
-          ),
-        ],
+        itemListElement: [specs],
       },
     }
-    let permit = permitMaker(ACCESSFOR, ACCESSTO, ACCESSCODE)
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
   it("can revoke permission to when otherwise allowing anonymous", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing" 
-    let ACCESSFOR = "permitThing" 
-    let ACCESSTO = "mockThing" 
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "permitThing"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["*"].join(","),
+        eligibleRegion: "*",
+        ineligibleRegion: permitIdentifier,
+      },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: ACCESSTO,
+      identifier: mockThingIdentifier,
       mainEntityOfPage: "ItemList",
       ItemList: {
-        itemListElement: [
-          actionAccessSpecification(["testT"], ACCESSCODE, "*", ACCESSFOR),
-        ],
+        itemListElement: [specs],
       },
     }
-    let permit = permitMaker(ACCESSFOR, ACCESSTO, ACCESSCODE)
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
   it("can revoke permission with competing access rules", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing" 
-    let ACCESSFOR = "permitThing" 
-    let ACCESSTO = "mockThing" 
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "permitThing"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["*"].join(","),
+        eligibleRegion: "*",
+        ineligibleRegion: permitIdentifier,
+      },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: ACCESSTO,
+      identifier: mockThingIdentifier,
       mainEntityOfPage: "ItemList",
       ItemList: {
         itemListElement: [
-          actionAccessSpecification(["*"], ACCESSCODE, "*", ""),
-          actionAccessSpecification(["testT"], ACCESSCODE, ACCESSFOR, ""),
-          actionAccessSpecification(["testT"], ACCESSCODE, "*", ACCESSFOR),
+          accessSpecsMaker({
+            identifier: specsIdentifier,
+            subjectOf: mockThingIdentifier,
+            ActionAccessSpecification: {
+              requiresSubscription: ["*"].join(","),
+              eligibleRegion: "*",
+              ineligibleRegion: "",
+            },
+          }),
+          accessSpecsMaker({
+            identifier: specsIdentifier,
+            subjectOf: mockThingIdentifier,
+            ActionAccessSpecification: {
+              requiresSubscription: ["*"].join(","),
+              eligibleRegion: permitIdentifier,
+              ineligibleRegion: "",
+            },
+          }),
+          specs,
         ],
       },
     }
-    let permit = permitMaker(ACCESSFOR, ACCESSTO, ACCESSCODE)
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
   it("revocation is per endpoint", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let ACCESSCODE = "actionAccessThing" 
-    let ACCESSFOR = "permitThing" 
-    let ACCESSTO = "mockThing" 
+    let specsIdentifier = "specsThing"
+    let permitIdentifier = "permitThing"
+    let mockThingIdentifier = "mockThing"
+    let specs = accessSpecsMaker({
+      identifier: specsIdentifier,
+      subjectOf: mockThingIdentifier,
+      ActionAccessSpecification: {
+        requiresSubscription: ["testT"].join(","),
+        eligibleRegion: permitIdentifier,
+        ineligibleRegion: "",
+      },
+    })
+    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: ACCESSTO,
+      identifier: mockThingIdentifier,
       mainEntityOfPage: "ItemList",
       ItemList: {
         itemListElement: [
-          actionAccessSpecification(["testT"], ACCESSCODE, ACCESSFOR, ""),
-          actionAccessSpecification(["hopeT"], ACCESSCODE, "*", ACCESSFOR),
+          specs,
+          accessSpecsMaker({
+            identifier: specsIdentifier,
+            subjectOf: mockThingIdentifier,
+            ActionAccessSpecification: {
+              requiresSubscription: ["hopeT"].join(","),
+              eligibleRegion: "*",
+              ineligibleRegion: permitIdentifier,
+            },
+          }),
         ],
       },
     }
-    let permit = permitMaker(ACCESSFOR, ACCESSTO, ACCESSCODE)
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE, permit)
     spareRibs.permitT("hopeT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
 })
-function actionMaker(identifier) {
-return  new Object({
-    identifier,
-    mainEntityOfPage: "Action",
-    Action: { instrument: "endpoint" },
-  })
-}
-function permitMaker(
-  permitIdentifier,
-  engagedThingIdentifier,
-  actionAccessSpecificationIdentifier
-) {
-  return new Object({
-    identifier: permitIdentifier,
-    mainEntityOfPage: "Permit",
-    Permit: {
-      issuedBy: engagedThingIdentifier,
-      issuedThrough: actionAccessSpecificationIdentifier,
-      permitAudience: permitIdentifier,
-      validFor: "",
-      validFrom: new Date(1970, 1, 1),
-      validIn: "",
-      validUntil: new Date(2040, 1, 1),
-    },
-  })
-}
-function actionAccessSpecification(
-  ribs,
-  actionAccessSpecificationIdentifier,
-  eligibleRegion,
-  ineligibleRegion
-) {
-  return new Object({
-    identifier: actionAccessSpecificationIdentifier,
-    mainEntityOfPage: "ActionAccessSpecification",
-    ItemList: { itemListElement: ribs.map(actionMaker) },
-    ActionAccessSpecification: {
-      availabilityEnds: new Date(1970, 1, 1),
-      availabilityStarts: new Date(2040, 1, 1),
-      category: "endpointT",
-      eligibleRegion: eligibleRegion,
-      expectsAcceptanceOf: "Terms",
-      ineligibleRegion: ineligibleRegion,
-      requiresSubscription: 0,
-    },
-  })
-}

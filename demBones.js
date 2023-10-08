@@ -1,4 +1,4 @@
-const db = require("./node-db/index")
+const db = require("./dbhell-bones/index")
 const bones = require("./bones")
 const flesh = require("./flesh")
 let demBones = [

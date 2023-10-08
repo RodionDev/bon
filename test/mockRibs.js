@@ -29,7 +29,9 @@ mockRibs.destroyT = (packet, ribs, db, cb) => {
 }
 mockRibs.enlistT = (packet, ribs, db, cb) => {
   console.log("the Mock enlistT")
-  delete packet.password
+  console.log(packet)
+  let mockEngagedData = { identifier: packet.subjectOf }
+  mockEngagedData.ItemList = {itemListElement : [  packet  ]}
   cb(200, packet)
 }
 mockRibs.listT = (listData, ribs, db, cb) => {
@@ -42,7 +44,6 @@ mockRibs.pingT = (packet, ribs, db, cb) => {
 }
 mockRibs.readT = (packet, ribs, db, cb) => {
   console.log("the Mock readT")
-  delete packet.password
   let { sameAs } = packet
   if (sameAs) {
     cb(200, packet[sameAs])

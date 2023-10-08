@@ -11,6 +11,7 @@ const takeupT = require("./takeupT")
 const unlistT = require("./unlistT")
 const updateT = require("./updateT")
 const inflateT = require("./inflateT")
+const inviteT = require("./inviteT")
 const optimizeT = require("./optimizeT")
 const undoT = require("./undoT")
 module.exports = {

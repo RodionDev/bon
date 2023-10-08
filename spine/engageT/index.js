@@ -5,6 +5,9 @@ const engageT = (rib, packet, ribs, db, cb) => {
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
       if (!readErr && db.canExist(engagedData)) {
+        if (!Array.isArray(engagedData.ItemList?.itemListElement)) {
+          engagedData.ItemList = { itemListElement: [] }
+        }
         cb(true, "", engagedData)
       } else {
         let failErrMessage = errorPayload(
