@@ -1,8 +1,7 @@
 const { errorPayload } = require("../../src/helpers")
-const permitT = (rib, packet, ribs, db, cb, permit) => {
-  console.log("the real permitT")
-  console.assert("packet", packet.ItemList.itemListElement, "permit", permit)
-  let actionAccessSpecifications = packet.ItemList.itemListElement
+const permitT = (rib, engagedData, ribs, db, cb, packet) => {
+  console.count("the real permitT")
+  let actionAccessSpecifications = engagedData.ItemList.itemListElement
     .filter(spec => spec.mainEntityOfPage === "ActionAccessSpecification")
     .filter(
       spec =>
@@ -12,18 +11,18 @@ const permitT = (rib, packet, ribs, db, cb, permit) => {
   let passingActionAccessSpecifications = actionAccessSpecifications
     .filter(
       spec =>
-        spec.identifier === permit?.Permit?.issuedThrough ||
-        !permit?.Permit.issuedThrough
+        spec.identifier === packet?.Permit?.issuedThrough ||
+        !packet?.Permit.issuedThrough
     )
     .filter(
       spec =>
-        packet.identifier === permit?.Permit?.issuedBy ||
-        !permit?.Permit.issuedBy
+        engagedData.identifier === packet?.Permit?.issuedBy ||
+        !packet?.Permit.issuedBy
     )
     .filter(
       spec =>
         spec.ActionAccessSpecification.eligibleRegion ===
-          permit?.Permit?.permitAudience ||
+          packet?.Permit?.permitAudience ||
         spec.ActionAccessSpecification.eligibleRegion === "*"
     )
     .filter(spec => {
@@ -34,7 +33,7 @@ const permitT = (rib, packet, ribs, db, cb, permit) => {
   let blockingActionAccessSpecifications = actionAccessSpecifications
     .filter(
       spec =>
-        spec.ActionAccessSpecification.ineligibleRegion === permit?.identifier
+        spec.ActionAccessSpecification.ineligibleRegion === packet?.identifier
     )
     .filter(spec => {
       let endpoints =
@@ -51,7 +50,7 @@ const permitT = (rib, packet, ribs, db, cb, permit) => {
     passingActionAccessSpecifications.length &&
     !blockingActionAccessSpecifications.length
   ) {
-    cb(true, "", packet)
+    cb(true, "", engagedData)
   } else {
     cb(false, errorPayload("permitT", "Permission not granted"))
   }

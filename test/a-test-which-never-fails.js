@@ -76,6 +76,15 @@ describe("mockDB | An airquotes DB which Never Fails", () => {
     }
     destroy(packet, cb)
   })
+  it(`mock \`read\` to \`readBackWhatWasGiven\``, () => {
+    let { readBackWhatWasGiven } = mockDb
+    let packet = { identifier: "god" }
+    let cb = (isError, thing) => {
+      isError.should.be.false
+      thing.should.eql({ identifier: "lucifer" })
+    }
+    readBackWhatWasGiven({ identifier: "lucifer" })(packet, cb)
+  })
   new Array("create", "read", "list", "update").forEach(dbCommandName => {
     it(`mock db ${dbCommandName} should never fail`, () => {
       let packet = { identifier: 1 }

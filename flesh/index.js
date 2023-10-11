@@ -1,3 +1,4 @@
 module.exports = function flesh(statusCode, payload) {
-  console.log({ statusCode, payload })
+  console.count("Status:", statusCode)
+  console.table(payload)
 }

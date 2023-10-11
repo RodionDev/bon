@@ -17,12 +17,12 @@ describe("inviteT", () => {
     }
     let cb = (inviteCode, permit) => {
       inviteCode.should.eql(200)
-      permit.identifier.should.be.a('string')
+      permit.identifier.should.be.a("string")
       permit.mainEntityOfPage.should.eql("Permit")
       permit.subjectOf.should.eql(permit.Permit.permitAudience)
       permit.Permit.issuedBy.should.eql("god")
-      permit.Permit.issuedThrough.should.be.a('string')
-      permit.Permit.permitAudience.should.be.a('string')
+      permit.Permit.issuedThrough.should.be.a("string")
+      permit.Permit.permitAudience.should.be.a("string")
       permit.Permit.validFrom.should.eql("1970-01-01")
       permit.Permit.validUntil.should.eql("2040-01-01")
     }
@@ -38,7 +38,7 @@ describe("inviteT", () => {
         availabilityEnds: "2030-01-01",
         eligibleRegion: "eve",
         identifier: "eveCanTakeABone",
-        requiresSubscription: "unlistT"
+        requiresSubscription: "unlistT",
       },
       ItemList: {
         itemListElement: [],
@@ -48,12 +48,12 @@ describe("inviteT", () => {
     }
     let cb = (inviteCode, permit) => {
       inviteCode.should.eql(200)
-      permit.identifier.should.be.a('string')
+      permit.identifier.should.be.a("string")
       permit.identifier.length.should.be.gt(16)
       permit.subjectOf.should.eql(permit.Permit.permitAudience)
       permit.mainEntityOfPage.should.eql("Permit")
       permit.Permit.issuedBy.should.eql("adam")
-      permit.Permit.issuedThrough.should.eql('eveCanTakeABone')
+      permit.Permit.issuedThrough.should.eql("eveCanTakeABone")
       permit.Permit.permitAudience.should.eql("eve")
       permit.Permit.validFrom.should.eql("1970-01-01")
       permit.Permit.validUntil.should.eql("2030-01-01")

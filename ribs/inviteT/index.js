@@ -27,9 +27,9 @@ const accessSpecsMaker = packet => {
     ItemList: { itemListElement: [] },
     ActionAccessSpecification: {
       availabilityEnds:
-        packet.ActionAccessSpecification.availabilityEnds ||        "2040-01-01",
+        packet.ActionAccessSpecification.availabilityEnds || "2040-01-01",
       availabilityStarts:
-        packet.ActionAccessSpecification.availabilityStarts ||        "1970-01-01",
+        packet.ActionAccessSpecification.availabilityStarts || "1970-01-01",
       category: "endpointT",
       eligibleRegion: packet.ActionAccessSpecification.eligibleRegion || "*",
       expectsAcceptanceOf: "Terms",
@@ -40,14 +40,15 @@ const accessSpecsMaker = packet => {
   })
 }
 const inviteT = (packet, ribs, db, cb) => {
-  console.log("the real inviteT")
-  console.log({packet})
+  console.count("the real inviteT")
   let permitIdentifier = makePermitIdentifier()
-  let eligibleRegion = packet.ActionAccessSpecification?.eligibleRegion || permitIdentifier
+  let eligibleRegion =
+    packet.ActionAccessSpecification?.eligibleRegion || permitIdentifier
   let accessSpecs = accessSpecsMaker({
     ...packet,
     subjectOf: packet.identifier,
-    identifier: packet.ActionAccessSpecification?.identifier || makePermitIdentifier(),
+    identifier:
+      packet.ActionAccessSpecification?.identifier || makePermitIdentifier(),
     ActionAccessSpecification: {
       ...packet.ActionAccessSpecification,
       eligibleRegion: eligibleRegion,

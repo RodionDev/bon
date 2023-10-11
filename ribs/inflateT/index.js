@@ -36,7 +36,7 @@ const inflateT = (packet, ribs, db, cb) => {
               })
             updateT(engagedThingPath, db, () => readT(200, db, db))
           })
-          .catch(err => console.log({ err })) 
+          .catch(err => console.assert(!err, err)) 
       }) 
     } else {
       cb(404, authError)

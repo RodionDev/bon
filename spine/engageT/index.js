@@ -1,6 +1,6 @@
 const { errorPayload } = require("../../src/helpers")
 const engageT = (rib, packet, ribs, db, cb) => {
-  console.log("the real engageT")
+  console.count("the real engageT")
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
