@@ -1,6 +1,7 @@
 const fs = require("fs")
 const path = require("path")
 const { summarizeT } = require("../../src/helpers")
+const STATUSCODE = 201
 const optimizeT = (packet, ribs, db, cb) => {
   const { authT, listT } = ribs
   authT("optimizeT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -33,3 +34,5 @@ const optimizeT = (packet, ribs, db, cb) => {
   }) 
 }
 module.exports = optimizeT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

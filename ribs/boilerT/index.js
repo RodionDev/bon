@@ -1,4 +1,5 @@
 const { errorPayload, hash } = require("../../src/helpers")
+const STATUSCODE = 201
 const boil = engagedData => engagedData
 const boilerT = (packet, ribs, db, cb) => {
   const { authT } = ribs
@@ -10,4 +11,6 @@ const boilerT = (packet, ribs, db, cb) => {
     }
   })
 }
-module.exports = updateT
+module.exports = boilerT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

@@ -1,4 +1,5 @@
 const { successPayload, errorPayload } = require("../../src/helpers")
+const STATUSCODE = 201
 const destroyT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("destroyT", packet, ribs, db, (permitted, authError, _) => {
@@ -7,7 +8,7 @@ const destroyT = (packet, ribs, db, cb) => {
         let { identifier } = packet
         if (!destroyError) {
           cb(
-            200,
+            STATUSCODE,
             successPayload(
               "destroyT",
               `${identifier} Thing destroyed`,
@@ -31,3 +32,5 @@ const destroyT = (packet, ribs, db, cb) => {
   })
 }
 module.exports = destroyT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

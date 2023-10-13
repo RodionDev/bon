@@ -1,4 +1,5 @@
 const { errorPayload, makePermitIdentifier } = require("../../src/helpers")
+const STATUSCODE = 201
 const permitMaker = (permitIdentifier, packet) => {
   return new Object({
     identifier: permitIdentifier,
@@ -73,3 +74,5 @@ module.exports = inviteT
 exports = module.exports 
 exports.accessSpecsMaker = accessSpecsMaker 
 exports.permitMaker = permitMaker 
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

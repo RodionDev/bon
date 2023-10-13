@@ -1,4 +1,5 @@
 const { successPayload, errorPayload } = require("../../src/helpers")
+const STATUSCODE = 201
 const logoutT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("logoutT", packet, ribs, db, (permitted, authError, _) => {
@@ -24,3 +25,5 @@ const logoutT = (packet, ribs, db, cb) => {
   })
 }
 module.exports = logoutT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

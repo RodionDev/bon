@@ -5,6 +5,7 @@ const {
   makeIdentifier,
   url,
 } = require("../../src/helpers")
+const STATUSCODE = 201
 const takeupT = (packet, ribs, db, cb) => {
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
@@ -20,7 +21,7 @@ const takeupT = (packet, ribs, db, cb) => {
         db.create(packet, (createErr, createPacket) => {
           if (!createErr) {
             delete createPacket.password
-            cb(200, createPacket)
+            cb(STATUSCODE, createPacket)
           } else {
             cb(
               500,
@@ -47,3 +48,5 @@ const takeupT = (packet, ribs, db, cb) => {
   }
 }
 module.exports = takeupT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

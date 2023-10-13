@@ -1,5 +1,6 @@
 const fs = require("fs")
 const path = require("path")
+const STATUSCODE = 201
 const inflateT = (packet, ribs, db, cb) => {
   const { authT, updateT } = ribs
   authT("inflateT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -44,3 +45,5 @@ const inflateT = (packet, ribs, db, cb) => {
   }) 
 }
 module.exports = inflateT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

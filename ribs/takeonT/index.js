@@ -4,6 +4,7 @@ const {
   hasRequiredFields,
   makeIdentifier,
 } = require("../../src/helpers")
+const STATUSCODE = 201
 const takeonT = (packet, ribs, db, cb) => {
   const { authT, enlistT } = ribs
   authT(
@@ -55,3 +56,5 @@ const takeonT = (packet, ribs, db, cb) => {
   )
 }
 module.exports = takeonT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE

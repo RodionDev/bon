@@ -1,5 +1,6 @@
 const { errorPayload, hash } = require("../../src/helpers")
 const { assign, merge } = require("lodash")
+const STATUSCODE = 201
 const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -27,3 +28,5 @@ const updateT = (packet, ribs, db, cb) => {
   })
 }
 module.exports = updateT
+exports = module.exports
+exports.STATUSCODE = STATUSCODE
