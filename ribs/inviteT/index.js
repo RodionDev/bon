@@ -1,5 +1,12 @@
 const { errorPayload, makePermitIdentifier } = require("../../src/helpers")
-const STATUSCODE = 201
+const { OK: TAKEONSTATUSOK } = require("../takeonT")
+const { OK: TAKEUPSTATUSOK } = require("../takeupT")
+console.log({
+  TAKEONSTATUSOK,
+  TAKEUPSTATUSOK,
+})
+const OK = 206
+const NOTOK = 417
 const permitMaker = (permitIdentifier, packet) => {
   return new Object({
     identifier: permitIdentifier,
@@ -55,18 +62,21 @@ const inviteT = (packet, ribs, db, cb) => {
       eligibleRegion: eligibleRegion,
     },
   })
+  console.log()
   ribs.takeonT(accessSpecs, ribs, db, (takeonCode, accessSpecsData) => {
-    if (takeonCode === 200) {
+    console.log({ takeonCode, TAKEONSTATUSOK })
+    if (takeonCode === TAKEONSTATUSOK) {
       let permit = permitMaker(permitIdentifier, accessSpecsData)
       ribs.takeupT(permit, ribs, db, (takeupCode, takeupData) => {
-        if (takeupCode === 200) {
-          cb(200, permit)
+        console.log({ takeupCode, TAKEUPSTATUSOK })
+        if (takeupCode === TAKEUPSTATUSOK) {
+          cb(OK, permit)
         } else {
-          cb(false, errorPayload("takeupT"))
+          cb(NOTOK, errorPayload("takeupT"))
         }
       })
     } else {
-      cb(false, errorPayload("takeonT", "Permission not granted"))
+      cb(NOTOK, errorPayload("takeonT", "Permission not granted"))
     }
   })
 }
@@ -75,4 +85,5 @@ exports = module.exports
 exports.accessSpecsMaker = accessSpecsMaker 
 exports.permitMaker = permitMaker 
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

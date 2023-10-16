@@ -1,13 +1,14 @@
 const { errorPayload } = require("../../src/helpers")
-const STATUSCODE = 201
+const OK = 103
+const NOTOK = 406
 const schemaT = (packet, ribs, db, cb) => {
   let { mainEntityOfPage } = packet
   mainEntityOfPage = mainEntityOfPage || "Thing"
   try {
-    cb(200, require(`../../Things/${mainEntityOfPage}.json`))
+    cb(OK, require(`../../Things/${mainEntityOfPage}.json`))
   } catch (schemaError) {
     cb(
-      404,
+      NOTOK,
       errorPayload(
         "schemaT",
         `${mainEntityOfPage} Schema not found`,
@@ -18,4 +19,5 @@ const schemaT = (packet, ribs, db, cb) => {
 }
 module.exports = schemaT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

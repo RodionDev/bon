@@ -3,6 +3,8 @@ const mockDb = require("./mockDB.js")
 const mockRibs = require("./mockRibs.js")
 const updateT = require("../ribs/updateT")
 const { authT, engageT } = require("../spine")
+const OK = 202
+const NOTOK = 400
 describe("updateT", () => {
   it("changes the original", () => {
     let spareRibs = new Object({ ...mockRibs, authT, engageT, updateT })
@@ -44,7 +46,8 @@ describe("updateT", () => {
         },
       },
     }
-    let cb = (code, data) =>
+    let cb = (code, data) => {
+      code.should.equal(OK)
       data.should.eql({
         identifier: "god",
         mainEntityOfPage: "Place",
@@ -67,6 +70,7 @@ describe("updateT", () => {
           },
         },
       })
+    }
     spareRibs.updateT(update, spareRibs, spareDb, cb)
   })
 })

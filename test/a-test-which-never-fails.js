@@ -21,14 +21,22 @@ describe("mockRibs | TURDy and LUTEy endpoints which Never Fail", () => {
     it(`mock rib \`${ribName}\` should never fail`, () => {
       let ribT = mockRibs[ribName]
       let packet = { identifier: 1 }
-      let cb = (code, thing) => thing.should.eql(packet)
+      let cb = (code, thing) => {
+        const { OK } = require(`../ribs/${ribName}`)
+        code.should.eql(OK)
+        thing.should.eql(packet)
+      }
       ribT(packet, mockRibs, mockDb, cb)
     })
   })
   it(`mock rib \`schemaT\` should never fail`, () => {
     let ribT = mockRibs.schemaT
     let packet = { identifier: { type: "Text" } }
-    let cb = (code, thing) => thing.should.eql(packet)
+    let cb = (code, thing) => {
+      const { OK } = require(`../ribs/schemaT`)
+      code.should.equal(OK)
+      thing.should.eql(packet)
+    }
     ribT(packet, mockRibs, mockDb, cb)
   })
 })
@@ -37,8 +45,9 @@ describe("mockSpine | SPINEY endpoints which Never Fail", () => {
     it(`mock spine \`${ribName}\` should never fail`, () => {
       let ribT = mockRibs[ribName]
       let packet = { identifier: 1 }
-      let cb = (result, ifFailErrMessage, thing) => {
-        result.should.be.true
+      let cb = (code, ifFailErrMessage, thing) => {
+        const { OK } = require(`../spine/${ribName}`)
+        code.should.equal(OK)
         ifFailErrMessage.should.eql("")
         thing.should.eql(packet)
       }
@@ -46,12 +55,17 @@ describe("mockSpine | SPINEY endpoints which Never Fail", () => {
       let args = ribT(ribName, packet, mockRibs, mockDb, cb, resultOfEngageT) 
     })
   })
-  new Array("noAuthT", "notEngagedT", "notPermittedT").forEach(ribName => {
+  new Array(
+    ["noAuthT", "authT"],
+    ["notEngagedT", "engageT"],
+    ["notPermittedT", "permitT"]
+  ).forEach(([ribName, sub]) => {
     it(`mock spine \`${ribName}\` should always fail`, () => {
       let ribT = mockRibs[ribName]
       let packet = { identifier: 1 }
-      let cb = (result, ifFailErrMessage, thing) => {
-        result.should.be.false
+      let cb = (code, ifFailErrMessage, thing) => {
+        const { NOTOK } = require(`../spine/${sub}`)
+        code.should.equal(NOTOK)
         ifFailErrMessage.should.be.a("string")
         should.not.exist(thing)
       }
@@ -88,7 +102,9 @@ describe("mockDB | An airquotes DB which Never Fails", () => {
   new Array("create", "read", "list", "update").forEach(dbCommandName => {
     it(`mock db ${dbCommandName} should never fail`, () => {
       let packet = { identifier: 1 }
-      let cb = (isError, thing) => thing.should.eql(packet)
+      let cb = (isError, thing) => {
+        thing.should.eql(packet)
+      }
       mockDb[dbCommandName](packet, cb)
     })
   })

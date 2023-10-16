@@ -1,8 +1,6 @@
 const destroyT = require("./destroyT")
 const enlistT = require("./enlistT")
 const listT = require("./listT")
-const loginT = require("./loginT")
-const logoutT = require("./logoutT")
 const pingT = require("./pingT")
 const readT = require("./readT")
 const schemaT = require("./schemaT")
@@ -18,8 +16,6 @@ module.exports = {
   destroyT,
   enlistT,
   listT,
-  loginT,
-  logoutT,
   pingT,
   readT,
   schemaT,

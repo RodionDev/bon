@@ -2,7 +2,8 @@ const should = require("chai").should()
 const mockDb = require("./mockDB.js")
 const mockRibs = require("./mockRibs.js")
 const inviteT = require("../ribs/inviteT")
-const { accessSpecsMaker, permitMaker } = require("../ribs/inviteT")
+const OK = 206
+const NOTOK = 417
 describe("inviteT", () => {
   it("takeson an accessSpec and issues a permit", () => {
     let spareRibs = new Object({ ...mockRibs, inviteT: inviteT })
@@ -15,8 +16,8 @@ describe("inviteT", () => {
         numberOfItems: 0,
       },
     }
-    let cb = (inviteCode, permit) => {
-      inviteCode.should.eql(200)
+    let cb = (code, permit) => {
+      code.should.eql(OK)
       permit.identifier.should.be.a("string")
       permit.mainEntityOfPage.should.eql("Permit")
       permit.subjectOf.should.eql(permit.Permit.permitAudience)
@@ -46,8 +47,8 @@ describe("inviteT", () => {
         numberOfItems: 0,
       },
     }
-    let cb = (inviteCode, permit) => {
-      inviteCode.should.eql(200)
+    let cb = (code, permit) => {
+      code.should.eql(OK)
       permit.identifier.should.be.a("string")
       permit.identifier.length.should.be.gt(16)
       permit.subjectOf.should.eql(permit.Permit.permitAudience)

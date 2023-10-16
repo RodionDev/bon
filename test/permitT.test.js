@@ -3,8 +3,10 @@ const mockDb = require("./mockDB.js")
 const mockRibs = require("./mockRibs.js")
 const permitT = require("../spine/permitT")
 const { accessSpecsMaker, permitMaker } = require("../ribs/inviteT")
-let CBTRUE = isPermitted => isPermitted.should.be.true
-let CBFALSE = isPermitted => isPermitted.should.be.false
+const OK = true
+const NOTOK = false
+let CBTRUE = isPermitted => isPermitted.should.equal(OK)
+let CBFALSE = isPermitted => isPermitted.should.equal(NOTOK)
 describe("permitT", () => {
   it("doesn't permitT by default", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })

@@ -123,30 +123,6 @@ Two **elioSchema** endpoints:
 </div>
 </a>
 </article>
-### Auth
-Two **elioEngage** endpoints:
-<article>
-  <a href="/eliobones/bones/ribs/loginT/">
-  <img src="/eliobones/bones/ribs/loginT/favicon.png">
-  <div>
-  <h4>
-  <code>loginT</code>
-</h4>
-  <p>An endpoint for logging into a thing. You won't ever log into elioWay - you log into every app separately.  </p>
-</div>
-</a>
-</article>
-<article>
-  <a href="/eliobones/bones/ribs/logoutT/">
-  <img src="/eliobones/bones/ribs/logoutT/favicon.png">
-  <div>
-  <h4>
-  <code>logoutT</code>
-</h4>
-  <p>An endpoint for logging out of an app.  </p>
-</div>
-</a>
-</article>
 ## Other bones
 ## Spine
 These are called internally by the endpoints, but could be called independently for other purposes:

@@ -1,86 +1,107 @@
 const mockRibs = {}
 mockRibs.authT = (rib, packet, ribs, db, cb) => {
+  const { OK } = require("../spine/authT")
   console.count("the Mock authT")
-  cb(true, "", packet)
+  cb(OK, "", packet)
 }
 mockRibs.noAuthT = (rib, packet, ribs, db, cb) => {
+  const { NOTOK } = require("../spine/authT")
   console.count("the Mock noAuthT")
-  cb(false, "noAuthT Mock")
+  cb(NOTOK, "noAuthT Mock")
 }
 mockRibs.engageT = (rib, packet, ribs, db, cb) => {
+  const { OK } = require("../spine/engageT")
   console.count("the Mock engageT")
-  cb(true, "", packet)
+  cb(OK, "", packet)
 }
 mockRibs.notEngagedT = (rib, packet, ribs, db, cb) => {
   console.count("the Mock notEngagedT")
-  cb(false, "notEngagedT Mock")
+  const { NOTOK } = require("../spine/engageT")
+  console.log({ NOTOK  })
+  cb(NOTOK, "notEngagedT Mock")
 }
 mockRibs.permitT = (rib, packet, ribs, db, cb, engagedData) => {
+  const { OK } = require("../spine/permitT")
   console.count("the Mock permitT")
-  cb(true, "", engagedData)
+  cb(OK, "", engagedData)
 }
 mockRibs.notPermittedT = (rib, packet, ribs, db, cb, engagedData) => {
   console.count("the Mock notPermittedT")
-  cb(false, "notPermittedT Mock")
+  const { NOTOK } = require("../spine/permitT")
+  cb(NOTOK, "notPermittedT Mock")
 }
 mockRibs.destroyT = (packet, ribs, db, cb) => {
   console.count("the Mock destroyT")
-  cb(200, packet)
+  const { OK } = require("../ribs/destroyT")
+  cb(OK, packet)
 }
 mockRibs.enlistT = (packet, ribs, db, cb) => {
   console.count("the Mock enlistT")
   let mockEngagedData = { identifier: packet.subjectOf }
   mockEngagedData.ItemList = { itemListElement: [packet] }
-  cb(200, packet)
+  const { OK } = require("../ribs/enlistT")
+  cb(OK, packet)
 }
 mockRibs.listT = (listData, ribs, db, cb) => {
   console.count("the Mock listT")
-  cb(200, listData)
+  const { OK } = require("../ribs/listT")
+  cb(OK, listData)
 }
 mockRibs.pingT = (packet, ribs, db, cb) => {
   console.count("the Mock pingT")
-  cb(200, packet)
+  const { OK } = require("../ribs/pingT")
+  cb(OK, packet)
 }
 mockRibs.readT = (packet, ribs, db, cb) => {
   console.count("the Mock readT")
+  const { OK } = require("../ribs/readT")
   let { sameAs } = packet
   if (sameAs) {
-    cb(200, packet[sameAs])
+    cb(OK, packet[sameAs])
   } else {
-    cb(200, packet)
+    cb(OK, packet)
   }
 }
 mockRibs.schemaT = (packet, ribs, db, cb) => {
   console.count("the Mock schemaT")
-  cb(200, { identifier: { type: "Text" } })
+  const { OK } = require("../ribs/schemaT")
+  cb(OK, { identifier: { type: "Text" } })
 }
 mockRibs.takeonT = (packet, ribs, db, cb) => {
   console.count("the Mock takeonT")
-  ribs.enlistT(packet, ribs, db, cb)
+  const { OK } = require("../ribs/takeonT")
+  ribs.enlistT(packet, ribs, db, enlistedPacket => {
+    cb(OK, packet)
+  })
 }
 mockRibs.takeupT = (packet, ribs, db, cb) => {
   console.count("the Mock takeupT")
-  delete packet.password
-  cb(200, packet)
+  const { OK } = require("../ribs/takeupT")
+  cb(OK, packet)
 }
 mockRibs.unlistT = (packet, ribs, db, cb) => {
   console.count("the Mock unlistT")
-  cb(200, packet)
+  const { OK } = require("../ribs/unlistT")
+  cb(OK, packet)
 }
 mockRibs.updateT = (packet, ribs, db, cb) => {
   console.count("the Mock updateT")
-  cb(200, packet)
+  const { OK } = require("../ribs/updateT")
+  cb(OK, packet)
 }
 mockRibs.inflateT = (packet, ribs, db, cb) => {
   console.count("the Mock inflateT")
-  cb(200, packet)
+  const { OK } = require("../ribs/inflateT")
+  cb(OK, packet)
 }
 mockRibs.optimizeT = (packet, ribs, db, cb) => {
   console.count("the Mock optimizeT")
-  cb(200, packet)
+  const { OK } = require("../ribs/optimizeT")
+  cb(OK, packet)
 }
 mockRibs.undoT = (packet, ribs, db, cb) => {
   console.count("the Mock undoT")
-  cb(200, packet)
+  const { OK } = require("../ribs/undoT")
+  cb(OK, packet)
 }
 module.exports = mockRibs

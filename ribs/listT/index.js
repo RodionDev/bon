@@ -3,7 +3,8 @@ const {
   errorPayload,
   summarizeT,
 } = require("../../src/helpers")
-const STATUSCODE = 201
+const OK = 200
+const NOTOK = 404
 const listT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("listT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -19,12 +20,12 @@ const listT = (packet, ribs, db, cb) => {
         db.list(engagedList, (listError, listData) => {
           if (!listError) {
             cb(
-              200,
+              OK,
               listData.map(listedThing => summarizeT(listedThing))
             )
           } else {
             cb(
-              500,
+              NOTOK,
               errorPayload(
                 "listT",
                 `Could not get ${identifier} Thing's list`,
@@ -34,13 +35,14 @@ const listT = (packet, ribs, db, cb) => {
           }
         })
       } else {
-        cb(200, successPayload("listT", `${identifier} Thing list is empty`))
+        cb(NOTOK, successPayload("listT", `${identifier} Thing list is empty`))
       }
     } else {
-      cb(404, authError)
+      cb(NOTOK, authError)
     }
   })
 }
 module.exports = listT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

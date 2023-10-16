@@ -1,4 +1,6 @@
 const { errorPayload } = require("../../src/helpers")
+const OK = true
+const NOTOK = false
 const engageT = (rib, packet, ribs, db, cb) => {
   console.count("the real engageT")
   let { identifier } = packet
@@ -8,14 +10,14 @@ const engageT = (rib, packet, ribs, db, cb) => {
         if (!Array.isArray(engagedData.ItemList?.itemListElement)) {
           engagedData.ItemList = { itemListElement: [] }
         }
-        cb(true, "", engagedData)
+        cb(OK, "", engagedData)
       } else {
         let failErrMessage = errorPayload(
           "engageT",
           `${identifier} Thing not found`,
           readErr
         )
-        cb(false, failErrMessage)
+        cb(NOTOK, failErrMessage)
       }
     })
   } else {
@@ -24,7 +26,10 @@ const engageT = (rib, packet, ribs, db, cb) => {
       "Missing `identifier`",
       "No `identifier` parameter was included in the data packet"
     )
-    cb(false, failErrMessage)
+    cb(NOTOK, failErrMessage)
   }
 }
 module.exports = engageT
+exports = module.exports
+exports.OK = OK
+exports.NOTOK = NOTOK

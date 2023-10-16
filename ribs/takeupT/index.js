@@ -1,30 +1,21 @@
-const {
-  errorPayload,
-  hash,
-  hasRequiredFields,
-  makeIdentifier,
-  url,
-} = require("../../src/helpers")
-const STATUSCODE = 201
+const { errorPayload, hasRequiredFields } = require("../../src/helpers")
+const OK = 201
+const NOTOK = 406
 const takeupT = (packet, ribs, db, cb) => {
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
     db.exists(packet, exists => {
       if (!exists) {
-        if (packet.password) {
-          packet.password = hash(packet.password.trim())
-        }
         let createPacket = {
           ...bigUp(packet),
           subjectOf: engagedData.identifier,
         }
         db.create(packet, (createErr, createPacket) => {
           if (!createErr) {
-            delete createPacket.password
-            cb(STATUSCODE, createPacket)
+            cb(OK, createPacket)
           } else {
             cb(
-              500,
+              NOTOK,
               errorPayload(
                 "takeupT",
                 `Could not create ${identifier} Thing`,
@@ -35,7 +26,7 @@ const takeupT = (packet, ribs, db, cb) => {
         })
       } else {
         cb(
-          400,
+          NOTOK,
           errorPayload(
             "takeupT",
             `${identifier} Thing already exists. Please login`
@@ -44,9 +35,10 @@ const takeupT = (packet, ribs, db, cb) => {
       }
     })
   } else {
-    cb(400, errorPayload("takeupT", `Thing missing required fields`))
+    cb(NOTOK, errorPayload("takeupT", `Thing missing required fields`))
   }
 }
 module.exports = takeupT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

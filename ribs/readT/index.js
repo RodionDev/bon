@@ -1,5 +1,6 @@
 const { errorPayload } = require("../../src/helpers")
-const STATUSCODE = 201
+const OK = 200
+const NOTOK = 404
 const readT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("readT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -25,4 +26,5 @@ const readT = (packet, ribs, db, cb) => {
 }
 module.exports = readT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

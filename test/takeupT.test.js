@@ -1,26 +1,17 @@
 const should = require("chai").should()
 const mockDb = require("./mockDB.js")
 const mockRibs = require("./mockRibs.js")
-const updateT = require("../ribs/updateT")
+const takeupT = require("../ribs/takeupT")
 const { authT, engageT } = require("../spine")
-const { accessSpecsMaker, permitMaker } = require("../ribs/updateT")
-describe("updateT", () => {
-  it("changes the original", () => {
-    let spareRibs = new Object({ ...mockRibs, authT, engageT, updateT })
+const { accessSpecsMaker, permitMaker } = require("../ribs/takeupT")
+const OK = 201
+const NOTOK = 406
+describe("takeupT", () => {
+  it("creates something original", () => {
+    let spareRibs = new Object({ ...mockRibs, authT, engageT, takeupT })
     let mock = {
       identifier: "god",
-      mainEntityOfPage: "Person",
-      ItemList: {
-        itemListElement: [],
-        itemListOrder: "",
-        numberOfItems: 0,
-      },
-      Something: {
-        complicated: {
-          here: "be careful",
-          changed: false,
-        },
-      },
+      mainEntityOfPage: "Action",
     }
     let spareDb = new Object({
       ...mockDb,
@@ -45,7 +36,8 @@ describe("updateT", () => {
         },
       },
     }
-    let cb = (code, data) =>
+    let cb = (code, data) => {
+      code.should.equal(OK)
       data.should.eql({
         identifier: "god",
         mainEntityOfPage: "Place",
@@ -68,6 +60,7 @@ describe("updateT", () => {
           },
         },
       })
-    spareRibs.updateT(update, spareRibs, spareDb, cb)
+    }
+    spareRibs.takeupT(update, spareRibs, spareDb, cb)
   })
 })

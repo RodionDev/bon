@@ -1,6 +1,7 @@
 const { errorPayload, hash } = require("../../src/helpers")
 const { assign, merge } = require("lodash")
-const STATUSCODE = 201
+const OK = 202
+const NOTOK = 400
 const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
@@ -9,11 +10,11 @@ const updateT = (packet, ribs, db, cb) => {
       let normalLodashMerge = merge(engagedData, packet)
       db.update(normalLodashMerge, (updateErr, updatedThing) => {
         if (!updateErr) {
-          cb(200, updatedThing)
+          cb(OK, updatedThing)
         } else {
           let { identifier } = packet
           cb(
-            500,
+            NOTOK,
             errorPayload(
               "updateT",
               `${identifier} Thing could not be updated`,
@@ -23,10 +24,11 @@ const updateT = (packet, ribs, db, cb) => {
         }
       })
     } else {
-      cb(404, authError)
+      cb(NOTOK, authError)
     }
   })
 }
 module.exports = updateT
 exports = module.exports
-exports.STATUSCODE = STATUSCODE
+exports.OK = OK
+exports.NOTOK = NOTOK

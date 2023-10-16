@@ -3,17 +3,17 @@ Sorry if we broke your codes.
 ```
 Status code  Functions
 1XX Informational
-100 Continue # `loginT`
+100 Continue #   `authT`
 101 Switching Protocols
 102 Processing
 103 Early Hints
 2XX Successful
 200 OK # `readT`   `listT`
 201 Created # `takeupT`  `takeonT`
-202 Accepted
+202 Accepted # `updateT`
 203 Non-Authoritative Information
-204 No Content  
-205 Reset Content # `updateT`
+204 No Content
+205 Reset Content
 206 Partial Content
 207 Multi-Status
 208 Already Reported  # `pingT`
@@ -46,7 +46,7 @@ Status code  Functions
 414 URI Too Long
 415 Unsupported Media Type
 416 Range Not Satisfiable
-417 Expectation Failed
+417 Expectation Failed # `otherRibsT`
 418 (Unused) Previously: I’m a Teapot
 421 Misdirected Request
 422 Unprocessable Entity
