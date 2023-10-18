@@ -9,6 +9,10 @@ const unlistT = (packet, ribs, db, cb) => {
     ribs,
     db,
     (permitted, authError, engagedData) => {
+      console.log({
+        packet,
+        engagedData,
+      })
       if (permitted && db.canExist(engagedData)) {
         let { identifier } = packet
         let engagedList = new Set(
@@ -22,7 +26,7 @@ const unlistT = (packet, ribs, db, cb) => {
           db.update(engagedData, updateErr => {
             if (!updateErr) {
               delete engagedData.password
-              cb(OK, engagedData)
+              cb(OK, "", engagedData)
             } else {
               cb(
                 NOTOK,

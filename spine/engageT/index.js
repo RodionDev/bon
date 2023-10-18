@@ -1,4 +1,4 @@
-const { errorPayload } = require("../../src/helpers")
+const { errorPayload, cultify } = require("../../src/helpers")
 const OK = true
 const NOTOK = false
 const engageT = (rib, packet, ribs, db, cb) => {
@@ -7,10 +7,7 @@ const engageT = (rib, packet, ribs, db, cb) => {
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
       if (!readErr && db.canExist(engagedData)) {
-        if (!Array.isArray(engagedData.ItemList?.itemListElement)) {
-          engagedData.ItemList = { itemListElement: [] }
-        }
-        cb(OK, "", engagedData)
+        cb(OK, "", cultify(engagedData))
       } else {
         let failErrMessage = errorPayload(
           "engageT",

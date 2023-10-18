@@ -4,7 +4,7 @@ const NOTOK = false
 const authT = (rib, packet, ribs, db, cb) => {
   console.count("the real authT")
   const { engageT, permitT } = ribs
-  engageT(rib, packet, ribs, db, (exists, engageErr, engagedData) => {
+  ribs.engageT(rib, packet, ribs, db, (exists, engageErr, engagedData) => {
     if (exists) {
       const permitCb = (permitted, permitErr, permittedData) => {
         if (permitted && db.canExist(permittedData)) {

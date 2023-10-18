@@ -1,17 +1,20 @@
-const { errorPayload } = require("../../src/helpers")
+const { BigUp, errorPayload, bigUp } = require("../../src/helpers")
 const OK = 103
 const NOTOK = 406
 const schemaT = (packet, ribs, db, cb) => {
   let { mainEntityOfPage } = packet
-  mainEntityOfPage = mainEntityOfPage || "Thing"
-  try {
-    cb(OK, require(`../../Things/${mainEntityOfPage}.json`))
-  } catch (schemaError) {
+  if (mainEntityOfPage) {
+    if(mainEntityOfPage[0]===mainEntityOfPage[0].toUpperCase()) {
+          cb(OK, JSON.stringify(BigUp(packet),null, "  "))
+    } else {
+          cb(OK, JSON.stringify(bigUp(packet),null, "  "))
+    }
+  } else {
     cb(
       NOTOK,
       errorPayload(
         "schemaT",
-        `${mainEntityOfPage} Schema not found`,
+        `${mainEntityOfPage} Schema could not be found`,
         schemaError
       )
     )

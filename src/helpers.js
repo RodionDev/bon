@@ -7,15 +7,20 @@ helpers.bigUp = thing => {
     "schemaorg/data/releases/9.0/schemaorg-all-http",
     schemaDomainUrl
   )
-  let Thing = thingBuilder.Thing([packet.mainEntityOfPage])
+  let Thing = thingBuilder.Thing([thing.mainEntityOfPage])
   let thinglet = thingBuilder.thinglet(
-    Thing[packet.mainEntityOfPage],
-    packet.mainEntityOfPage
+    Thing[thing.mainEntityOfPage],
+    thing.mainEntityOfPage
   )
-  return {
-    ...thinglet,
-    ...packet,
-  }
+  return thinglet
+}
+helpers.BigUp = thing => {
+  let thingBuilder = new ThingBuilder(
+    "schemaorg/data/releases/9.0/schemaorg-all-http",
+    schemaDomainUrl
+  )
+  let Thing = thingBuilder.Thing([thing.mainEntityOfPage])
+  return Thing
 }
 helpers.CamelCase = str => {
   if (!str) return ""
@@ -29,6 +34,13 @@ helpers.CamelCase = str => {
     words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1)
   }
   return words.join("")
+}
+helpers.cultify = engagedThing => {
+  if (!Array.isArray(engagedThing.ItemList?.itemListElement)) {
+    engagedThing.ItemList = { itemListElement: [] }
+  }
+  engagedThing.mainEntityOfPage = engagedThing.mainEntityOfPage || "Thing"
+  return engagedThing
 }
 helpers.hash = str => {
   let envData = fs.readFileSyync(".env", "utf8")

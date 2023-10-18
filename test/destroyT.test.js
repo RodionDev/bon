@@ -17,6 +17,6 @@ describe("destroyT", () => {
       code.should.equal(OK)
       data.should.not.exist(original)
     }
-    spareRibs.destroyT(, spareRibs, spareDb, cb)
+    spareRibs.destroyT({ identifier: 1 }, spareRibs, spareDb, cb)
   })
 })

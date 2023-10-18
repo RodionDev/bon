@@ -17,7 +17,7 @@ const enlistT = (packet, ribs, db, cb) => {
         if (!engagedList.has(identifier)) {
           engageT(
             "enlistT",
-            { identifier: packet.identifier },
+            packet,
             ribs,
             db,
             (exists, engageErr, engagedListItem) => {
@@ -29,10 +29,10 @@ const enlistT = (packet, ribs, db, cb) => {
                 db.update(engagedData, updateErr => {
                   if (!updateErr) {
                     delete engagedData.password
-                    cb(200, engagedData)
+                    cb(OK, "", engagedData)
                   } else {
                     cb(
-                      500,
+                      NOTOK,
                       errorPayload(
                         "enlistT",
                         `Could not enlist ${packet.identifier} Thing`,
@@ -43,7 +43,7 @@ const enlistT = (packet, ribs, db, cb) => {
                 })
               } else {
                 cb(
-                  500,
+                  NOTOK,
                   errorPayload(
                     "enlistT",
                     `Could not find ${engagedData.identifier} Thing`,
@@ -56,12 +56,12 @@ const enlistT = (packet, ribs, db, cb) => {
           )
         } else {
           cb(
-            200,
+            NOTOK,
             successPayload("enlistT", `${identifier} Thing already listed`)
           )
         }
       } else {
-        cb(404, authError)
+        cb(NOTOK, authError)
       }
     }
   )

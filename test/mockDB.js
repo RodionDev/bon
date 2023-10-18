@@ -20,6 +20,10 @@ mockDb.readBackWhatWasGiven = whatWasGiven => (packet, cb) => {
   console.count("the Mock db.read returning whatWasGiven")
   cb(WITHNOERROR, whatWasGiven)
 }
+mockDb.readById = packs => (packet, cb) => {
+  console.count("the Mock db.readById from my packs")
+  cb(WITHNOERROR, packs[packet.identifier])
+}
 mockDb.list = (packet, cb) => {
   console.count("the Mock db.list")
   cb(WITHNOERROR, packet)

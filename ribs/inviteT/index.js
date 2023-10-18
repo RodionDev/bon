@@ -49,6 +49,7 @@ const accessSpecsMaker = packet => {
 }
 const inviteT = (packet, ribs, db, cb) => {
   console.count("the real inviteT")
+  let { takeonT, takeupT } = ribs
   let permitIdentifier = makePermitIdentifier()
   let eligibleRegion =
     packet.ActionAccessSpecification?.eligibleRegion || permitIdentifier
@@ -62,12 +63,11 @@ const inviteT = (packet, ribs, db, cb) => {
       eligibleRegion: eligibleRegion,
     },
   })
-  console.log()
-  ribs.takeonT(accessSpecs, ribs, db, (takeonCode, accessSpecsData) => {
+  takeonT(accessSpecs, ribs, db, (takeonCode, accessSpecsData) => {
     console.log({ takeonCode, TAKEONSTATUSOK })
     if (takeonCode === TAKEONSTATUSOK) {
       let permit = permitMaker(permitIdentifier, accessSpecsData)
-      ribs.takeupT(permit, ribs, db, (takeupCode, takeupData) => {
+      takeupT(permit, ribs, db, (takeupCode, takeupData) => {
         console.log({ takeupCode, TAKEUPSTATUSOK })
         if (takeupCode === TAKEUPSTATUSOK) {
           cb(OK, permit)
