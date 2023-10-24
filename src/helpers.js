@@ -7,11 +7,10 @@ helpers.bigUp = thing => {
     "schemaorg/data/releases/9.0/schemaorg-all-http",
     schemaDomainUrl
   )
-  let Thing = thingBuilder.Thing([thing.mainEntityOfPage])
-  let thinglet = thingBuilder.thinglet(
-    Thing[thing.mainEntityOfPage],
-    thing.mainEntityOfPage
-  )
+  let thingType =
+    thing.mainEntityOfPage[0].toUpperCase() + thing.mainEntityOfPage.slice(1)
+  let Thing = thingBuilder.Thing([thingType])
+  let thinglet = thingBuilder.thinglet(Thing[thingType], thingType)
   return thinglet
 }
 helpers.BigUp = thing => {
@@ -20,7 +19,7 @@ helpers.BigUp = thing => {
     schemaDomainUrl
   )
   let Thing = thingBuilder.Thing([thing.mainEntityOfPage])
-  return Thing
+  return Thing[thing.mainEntityOfPage]
 }
 helpers.CamelCase = str => {
   if (!str) return ""

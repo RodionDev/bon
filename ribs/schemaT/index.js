@@ -4,10 +4,10 @@ const NOTOK = 406
 const schemaT = (packet, ribs, db, cb) => {
   let { mainEntityOfPage } = packet
   if (mainEntityOfPage) {
-    if(mainEntityOfPage[0]===mainEntityOfPage[0].toUpperCase()) {
-          cb(OK, JSON.stringify(BigUp(packet),null, "  "))
+    if (mainEntityOfPage[0] === mainEntityOfPage[0].toUpperCase()) {
+      cb(OK, BigUp(packet))
     } else {
-          cb(OK, JSON.stringify(bigUp(packet),null, "  "))
+      cb(OK, bigUp(packet))
     }
   } else {
     cb(
