@@ -9,7 +9,7 @@ const enlistT = (packet, ribs, db, cb) => {
     ribs,
     db,
     (permitted, authError, engagedData) => {
-      if (permitted && db.canExist(engagedData)) {
+      if (permitted && db.canStore(engagedData)) {
         let { identifier } = packet
         let engagedList = new Set(
           engagedData.ItemList.itemListElement.map(e => e.identifier) || []

@@ -5,7 +5,7 @@ const NOTOK = 417
 const inflateT = (packet, ribs, db, cb) => {
   const { authT, updateT } = ribs
   authT("inflateT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       fs.readdir(db.envVars.DATADIR, (err, files) => {
         let proms = files.map(
           possibleListedPath =>

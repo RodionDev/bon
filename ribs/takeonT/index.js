@@ -14,7 +14,7 @@ const takeonT = (packet, ribs, db, cb) => {
     ribs,
     db,
     (permitted, authError, engagedData) => {
-      if (permitted && db.canExist(engagedData)) {
+      if (permitted && db.canStore(engagedData)) {
         if (hasRequiredFields(packet, ["identifier"])) {
           let { identifier } = packet
           db.exists(packet, (exists, existsErr) => {

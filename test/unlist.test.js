@@ -23,14 +23,13 @@ describe("unlistT", () => {
       read: mockDb.readById({ eden, god }),
     })
     let cb = (wasSuccessfullyEngaged, ifFailErrMessage, unlistedData) => {
-      console.log({ ifFailErrMessage })
       wasSuccessfullyEngaged.should.equal(OK)
       ifFailErrMessage.should.equal("")
       unlistedData.ItemList.numberOfItems.should.equal(0)
       unlistedData.ItemList.itemListElement.length.should.equal(0)
       unlistedData.should.eql({
         ...god,
-        mainEntityOfPage: "Place",
+        mainEntityOfPage: "Person",
         ItemList: {
           itemListElement: [],
           numberOfItems: 0,

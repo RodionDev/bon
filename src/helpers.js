@@ -133,7 +133,10 @@ helpers.successPayload = (rib, identifier, potentialAction) => {
   if (potentialAction) {
     potentialAction = {
       identifier: potentialAction,
-      actionStatus: "PotentialActionStatus",
+      Action: {
+        agent: potentialAction,
+        actionStatus: "PotentialActionStatus",
+      },
     }
   }
   return {

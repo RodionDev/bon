@@ -6,7 +6,7 @@ const { authT, engageT } = require("../spine")
 const OK = 308
 const NOTOK = 423
 describe("destroyT", () => {
-  it("callsback to nothing", () => {
+  it("callsback nothing", () => {
     let spareRibs = new Object({ ...mockRibs, authT, engageT, destroyT })
     let original = { identifier: "god" }
     let spareDb = new Object({
@@ -15,8 +15,19 @@ describe("destroyT", () => {
     })
     let cb = (code, data) => {
       code.should.equal(OK)
-      data.should.not.exist(original)
+      data.should.eql({
+        identifier: "eve Thing destroyed",
+        mainEntityOfPage: "Action",
+        potentialAction: {
+          identifier: "unlist eve",
+          Action: {
+            agent: "unlist eve",
+            actionStatus: "PotentialActionStatus",
+          },
+        },
+        Action: { agent: "destroyT", actionStatus: "CompletedActionStatus" },
+      })
     }
-    spareRibs.destroyT({ identifier: 1 }, spareRibs, spareDb, cb)
+    spareRibs.destroyT({ identifier: "eve" }, spareRibs, spareDb, cb)
   })
 })

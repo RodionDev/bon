@@ -5,7 +5,7 @@ const schemaT = require("../ribs/schemaT")
 const OK = 103
 const NOTOK = 406
 describe("schemaT", () => {
-  it.only("has Schema models", () => {
+  it("has Schema models", () => {
     let spareRibs = new Object({ ...mockRibs, schemaT })
     let cb = (code, data) => {
       code.should.equal(OK)
@@ -22,7 +22,7 @@ describe("schemaT", () => {
     }
     spareRibs.schemaT({ mainEntityOfPage: "Action" }, spareRibs, mockDb, cb)
   })
-  it.only("has thinglets", () => {
+  it("has thinglets", () => {
     let spareRibs = new Object({ ...mockRibs, schemaT })
     let cb = (code, data) => {
       code.should.equal(OK)

@@ -5,7 +5,7 @@ const readT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("readT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted) {
-      if (db.canExist(engagedData)) {
+      if (db.canStore(engagedData)) {
         delete engagedData.password
         let { sameAs } = packet
         if (sameAs) {

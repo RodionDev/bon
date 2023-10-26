@@ -11,7 +11,7 @@ describe("permitT", () => {
   it("doesn't permitT by default", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
     let mock = {
-      identifier: 1,
+      identifier: "god",
       mainEntityOfPage: "Person",
       ItemList: {
         itemListElement: [],

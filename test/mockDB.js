@@ -6,7 +6,7 @@ mockDb.baseDir = path.join(__dirname, "./TESTDATA")
 mockDb.makeFilePath = packet =>
   path.join(mockDb.baseDir, `${packet.identifier}.json`)
 mockDb.parseJsonToObject = str => JSON.parse(str)
-mockDb.canExist = (packet, cb) => true
+mockDb.canStore = (packet, cb) => true
 mockDb.exists = (packet, cb) => true
 mockDb.create = (packet, cb) => {
   console.count("the Mock db.create")

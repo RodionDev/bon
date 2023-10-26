@@ -8,7 +8,7 @@ const NOTOK = 404
 const listT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("listT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       let { identifier, sameAs } = packet
       if (engagedData.ItemList.itemListElement) {
         let engagedList = [...engagedData.ItemList.itemListElement]

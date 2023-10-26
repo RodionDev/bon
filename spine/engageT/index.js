@@ -6,7 +6,7 @@ const engageT = (rib, packet, ribs, db, cb) => {
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {
-      if (!readErr && db.canExist(engagedData)) {
+      if (!readErr && db.canStore(engagedData)) {
         cb(OK, "", cultify(engagedData))
       } else {
         let failErrMessage = errorPayload(

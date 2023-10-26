@@ -20,7 +20,7 @@ describe("mockRibs | TURDy and LUTEy endpoints which Never Fail", () => {
   ).forEach(ribName => {
     it(`mock rib \`${ribName}\` should never fail`, () => {
       let ribT = mockRibs[ribName]
-      let packet = { identifier: 1 }
+      let packet = { identifier: "god" }
       let cb = (code, thing) => {
         const { OK } = require(`../ribs/${ribName}`)
         code.should.eql(OK)
@@ -44,7 +44,7 @@ describe("mockSpine | SPINEY endpoints which Never Fail", () => {
   new Array("authT", "engageT", "permitT").forEach(ribName => {
     it(`mock spine \`${ribName}\` should never fail`, () => {
       let ribT = mockRibs[ribName]
-      let packet = { identifier: 1 }
+      let packet = { identifier: "god" }
       let cb = (code, ifFailErrMessage, thing) => {
         const { OK } = require(`../spine/${ribName}`)
         code.should.equal(OK)
@@ -62,7 +62,7 @@ describe("mockSpine | SPINEY endpoints which Never Fail", () => {
   ).forEach(([ribName, sub]) => {
     it(`mock spine \`${ribName}\` should always fail`, () => {
       let ribT = mockRibs[ribName]
-      let packet = { identifier: 1 }
+      let packet = { identifier: "god" }
       let cb = (code, ifFailErrMessage, thing) => {
         const { NOTOK } = require(`../spine/${sub}`)
         code.should.equal(NOTOK)
@@ -77,13 +77,13 @@ describe("mockSpine | SPINEY endpoints which Never Fail", () => {
 describe("mockDB | An airquotes DB which Never Fails", () => {
   it("mock `exists` should never fail", () => {
     let { exists } = mockDb
-    let packet = { identifier: 1 }
+    let packet = { identifier: "god" }
     let cb = (isError, thing) => thing.should.eql(packet)
     exists(packet, cb)
   })
   it(`mock \`destroy\` should never fail`, () => {
     let { destroy } = mockDb
-    let packet = { identifier: 1 }
+    let packet = { identifier: "god" }
     let cb = (isError, thing) => {
       isError.should.be.false
       should.not.exist(thing)
@@ -101,7 +101,7 @@ describe("mockDB | An airquotes DB which Never Fails", () => {
   })
   new Array("create", "read", "list", "update").forEach(dbCommandName => {
     it(`mock db ${dbCommandName} should never fail`, () => {
-      let packet = { identifier: 1 }
+      let packet = { identifier: "god" }
       let cb = (isError, thing) => {
         thing.should.eql(packet)
       }

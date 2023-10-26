@@ -5,7 +5,7 @@ const NOTOK = 400
 const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       delete packet.ItemList.itemListElement 
       let normalLodashMerge = merge(engagedData, packet)
       db.update(normalLodashMerge, (updateErr, updatedThing) => {

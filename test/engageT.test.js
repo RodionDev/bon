@@ -7,7 +7,7 @@ const NOTOK = false
 describe("engageT", () => {
   it("engageTs", () => {
     let spareRibs = new Object({ ...mockRibs, engageT: engageT })
-    let mock = { identifier: 1, mainEntityOfPage: "Person" }
+    let mock = { identifier: "god", mainEntityOfPage: "Person" }
     let cb = (wasSuccessfullyEngaged, ifFailErrMessage, engagedData) => {
       wasSuccessfullyEngaged.should.equal(OK)
       ifFailErrMessage.should.equal("")

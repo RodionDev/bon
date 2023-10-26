@@ -6,7 +6,7 @@ const NOTOK = 417
 const optimizeT = (packet, ribs, db, cb) => {
   const { authT, listT } = ribs
   authT("optimizeT", packet, ribs, db, (permitted, authError, engagedData) => {
-    if (permitted && db.canExist(engagedData)) {
+    if (permitted && db.canStore(engagedData)) {
       let { identifier, name } = packet
       let reportOnStatusList = engagedData.ItemList.itemListElement.reduce(
         (acc, thing) => {
