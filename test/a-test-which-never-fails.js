@@ -1,6 +1,6 @@
 const should = require("chai").should()
-const mockDb = require("./mockDB.js")
-const mockRibs = require("./mockRibs.js")
+const mockDb = require("./mocks/mockDB.js")
+const mockRibs = require("./mocks/mockRibs.js")
 describe("Test | Never Fails", () => {
   it("didn't fail! if other tests are failing - that's on you", () => {
     true.should.have.and.have.been.and.of.that.same.same.is.that.same.to.be.true

@@ -1,10 +1,6 @@
 const { errorPayload, makePermitIdentifier } = require("../../src/helpers")
 const { OK: TAKEONSTATUSOK } = require("../takeonT")
 const { OK: TAKEUPSTATUSOK } = require("../takeupT")
-console.log({
-  TAKEONSTATUSOK,
-  TAKEUPSTATUSOK,
-})
 const OK = 206
 const NOTOK = 417
 const permitMaker = (permitIdentifier, packet) => {
@@ -64,11 +60,9 @@ const inviteT = (packet, ribs, db, cb) => {
     },
   })
   takeonT(accessSpecs, ribs, db, (takeonCode, accessSpecsData) => {
-    console.log({ takeonCode, TAKEONSTATUSOK })
     if (takeonCode === TAKEONSTATUSOK) {
       let permit = permitMaker(permitIdentifier, accessSpecsData)
       takeupT(permit, ribs, db, (takeupCode, takeupData) => {
-        console.log({ takeupCode, TAKEUPSTATUSOK })
         if (takeupCode === TAKEUPSTATUSOK) {
           cb(OK, permit)
         } else {

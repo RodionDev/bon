@@ -1,7 +1,7 @@
 const should = require("chai").should()
-const mockDb = require("./mockDB.js")
-const mockRibs = require("./mockRibs.js")
-const authT = require("../spine/authT")
+const mockDb = require("../mocks/mockDB.js")
+const mockRibs = require("../mocks/mockRibs.js")
+const authT = require("../../spine/authT")
 describe("authT", () => {
   it("authTs if permitT permits", () => {
     let spareRibs = new Object({ ...mockRibs, authT: authT })

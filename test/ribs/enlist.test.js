@@ -1,8 +1,8 @@
 const should = require("chai").should()
-const mockDb = require("./mockDB.js")
-const mockRibs = require("./mockRibs.js")
-const enlistT = require("../ribs/enlistT")
-const { authT, engageT } = require("../spine")
+const mockDb = require("../mocks/mockDB.js")
+const mockRibs = require("../mocks/mockRibs.js")
+const enlistT = require("../../ribs/enlistT")
+const { authT, engageT } = require("../../spine")
 const OK = 302
 const NOTOK = 304
 describe("enlistT", () => {

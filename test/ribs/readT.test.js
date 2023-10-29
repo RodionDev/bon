@@ -1,7 +1,7 @@
 const should = require("chai").should()
-const mockDb = require("./mockDB.js")
-const mockRibs = require("./mockRibs.js")
-const readT = require("../ribs/readT")
+const mockDb = require("../mocks/mockDB.js")
+const mockRibs = require("../mocks/mockRibs.js")
+const readT = require("../../ribs/readT")
 const { authT, engageT } = require("../spine")
 const OK = 200
 const NOTOK = 404
