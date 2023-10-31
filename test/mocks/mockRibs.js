@@ -94,11 +94,6 @@ mockRibs.inflateT = (packet, ribs, db, cb) => {
   const { OK } = require("../../ribs/inflateT")
   cb(OK, packet)
 }
-mockRibs.optimizeT = (packet, ribs, db, cb) => {
-  console.count("the Mock optimizeT")
-  const { OK } = require("../../ribs/optimizeT")
-  cb(OK, packet)
-}
 mockRibs.undoT = (packet, ribs, db, cb) => {
   console.count("the Mock undoT")
   const { OK } = require("../../ribs/undoT")
