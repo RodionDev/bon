@@ -2,7 +2,7 @@
   "author": "Tim Bushell",
   "description": "Reusable Code for elioBones projects, **the elioWay**.",
   "name": "@elioway/bones",
-  "version": "1.3.2",
+  "version": "2.0.0",
   "tew": {
     "chisel": {
       "Home": "eliobones"
