@@ -1,4 +1,4 @@
-# boilerT Credits
+# paradiseLosterT Credits
 ## Core Thanks!
 - [elioWay](https://elioway.gitlab.io)
 - [Yeoman](http://yeoman.io/)

@@ -1,10 +1,10 @@
-# Contributing to wizardT
+# Contributing to paradiseLosterT
 ```shell
 git clone https://gitlab.com/elioway/elioway.gitlab.io.git elioway
 cd elioway
 git clone https://gitlab.com/elioway/ribs.git
 cd ribs
-git clone https://gitlab.com/ribs/wizardT.git
+git clone https://gitlab.com/ribs/paradiseLosterT.git
 ```
 ## Dev Enviroment
 ```

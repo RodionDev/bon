@@ -1,2 +1,2 @@
-# Installing boilerT
-- [boilerT Prerequisites](/ribs/boilerT/prerequisites.html)
+# Installing wizardT
+- [wizardT Prerequisites](/ribs/wizardT/prerequisites.html)
