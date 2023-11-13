@@ -1,5 +1,9 @@
 {
-  "author": "Tim Bushell",
+  "author": {
+    "name": "Tim Bushell",
+    "email": "theElioWay@gmail.com",
+    "url": "https://gitlab.com/elioway"
+  },
   "description": "Reusable Code for elioBones projects, **the elioWay**.",
   "name": "@elioway/bones",
   "version": "2.1.0",
