@@ -2,7 +2,7 @@
 const fs = require("fs")
 const path = require("path")
 const yargs = require("yargs")
-const db = require("@elioway/dbhell-bones")
+const db = require("@elioway/dbhell")
 const boneUp = require("../src/boneUp")
 const ribs = require("../ribs")
 const spine = require("../spine")
@@ -17,11 +17,10 @@ fs.readFile(".env", "utf8", (Err, envData) => {
       acc[key] = value
       return acc
     }, {})
-  let { identifier } = envVars
   db.initialize(envVars)
   yargs
-    .scriptName(identifier)
-    .usage("$0 <rib> [identifier] [listIdentifier] --schemaProps")
+    .scriptName("bones")
+    .usage("$0 <rib>T [identifier] [listIdentifier] --schemaProps")
     .parserConfiguration({
       "short-option-groups": true,
       "camel-case-expansion": false,

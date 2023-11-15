@@ -8,6 +8,7 @@
   "name": "@elioway/bones",
   "version": "2.1.0",
   "tew": {
+    "lifecycle": "alpha",
     "chisel": {
       "Home": "eliobones"
     }
