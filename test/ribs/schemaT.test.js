@@ -26,7 +26,7 @@ describe("schemaT", () => {
     let spareRibs = new Object({ ...mockRibs, schemaT })
     let cb = (code, data) => {
       code.should.equal(OK)
-      data.additionalType.should.equal("Action")
+      data.mainEntityOfPage.should.equal("Action")
       data.Action.actionStatus.should.equal("")
     }
     spareRibs.schemaT({ mainEntityOfPage: "action" }, spareRibs, mockDb, cb)

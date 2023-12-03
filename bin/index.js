@@ -8,15 +8,18 @@ const ribs = require("../ribs")
 const spine = require("../spine")
 const flesh = require("../flesh")
 const initializeT = require("./initializeT")
-fs.readFile(".env", "utf8", (Err, envData) => {
-  const envVars = envData
-    .trim()
-    .split("\n")
-    .map(line => line.split("="))
-    .reduce((acc, [key, value]) => {
-      acc[key] = value
-      return acc
-    }, {})
+fs.readFile(".env", "utf8", (readEnvErr, envData) => {
+  let envVars = { DATADIR: "./"}
+  if (!readEnvErr) {
+    let envVars = envData
+      .trim()
+      .split("\n")
+      .map(line => line.split("="))
+      .reduce((acc, [key, value]) => {
+        acc[key] = value
+        return acc
+      }, {})
+  }
   db.initialize(envVars)
   yargs
     .scriptName("bones")
@@ -57,26 +60,5 @@ fs.readFile(".env", "utf8", (Err, envData) => {
     optimizeT: { aliases: ["actionStatusOfT"], positionals: ["identifier"] },
     undoT: { aliases: ["undo"], positionals: ["identifier"] },
   }
-  Object.entries(ribsConfig).forEach(([ribName, ribConfig]) => {
-    let { aliases, positionals } = ribConfig
-    let commandPositionals = ""
-    if (positionals && positionals.length) {
-      commandPositionals = " " + positionals.map(pos => `[${pos}]`).join(" ")
-    }
-    ribsConfig[ribName].permit = envVars[ribName]
-    yargs.command({
-      command: `${ribName}${commandPositionals}`,
-      aliases: aliases,
-      desc: `${aliases.join(" ")} a thing`,
-      handler: argv =>
-        boneUp(
-          ribName,
-          initializeT(argv, ribsConfig, envVars),
-          { ...ribs, ...spine },
-          db,
-          flesh
-        ),
-    })
-  })
   yargs.demandCommand().help().argv
 }) 

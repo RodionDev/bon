@@ -2,7 +2,7 @@ const should = require("chai").should()
 const mockDb = require("../mocks/mockDB.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const permitT = require("../../spine/permitT")
-const { accessSpecsMaker, permitMaker } = require("../ribs/inviteT")
+const { accessSpecsMaker, permitMaker } = require("../../ribs/inviteT")
 const OK = true
 const NOTOK = false
 let CBTRUE = isPermitted => isPermitted.should.equal(OK)
