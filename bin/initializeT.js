@@ -5,7 +5,7 @@ const makeEndpointAction = () => {}
 const initializeT = (argv, ribsConfig, envVars) => {
   let thing = { ...argv } || {}
   let { subjectOf } = envVars
-  thing.additionalType = CamelCase(thing.identifier)
+  thing.mainEntityOfPage = CamelCase(thing.identifier)
   delete thing._
   delete thing.$0
   return thing

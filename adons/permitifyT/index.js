@@ -15,7 +15,8 @@ const boilerT = (packet, ribs, db, cb) => {
           let { aliases, positionals } = ribConfig
           let commandPositionals = ""
           if (positionals && positionals.length) {
-            commandPositionals = " " + positionals.map(pos => `[${pos}]`).join(" ")
+            commandPositionals =
+              " " + positionals.map(pos => `[${pos}]`).join(" ")
           }
           ribsConfig[ribName].permit = envVars[ribName]
           yargs.command({
