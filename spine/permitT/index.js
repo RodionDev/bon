@@ -14,32 +14,33 @@ const permitT = (rib, engagedData, ribs, db, cb, packet) => {
     .filter(
       spec =>
         spec.identifier === packet?.Permit?.issuedThrough ||
-        !packet?.Permit.issuedThrough
+        !packet?.Permit?.issuedThrough
     )
     .filter(
       spec =>
         engagedData.identifier === packet?.Permit?.issuedBy ||
-        !packet?.Permit.issuedBy
+        !packet?.Permit?.issuedBy
     )
     .filter(
       spec =>
         spec.ActionAccessSpecification.eligibleRegion ===
           packet?.Permit?.permitAudience ||
-        spec.ActionAccessSpecification.eligibleRegion === "*"
+        spec.ActionAccessSpecification?.eligibleRegion === "*"
     )
     .filter(spec => {
-      let endpoints =
-        spec.ActionAccessSpecification.requiresSubscription.split(",")
+      let requiresSubscription = spec.ActionAccessSpecification?.requiresSubscription
+      console.log(requiresSubscription)
+      let endpoints = requiresSubscription ? requiresSubscription.split(",") : []
       return endpoints.includes(rib) || endpoints.includes("*")
     })
   let blockingActionAccessSpecifications = actionAccessSpecifications
     .filter(
       spec =>
-        spec.ActionAccessSpecification.ineligibleRegion === packet?.identifier
+        spec.ActionAccessSpecification?.ineligibleRegion === packet?.identifier
     )
     .filter(spec => {
       let endpoints =
-        spec.ActionAccessSpecification.requiresSubscription.split(",")
+        spec.ActionAccessSpecification?.requiresSubscription.split(",")
       return endpoints.includes(rib) || endpoints.includes("*")
     })
   console.assert(

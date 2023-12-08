@@ -9,8 +9,10 @@ describe("pingT", () => {
     let cb = (code, data) => {
       code.should.equal(OK)
       data.should.eql({
-        description: "Not this again!",
+        description: "\nAll sorts are here that all the Earth yields,\nVariety without end; but of the tree,\nWhich, tasted, works knowledge of good and evil,\nThou mayest not\"",
         mainEntityOfPage: "Action",
+        name: "pingT",
+        "potentialAction": "bones permitT",
         Action: { actionStatus: "CompletedActionStatus" },
       })
     }

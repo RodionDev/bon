@@ -1,11 +1,23 @@
 const { CamelCase } = require("../src/helpers")
+const { accessSpecsMaker } = require("../ribs/inviteT")
 const PERMITLEVELS = require("../src/permits")
 const DAY = 1000 * 60 * 60 * 24
 const makeEndpointAction = () => {}
 const initializeT = (argv, ribsConfig, envVars) => {
   let thing = { ...argv } || {}
   let { subjectOf } = envVars
-  thing.mainEntityOfPage = CamelCase(thing.identifier)
+  thing.ItemList = {
+      itemListElement: [
+        accessSpecsMaker({
+        identifier: "DANGER_LOCKMEDOWN",
+        subjectOf: "",
+        ActionAccessSpecification: {
+          requiresSubscription: "readT,listT,takeonT,enlistT,unlistT",
+          eligibleRegion: "*"
+        },
+      })
+    ]
+  }
   delete thing._
   delete thing.$0
   return thing
