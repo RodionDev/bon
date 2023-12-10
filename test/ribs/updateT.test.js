@@ -73,4 +73,55 @@ describe("updateT", () => {
     }
     spareRibs.updateT(update, spareRibs, spareDb, cb)
   })
+  it("can clear fields", () => {
+    let spareRibs = new Object({ ...mockRibs, authT, engageT, updateT })
+    let mock = {
+      identifier: "god",
+      mainEntityOfPage: "Person",
+      ItemList: {
+        itemListElement: [],
+        itemListOrder: "",
+        numberOfItems: 0,
+      },
+      Something: {
+        complicated: {
+          here: "something is here",
+          changed: true,
+        },
+      },
+    }
+    let spareDb = new Object({
+      ...mockDb,
+      read: mockDb.readBackWhatWasGiven(mock),
+    })
+    let update = {
+      identifier: "god",
+      mainEntityOfPage: "Place",
+      Something: {
+        complicated: {
+          here: "",
+          changed: false,
+        },
+      },
+    }
+    let cb = (code, data) => {
+      code.should.equal(OK)
+      data.should.eql({
+        identifier: "god",
+        mainEntityOfPage: "Place",
+        ItemList: {
+          itemListElement: [],
+          itemListOrder: "",
+          numberOfItems: 0, 
+        },
+        Something: {
+          complicated: {
+            here: "",
+            changed: false,
+          },
+        },
+      })
+    }
+    spareRibs.updateT(update, spareRibs, spareDb, cb)
+  })
 })

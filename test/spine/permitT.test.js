@@ -2,7 +2,6 @@ const should = require("chai").should()
 const mockDb = require("../mocks/mockDB.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const permitT = require("../../spine/permitT")
-const { accessSpecsMaker, permitMaker } = require("../../ribs/inviteT")
 const OK = true
 const NOTOK = false
 let CBTRUE = isPermitted => isPermitted.should.equal(OK)
@@ -11,8 +10,8 @@ describe("permitT", () => {
   it("doesn't permitT by default", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
     let mock = {
-      identifier: "god",
-      mainEntityOfPage: "Person",
+      identifier: "heaven",
+      mainEntityOfPage: "Place",
       ItemList: {
         itemListElement: [],
         itemListOrder: "",
@@ -35,227 +34,188 @@ describe("permitT", () => {
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, cb, mock)
   })
+  it("permitTs by password", () => {
+    let spareRibs = new Object({ ...mockRibs, permitT: permitT })
+    let ascendantPassword = "letmein"
+    let gatesOfHeaven = "gatesOfHeaven"
+    let heaven = "heaven"
+    let passwordPermit = {
+      identifier: gatesOfHeaven,
+      subjectOf: heaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        issuedBy: heaven,
+        issuedThrough: gatesOfHeaven,
+        permitAudience: ascendantPassword,
+        validFor: "*",
+      },
+    }
+    let mock = {
+      identifier: heaven,
+      mainEntityOfPage: "Place",
+      ItemList: {
+        itemListElement: [passwordPermit],
+        itemListOrder: "",
+        numberOfItems: 1,
+      },
+    }
+    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE, {
+      Permit: ascendantPassword,
+    })
+    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, { Permit: "" })
+    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, {
+      Permit: "notthepassword",
+    })
+  })
   it("can grant permission anon on any endpoint", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "*"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["*"].join(","),
-        eligibleRegion: permitIdentifier,
-        ineligibleRegion: "",
+    let gatesOfHeaven = "gatesOfHeaven"
+    let heaven = "heaven"
+    let anonGovPermit = {
+      identifier: gatesOfHeaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        permitAudience: "*",
+        validFor: "*",
       },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
+    }
     let mock = {
-      identifier: mockThingIdentifier,
-      mainEntityOfPage: "ItemList",
-      ItemList: { itemListElement: [specs] },
+      identifier: heaven,
+      mainEntityOfPage: "Place",
+      ItemList: { itemListElement: [anonGovPermit] },
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE)
   })
   it("can grant permission anon on specific endpoints", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "*"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["testT", "checkT"].join(","),
-        eligibleRegion: permitIdentifier,
-        ineligibleRegion: "",
+    let gatesOfHeaven = "gatesOfHeaven"
+    let heaven = "heaven"
+    let endpointPermit = {
+      identifier: gatesOfHeaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        permitAudience: "*",
+        validFor: "testT,checkT",
       },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
+    }
     let mock = {
-      identifier: mockThingIdentifier,
+      identifier: heaven,
       mainEntityOfPage: "ItemList",
-      ItemList: { itemListElement: [specs] },
+      ItemList: { itemListElement: [endpointPermit] },
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE)
     spareRibs.permitT("checkT", mock, spareRibs, mockDb, CBTRUE)
     spareRibs.permitT("breakT", mock, spareRibs, mockDb, CBFALSE)
   })
-  it("can grant permission to specific people", () => {
+  it("can grant permission to specific things", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "permitThing"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["testT"].join(","),
-        eligibleRegion: permitIdentifier,
-        ineligibleRegion: "",
+    let ascendant = "ascendant"
+    let gatesOfHeaven = "gatesOfHeaven"
+    let heaven = "heaven"
+    let oneThingPermit = {
+      identifier: gatesOfHeaven,
+      subjectOf: heaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        issuedBy: heaven,
+        issuedThrough: gatesOfHeaven,
+        permitAudience: ascendant,
+        validFor: "testT",
       },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
+    }
+    let permit = {
+      ...oneThingPermit,
+      identifier: ascendant,
+      mainEntityOfPage: "Permit",
+    }
     let mock = {
-      identifier: mockThingIdentifier,
-      mainEntityOfPage: "ItemList",
+      identifier: heaven,
+      mainEntityOfPage: "Place",
       ItemList: {
-        itemListElement: [specs],
+        itemListElement: [oneThingPermit],
       },
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE, permit)
     spareRibs.permitT("breakT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
-  it("can revoke permission to specific people", () => {
+  it("can revoke permission when otherwise allowed", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "permitThing"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["*"].join(","),
-        eligibleRegion: "",
-        ineligibleRegion: permitIdentifier,
-      },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
-    let mock = {
-      identifier: mockThingIdentifier,
-      mainEntityOfPage: "ItemList",
-      ItemList: {
-        itemListElement: [specs],
+    let ascendant = "ascendant"
+    let gatesOfHeaven = "gatesOfHeaven"
+    let heaven = "heaven"
+    let anonPermit = {
+      identifier: gatesOfHeaven,
+      subjectOf: heaven,
+      Permit: {
+        issuedBy: heaven,
+        issuedThrough: gatesOfHeaven,
+        permitAudience: ascendant,
+        validFor: "*",
       },
     }
-    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
-  })
-  it("can revoke permission to otherwise elible people", () => {
-    let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "permitThing"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["testT"].join(","),
-        eligibleRegion: permitIdentifier,
-        ineligibleRegion: permitIdentifier,
-      },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
-    let mock = {
-      identifier: mockThingIdentifier,
-      mainEntityOfPage: "ItemList",
-      ItemList: {
-        itemListElement: [specs],
+    let permit = {
+      ...anonPermit,
+      identifier: ascendant,
+      mainEntityOfPage: "Permit",
+    }
+    let blockingException = {
+      identifier: gatesOfHeaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        issuedBy: heaven,
+        issuedThrough: gatesOfHeaven,
+        permitAudience: ascendant,
+        validFor: "-",
       },
     }
-    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
-  })
-  it("can revoke permission to when otherwise allowing anonymous", () => {
-    let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "permitThing"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["*"].join(","),
-        eligibleRegion: "*",
-        ineligibleRegion: permitIdentifier,
-      },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
     let mock = {
-      identifier: mockThingIdentifier,
+      identifier: heaven,
       mainEntityOfPage: "ItemList",
       ItemList: {
-        itemListElement: [specs],
-      },
-    }
-    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
-  })
-  it("can revoke permission with competing access rules", () => {
-    let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "permitThing"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["*"].join(","),
-        eligibleRegion: "*",
-        ineligibleRegion: permitIdentifier,
-      },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
-    let mock = {
-      identifier: mockThingIdentifier,
-      mainEntityOfPage: "ItemList",
-      ItemList: {
-        itemListElement: [
-          accessSpecsMaker({
-            identifier: specsIdentifier,
-            subjectOf: mockThingIdentifier,
-            ActionAccessSpecification: {
-              requiresSubscription: ["*"].join(","),
-              eligibleRegion: "*",
-              ineligibleRegion: "",
-            },
-          }),
-          accessSpecsMaker({
-            identifier: specsIdentifier,
-            subjectOf: mockThingIdentifier,
-            ActionAccessSpecification: {
-              requiresSubscription: ["*"].join(","),
-              eligibleRegion: permitIdentifier,
-              ineligibleRegion: "",
-            },
-          }),
-          specs,
-        ],
+        itemListElement: [anonPermit, blockingException],
       },
     }
     spareRibs.permitT("testT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
   it("revocation is per endpoint", () => {
     let spareRibs = new Object({ ...mockRibs, permitT: permitT })
-    let specsIdentifier = "specsThing"
-    let permitIdentifier = "permitThing"
-    let mockThingIdentifier = "mockThing"
-    let specs = accessSpecsMaker({
-      identifier: specsIdentifier,
-      subjectOf: mockThingIdentifier,
-      ActionAccessSpecification: {
-        requiresSubscription: ["testT"].join(","),
-        eligibleRegion: permitIdentifier,
-        ineligibleRegion: "",
-      },
-    })
-    let permit = permitMaker(permitIdentifier, specs)
-    let mock = {
-      identifier: mockThingIdentifier,
-      mainEntityOfPage: "ItemList",
-      ItemList: {
-        itemListElement: [
-          specs,
-          accessSpecsMaker({
-            identifier: specsIdentifier,
-            subjectOf: mockThingIdentifier,
-            ActionAccessSpecification: {
-              requiresSubscription: ["hopeT"].join(","),
-              eligibleRegion: "*",
-              ineligibleRegion: permitIdentifier,
-            },
-          }),
-        ],
+    let gatesOfHeaven = "gatesOfHeaven"
+    let ascendant = "ascendant"
+    let heaven = "heaven"
+    let govPermit = {
+      identifier: gatesOfHeaven,
+      subjectOf: heaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        issuedBy: heaven,
+        issuedThrough: gatesOfHeaven,
+        permitAudience: ascendant,
+        validFor: "hopeT,knowT",
       },
     }
-    spareRibs.permitT("testT", mock, spareRibs, mockDb, CBTRUE, permit)
+    let permit = {
+      ...govPermit,
+      identifier: ascendant,
+      mainEntityOfPage: "Permit",
+    }
+    let blockingException = {
+      identifier: gatesOfHeaven,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        issuedBy: heaven,
+        issuedThrough: gatesOfHeaven,
+        permitAudience: ascendant,
+        validFor: "-hopeT",
+      },
+    }
+    let mock = {
+      identifier: heaven,
+      mainEntityOfPage: "ItemList",
+      ItemList: {
+        itemListElement: [govPermit, blockingException],
+      },
+    }
+    spareRibs.permitT("knowT", mock, spareRibs, mockDb, CBTRUE, permit)
     spareRibs.permitT("hopeT", mock, spareRibs, mockDb, CBFALSE, permit)
   })
 })

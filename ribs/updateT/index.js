@@ -3,10 +3,12 @@ const { assign, merge } = require("lodash")
 const OK = 202
 const NOTOK = 400
 const updateT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {
-      delete packet.ItemList.itemListElement 
+      if (packet.ItemList?.itemListElement)
+        delete packet.ItemList.itemListElement 
       let normalLodashMerge = merge(engagedData, packet)
       db.update(normalLodashMerge, (updateErr, updatedThing) => {
         if (!updateErr) {

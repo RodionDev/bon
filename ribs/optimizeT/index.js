@@ -4,6 +4,7 @@ const { summarizeT } = require("../../src/helpers")
 const OK = 201
 const NOTOK = 417
 const optimizeT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   const { authT, listT } = ribs
   authT("optimizeT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {

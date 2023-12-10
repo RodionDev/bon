@@ -7,6 +7,7 @@ const {
 const OK = 201
 const NOTOK = 406
 const takeonT = (packet, ribs, db, cb) => {
+  console.count("the Real inviteT")
   const { authT, enlistT } = ribs
   authT(
     "takeonT",

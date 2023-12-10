@@ -16,18 +16,23 @@ describe("destroyT", () => {
     let cb = (code, data) => {
       code.should.equal(OK)
       data.should.eql({
-        identifier: "eve Thing destroyed",
+        identifier: "tokenFemaleRole Thing destroyed",
         mainEntityOfPage: "Action",
         potentialAction: {
-          identifier: "unlist eve",
+          identifier: "unlist tokenFemaleRole",
           Action: {
-            agent: "unlist eve",
+            agent: "unlist tokenFemaleRole",
             actionStatus: "PotentialActionStatus",
           },
         },
         Action: { agent: "destroyT", actionStatus: "CompletedActionStatus" },
       })
     }
-    spareRibs.destroyT({ identifier: "eve" }, spareRibs, spareDb, cb)
+    spareRibs.destroyT(
+      { identifier: "tokenFemaleRole" },
+      spareRibs,
+      spareDb,
+      cb
+    )
   })
 })
