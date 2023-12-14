@@ -1,0 +1,30 @@
+{
+  "additionalType": "",
+  "alternateName": "",
+  "description": "",
+  "disambiguatingDescription": "",
+  "identifier": "",
+  "image": "",
+  "mainEntityOfPage": "GovernmentPermit",
+  "name": "",
+  "potentialAction": "",
+  "sameAs": "",
+  "subjectOf": "paradiselost",
+  "url": "",
+  "ItemList": {
+    "itemListElement": [],
+    "itemListOrder": "",
+    "numberOfItems": 0
+  },
+  "GovernmentPermit": {},
+  "Intangible": {},
+  "Permit": {
+    "issuedBy": "",
+    "issuedThrough": "",
+    "permitAudience": "",
+    "validFor": "",
+    "validFrom": "1970-01-01",
+    "validIn": "",
+    "validUntil": "1970-01-01"
+  }
+}

@@ -2,6 +2,7 @@ const should = require("chai").should()
 const mockDb = require("../mocks/mockDB.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const permitT = require("../../spine/permitT")
+const { authT, engageT } = require("../../spine")
 const OK = true
 const NOTOK = false
 let CBTRUE = isPermitted => isPermitted.should.equal(OK)
@@ -182,7 +183,7 @@ describe("permitT", () => {
     let gatesOfHeaven = "gatesOfHeaven"
     let ascendant = "ascendant"
     let heaven = "heaven"
-    let govPermit = {
+    let heavenPermit = {
       identifier: gatesOfHeaven,
       subjectOf: heaven,
       mainEntityOfPage: "GovernmentPermit",
@@ -194,7 +195,7 @@ describe("permitT", () => {
       },
     }
     let permit = {
-      ...govPermit,
+      ...heavenPermit,
       identifier: ascendant,
       mainEntityOfPage: "Permit",
     }
@@ -212,10 +213,52 @@ describe("permitT", () => {
       identifier: heaven,
       mainEntityOfPage: "ItemList",
       ItemList: {
-        itemListElement: [govPermit, blockingException],
+        itemListElement: [heavenPermit, blockingException],
       },
     }
     spareRibs.permitT("knowT", mock, spareRibs, mockDb, CBTRUE, permit)
     spareRibs.permitT("hopeT", mock, spareRibs, mockDb, CBFALSE, permit)
+  })
+  it("endpoints allowed via subjectOf's permission", () => {
+    let spareRibs = new Object({ ...mockRibs, authT, engageT, permitT })
+    let gatesOfHeavenIdentifier = "gatesOfHeaven"
+    let ascendantIdentifier = "ascendant"
+    let heavenIdentifier = "heaven"
+    let godIdentifier = "god"
+    let heavenPermit = {
+      identifier: gatesOfHeavenIdentifier,
+      subjectOf: heavenIdentifier,
+      mainEntityOfPage: "GovernmentPermit",
+      Permit: {
+        issuedBy: heavenIdentifier,
+        issuedThrough: gatesOfHeavenIdentifier,
+        permitAudience: ascendantIdentifier,
+        validFor: "hopeT,knowT",
+      },
+    }
+    let permit = {
+      ...heavenPermit,
+      identifier: ascendantIdentifier,
+      mainEntityOfPage: "Permit",
+      subjectOf: gatesOfHeavenIdentifier,
+    }
+    let god = {
+      identifier: godIdentifier,
+      subjectOf: heavenIdentifier,
+      mainEntityOfPage: "Person",
+      ItemList: { itemListElement: [] },
+    }
+    let heaven = {
+      identifier: heavenIdentifier,
+      mainEntityOfPage: "ItemList",
+      ItemList: {
+        itemListElement: [heavenPermit, god],
+      },
+    }
+    let spareDb = new Object({
+      ...mockDb,
+      read: mockDb.readById({ heaven, god }),
+    })
+    spareRibs.permitT("hopeT", god, spareRibs, spareDb, CBTRUE, permit)
   })
 })

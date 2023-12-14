@@ -1,4 +1,17 @@
 {
   "identifier": "paradiselost",
-  "additionalType": "Paradiselost"
+  "ItemList": {
+    "itemListElement": [
+      {
+        "identifier": "DANGER_LOCKMEDOWN",
+        "mainEntityOfPage": "GovernmentPermit",
+        "Permit": {
+          "issuedBy": "paradiselost",
+          "issuedThrough": "DANGER_LOCKMEDOWN",
+          "permitAudience": "*",
+          "validFor": "*"
+        }
+      }
+    ]
+  }
 }

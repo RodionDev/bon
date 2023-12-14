@@ -39,6 +39,10 @@ fs.readFile(".env", "utf8", (readEnvErr, envData) => {
       aliases: ["add", "addTolist"],
       positionals: ["subjectOf", "identifier"],
     },
+    inviteT: {
+      aliases: ["permit", "grant", "token"],
+      positionals: ["subjectOf", "identifier"],
+    },
     listT: { aliases: ["list"], positionals: ["identifier"] },
     pingT: { aliases: ["ping"], positionals: [] },
     readT: { aliases: ["get"], positionals: ["identifier"] },

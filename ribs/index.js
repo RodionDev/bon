@@ -14,6 +14,7 @@ const undoT = require("./undoT")
 module.exports = {
   destroyT,
   enlistT,
+  inviteT,
   listT,
   pingT,
   readT,
