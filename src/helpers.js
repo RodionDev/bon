@@ -7,11 +7,17 @@ helpers.bigUp = thing => {
     "schemaorg/data/releases/9.0/schemaorg-all-http",
     schemaDomainUrl
   )
-  let thingType =
-    thing.mainEntityOfPage[0].toUpperCase() + thing.mainEntityOfPage.slice(1)
+  let thingType = "Thing"
+  if (thing.mainEntityOfPage) {
+    thingType =
+      thing.mainEntityOfPage[0].toUpperCase() + thing.mainEntityOfPage.slice(1)
+  }
   let Thing = thingBuilder.Thing([thingType])
   let thinglet = thingBuilder.thinglet(Thing[thingType], thingType)
-  return thinglet
+  return {
+    ...thinglet,
+    ...thing,
+  }
 }
 helpers.BigUp = thing => {
   let thingBuilder = new ThingBuilder(

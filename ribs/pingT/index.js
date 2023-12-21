@@ -1,7 +1,7 @@
 const OK = 103
 const NOTOK = 406
 const pingT = (_, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.count("the Real pingT")
   cb(OK, {
     name: "pingT",
     description:

@@ -3,7 +3,7 @@ const { assign, merge } = require("lodash")
 const OK = 202
 const NOTOK = 400
 const updateT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.count("the Real updateT")
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {

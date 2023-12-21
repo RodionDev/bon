@@ -14,6 +14,7 @@ const engageT = (rib, packet, ribs, db, cb) => {
           `${identifier} Thing not found`,
           readErr
         )
+        console.log({ failErrMessage })
         cb(NOTOK, failErrMessage)
       }
     })

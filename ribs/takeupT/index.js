@@ -2,18 +2,18 @@ const { bigUp, errorPayload, hasRequiredFields } = require("../../src/helpers")
 const OK = 201
 const NOTOK = 406
 const takeupT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.count("the Real takeupT")
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
     db.exists(packet, exists => {
       if (!exists) {
         let createPacket = {
-          ...packet, 
+          ...bigUp(packet),
           subjectOf: packet.identifier,
         }
-        db.create(packet, (createErr, createPacket) => {
+        db.create(createPacket, (createErr, createdPacket) => {
           if (!createErr) {
-            cb(OK, createPacket)
+            cb(OK, createdPacket)
           } else {
             cb(
               NOTOK,
