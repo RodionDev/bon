@@ -8,7 +8,7 @@
 Reusable _endpoints_ for **elioBones** projects.
 [elioBones Dogma](/eliobones/dogma.html)
 # Ribs
-Its ribs are 12 _endpoints_. Thet are the beating heart of **elioWay** projects. You will engage them a lot!
+Its ribs are 12 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!
 ## The TURDs
 Four **elioEngage** operations - for working with the top level object - the **engaged** "thing":
 <article>
@@ -101,7 +101,7 @@ Four **elioList** endpoints:
 </div>
 </a>
 </article>
-## PS
+### PS
 Two **elioSchema** endpoints:
 <article>
   <a href="/eliobones/bones/ribs/pingT/star.png" target="_splash">
@@ -125,8 +125,8 @@ Two **elioSchema** endpoints:
 </div>
 </a>
 </article>
-# Other bones
-# Spine
+## The Rest
+### Spine
 These are called internally by the endpoints, but could be called independently for other purposes:
 <article>
   <a href="/eliobones/bones/spine/engageT/star.png" target="_splash">
@@ -163,7 +163,7 @@ These are called internally by the endpoints, but could be called independently 
 </a>
 </article>
 As long as the endpoint acts upon a complete `thing`, with or without a list, and returns the payload correctly formatted, it is an **elioBone**.
-## IOU
+### IOU
 Here are, for instance, three **elioOptimize** endpoints, the very least we could do. We expect you'll need more. You'll have to write those yourself and share them. We'll share any we write here as well. But for now... We feel it's the least we owe.
 <article>
   <a href="/eliobones/bones/inflateT/xxxT/star.png" target="_splash">

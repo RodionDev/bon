@@ -3,57 +3,14 @@
 - [Installing bones](/eliobones/bones/installing.html)
 ## Nutshell
 - Config
-- Commands
+- Command Overview
+- Playtime
 ## Config
-Config using `.env` with the following settings.
-### Password encryption
+By default, **bones** CLI uses **dbhell-bones**, an inhouse, file-system, NodeJS database which will save every record (pretty printed) as a separate JSON file relative to the directory where you issue the CLI commands. This makes it ideal for development and testing - you can easily review every change by opening these files in a text editor.
+You can specify a root directory for that data by adding it to a `.env` file in the same folder where you issue your CLI commands.
 ```
-HASHINGSECRET=123
+DATADIR=./.appdata/quickstart/
 ```
-### root `identifier`
-A permanent record of the data root's `identifier`.
-```
-identifier=APPID_123/engage/adventCalendar
-```
-### Permit settings
-The following set up, for instance, mean "READONLY" unless authenticated.
-- All the GOD commands are for editing the engaged thing.
-- All the AUTH commands are for working with the engaged thing's list.
-- All the ANON commands are for view only the engaged thing and the list.
-This implies the owner of this app wants to authorize others to help build the data, but not change the app.
-```
-destroyT=GOD
-enlistT=AUTH
-listT=ANON
-pingT=ANON
-readT=ANON
-schemaT=ANON
-takeonT=AUTH
-takeupT=ANON
-updateT=GOD
-unlistT=AUTH
-```
-Another example, with `GOD` for all commands, would imply the owner wants this to remain private.
-### Type override
-Schema properties can have 2 or more acceptable Types. **elioThing** builds schemas which select the best Type when more than 1 is available (just let it do the work for you) but you can override them - and fix any fieldNames to a particular type.
-```
-/**
-Other Schema properties you might override.
-// "image": IMAGEFIELD,
-// "logo": IMAGEFIELD,
-// "screenshot": IMAGEFIELD,
-// "beforeMedia": FILEFIELD,
-// "afterMedia": FILEFIELD,
-// "duringMedia": FILEFIELD,
-// "minPrice": MONEYFIELD,
-// "maxPrice": MONEYFIELD,
-// "price": MONEYFIELD,
-// "minValue": MONEYFIELD,
-// "value": MONEYFIELD,
-// "maxValue": MONEYFIELD,
-```
-## Commands
-### Set up
 ```bash
 # Preserve test data
 set NOW $(date +%Y%m%d%H%M%S)
@@ -61,15 +18,15 @@ mv $DATADIR $DATADIR_$NOW
 # or just clear any test data
 rm -rf $DATADIR
 ```
-### The command format
-`<runtimeBones> <commandName> [<params>] [--propName=propValue]`
+## Command Overview
+`<runtimeBones> <ribName> [<params>] [--propNames=propValues]`
 Breakdown:
-- **runtimeBones** calls the **bones** library on your command line. What you need depends on context.
-  - `npm run bones -- <commandName> ...` inside the **bones** directory. You'll usually be doing this testing or playing.
-  - `bones <commandName> ...` **bones** is in the `$PATH` of your computer system. You'll be using this after installing it.
-- **commandName**'s are all equal. They perform one common operation from start to finish. They take the same parameters, for instance, in the same order. There aren't many because of the iterative data structure.
+- What you write (to call the **bones** CLI on your command line) depends on context.
+  - Use **`npm run bones --`** `<ribName> ...` inside the **bones** directory. You'll usually be doing this testing or developing the library. _NB: The `--` part is required by **npm** to pass your args into the `run` architecture._
+  - Use just **`bones`** `<ribName> ...` when **bones** is in the `$PATH` of your computer system after installing using **npm**.
+- **ribName**'s are all equal. They perform one common operation on the **engaged** "thing", or "things" in its **list**, from start to finish. They take the same parameters in the same order. There aren't many because of the iterative data structure.
   It helps to group them mentally like this:
-  - `takeupT` `updateT` `readT` `destroyT` affects a thing's direct or subclassed properties.
+  - `takeupT` `updateT` `readT` `destroyT` affect a thing's direct or subclassed properties.
     - These require the `identifier` parameter.
     - `identifier` is the only required field.
   - `listT` `enlistT` `unlistT` `takeonT` deal with a thing's ItemList subclass.
@@ -77,7 +34,58 @@ Breakdown:
   - `schemaT` `pingT` return Schema, blank things, or just a hello.
 Notes:
 - `takeupT` is always the entry point. It serves like the "SignUp" page of traditional apps. It's used as in "I'm taking up a hobby/blogging/a lemonade stand" .
-- `updateT` `destroyT` permanently change data but there is backup feature described above.
+- `updateT` `destroyT` permanently change data (but there is backup feature because **bones** won't remove it from its internal list until you `unlist`).
 - `readT` `listT` `schemaT` `pingT` commands can be run at any time.
 - `enlistT` `unlistT` are non destructive. Each reverses the state left by the other.
 - `takeonT` is a shortcut to _takeupT_+_enlistT_. It's like "take onboard".
+## Playtime
+```bash
+git clone https://gitlab.com/eliobones/bones.git
+cd bones
+npm i
+npm run bones -- pingT
+npm run bones -- takeupT shoppinglist --mainEntityOfPage=ItemList --name="Today's Shopping List" --alternateName="Don't forget the milk!"
+thing Action --schema
+[
+  "FailedActionStatus",
+  "CompletedActionStatus",
+  "ActiveActionStatus",
+  "PotentialActionStatus"
+]
+set Potential --mainEntityOfPage=Action --Action.actionStatus=PotentialActionStatus
+npm run bones -- takeonT shoppinglist bread $POTENTIALACTION
+npm run bones -- takeonT shoppinglist eggs $POTENTIALACTION
+npm run bones -- takeonT shoppinglist cheese $POTENTIALACTION
+npm run bones -- takeonT shoppinglist milk $POTENTIALACTION
+```
+Run 1 at a time, or in suggested groupings.
+```
+npm run bones -- pingT
+npm run bones -- takeupT shopping --name="Today's Shopping List" --alternateName="Don't forget the milk"
+npm run bones -- takeonT shopping milk  --mainEntityOfPage=Action  --Action.actionStatus=PotentialActionStatus
+npm run bones -- takeonT shopping honey  --mainEntityOfPage=Action
+npm run bones -- updateT honey --Action.actionStatus=PotentialActionStatus
+npm run bones -- readT shopping
+npm run bones -- listT shopping
+npm run bones -- updateT honey --Action.actionStatus=CompletedActionStatus
+npm run bones -- listT shopping
+npm run bones -- unlistT shopping milk
+npm run bones -- listT shopping
+npm run bones -- enlistT shopping milk
+npm run bones -- listT shopping
+npm run bones -- destroyT milk
+npm run bones -- listT shopping
+npm run bones -- unlistT shopping milk
+npm run bones -- listT shopping
+npm run bones -- unlistT shopping milk
+npm run bones -- listT shopping
+npm run bones -- enlistT shopping milk
+npm run bones -- optimizeT shopping
+npm run bones -- takeonT shopping milk  --mainEntityOfPage=Action  --Action.actionStatus=CompletedActionStatus
+npm run bones -- optimizeT shopping
+for D in sugar biscuits banana thoseCrispsYouLike
+   mkdir -p $D
+   echo '{ "identifier": "'$D'" }' > ./$D/thing.json
+end
+npm run bones -- inflateT shopping
+```

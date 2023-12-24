@@ -40,13 +40,6 @@ helpers.CamelCase = str => {
   }
   return words.join("")
 }
-helpers.cultify = engagedThing => {
-  if (!Array.isArray(engagedThing.ItemList?.itemListElement)) {
-    engagedThing.ItemList = { itemListElement: [] }
-  }
-  engagedThing.mainEntityOfPage = engagedThing.mainEntityOfPage || "Thing"
-  return engagedThing
-}
 helpers.hash = str => {
   let envData = fs.readFileSyync(".env", "utf8")
   const envVars = envData

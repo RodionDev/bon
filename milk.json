@@ -1,0 +1,31 @@
+{
+	"additionalType": "",
+	"alternateName": "",
+	"description": "",
+	"disambiguatingDescription": "If you forget this children WILL die",
+	"identifier": "milk",
+	"image": "",
+	"mainEntityOfPage": "Action",
+	"name": "Milk",
+	"potentialAction": "",
+	"sameAs": "",
+	"subjectOf": "milk",
+	"url": "",
+	"ItemList": {
+		"itemListElement": [
+			{
+				"identifier": "DANGER_LOCKMEDOWN",
+				"mainEntityOfPage": "GovernmentPermit",
+				"Permit": {
+					"issuedBy": "milk",
+					"issuedThrough": "DANGER_LOCKMEDOWN",
+					"permitAudience": "*",
+					"validFor": "*"
+				}
+			}
+		]
+	},
+	"Action": {
+		"actionStatus": "PotentialActionStatus"
+	}
+}
