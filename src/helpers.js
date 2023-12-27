@@ -105,7 +105,7 @@ helpers.summarizeT = obj => {
     }
   }
   if (engage) {
-    obj.engage = engage.join(",")
+    obj._has = engage.join(",")
   }
   return obj
 }

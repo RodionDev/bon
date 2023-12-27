@@ -1,31 +1,32 @@
 {
-	"additionalType": "",
-	"alternateName": "",
-	"description": "",
-	"disambiguatingDescription": "",
-	"identifier": "bread",
-	"image": "",
-	"mainEntityOfPage": "Action",
-	"name": "",
-	"potentialAction": "bones updateT <this> --Action.actionStatus=CompletedActionStatus",
-	"sameAs": "",
-	"subjectOf": "shoppinglist",
-	"url": "",
-	"ItemList": {
-		"itemListElement": [
-			{
-				"identifier": "DANGER_LOCKMEDOWN",
-				"mainEntityOfPage": "GovernmentPermit",
-				"Permit": {
-					"issuedBy": "bread",
-					"issuedThrough": "DANGER_LOCKMEDOWN",
-					"permitAudience": "*",
-					"validFor": "*"
-				}
-			}
-		]
-	},
-	"Action": {
-		"actionStatus": "PotentialActionStatus"
-	}
+  "additionalType": "",
+  "alternateName": "",
+  "description": "",
+  "disambiguatingDescription": "",
+  "identifier": "bread",
+  "image": "",
+  "mainEntityOfPage": "Action",
+  "name": "",
+  "potentialAction": "bones updateT <this> --Action.actionStatus=CompletedActionStatus",
+  "sameAs": "",
+  "subjectOf": "shoppinglist",
+  "url": "",
+  "ItemList": {
+    "itemListElement": [
+      {
+        "identifier": "DANGER_LOCKMEDOWN",
+        "mainEntityOfPage": "GovernmentPermit",
+        "Permit": {
+          "issuedBy": "bread",
+          "issuedThrough": "DANGER_LOCKMEDOWN",
+          "permitAudience": "*",
+          "validFor": "*"
+        }
+      }
+    ],
+    "numberOfItems": 1
+  },
+  "Action": {
+    "actionStatus": "CompletedActionStatus"
+  }
 }

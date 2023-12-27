@@ -27,10 +27,16 @@ const enlistT = (packet, ribs, db, cb) => {
                   ...engagedData.ItemList.itemListElement,
                   engagedListItem,
                 ]
-                db.update(engagedData, updateErr => {
+                db.update(engagedData, (updateErr, updatedThing) => {
                   if (!updateErr) {
-                    delete engagedData.password
-                    cb(OK, "", engagedData)
+                    cb(OK, {
+                      identifier: "enlistT_" + identifier,
+                      subjectOf: engagedListItem.identifier,
+                      mainEntityOfPage: "Action",
+                      Action: {
+                        actionStatus: "CompletedActionStatus",
+                      },
+                    })
                   } else {
                     cb(
                       NOTOK,

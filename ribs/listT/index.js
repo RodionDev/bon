@@ -1,3 +1,4 @@
+const { filter, matches } = require("lodash")
 const {
   successPayload,
   errorPayload,
@@ -10,20 +11,14 @@ const listT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("listT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {
-      let { identifier, sameAs } = packet
+      let { identifier } = packet
+      delete packet.identifier
+      delete packet.ItemList
       if (engagedData.ItemList.itemListElement) {
         let engagedList = [...engagedData.ItemList.itemListElement]
-        if (sameAs) {
-          engagedList = engagedList.filter(
-            item => item.mainEntityOfPage === sameAs
-          )
-        }
         db.list(engagedList, (listError, listData) => {
           if (!listError) {
-            cb(
-              OK,
-              listData.map(listedThing => summarizeT(listedThing))
-            )
+            cb(OK, filter(listData, matches(packet)))
           } else {
             cb(
               NOTOK,

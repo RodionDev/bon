@@ -1,6 +1,6 @@
 const { errorPayload, makePermitIdentifier } = require("../../src/helpers")
-const { OK: TAKEONSTATUSOK } = require("../takeonT")
-const { OK: TAKEUPSTATUSOK } = require("../takeupT")
+const { OK: TAKEONSTATUSOK } = require("../../ribs/takeonT")
+const { OK: TAKEUPSTATUSOK } = require("../../ribs/takeupT")
 const OK = 206
 const NOTOK = 417
 const findFirstExisting = o => !!o
@@ -39,16 +39,16 @@ const inviteT = (packet, ribs, db, cb) => {
             ),
           },
         }
-        takeonT(govPermit, ribs, db, (takeonCode, govPermitData) => {
-          if (takeonCode === TAKEONSTATUSOK) {
+        takeonT(govPermit, ribs, db, (takeonStatusCode, govPermitData) => {
+          if (takeonStatusCode === TAKEONSTATUSOK) {
             let permit = {
               ...govPermit,
               identifier: permitIdentifier,
               subjectOf: govPermitIdentifier,
               mainEntityOfPage: "Permit",
             }
-            takeupT(permit, ribs, db, (takeupCode, takeupData) => {
-              if (takeupCode === TAKEUPSTATUSOK) {
+            takeupT(permit, ribs, db, (takeupStatusCode, takeupData) => {
+              if (takeupStatusCode === TAKEUPSTATUSOK) {
                 cb(OK, permit)
               } else {
                 cb(NOTOK, errorPayload("takeupT"))

@@ -29,7 +29,7 @@ const takeonT = (packet, ribs, db, cb) => {
                     createdPacket,
                     ribs,
                     db,
-                    (enlistCode, enlistedPacket) => {
+                    (enlistStatusCode, enlistedPacket) => {
                       cb(OK, enlistedPacket)
                     }
                   )
@@ -45,7 +45,12 @@ const takeonT = (packet, ribs, db, cb) => {
                 }
               })
             } else {
-              enlistT(packet, ribs, db, cb)
+              enlistT(packet, ribs, db, (enlistStatusCode, enlistedMessage) => {
+                cb(OK, {
+                  ...enlistedMessage,
+                  identifier: "takeonT_" + enlistedMessage.subjectOf,
+                })
+              })
             }
           })
         } else {

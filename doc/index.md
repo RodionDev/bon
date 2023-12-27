@@ -163,22 +163,22 @@ These are called internally by the endpoints, but could be called independently 
 </a>
 </article>
 As long as the endpoint acts upon a complete `thing`, with or without a list, and returns the payload correctly formatted, it is an **elioBone**.
-### IOU
+### IOU adons
 Here are, for instance, three **elioOptimize** endpoints, the very least we could do. We expect you'll need more. You'll have to write those yourself and share them. We'll share any we write here as well. But for now... We feel it's the least we owe.
 <article>
-  <a href="/eliobones/bones/inflateT/xxxT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/inflateT/favicon.png">
+  <a href="/eliobones/bones/adons/inviteT/star.png" target="_splash">
+  <img src="/eliobones/bones/adons/inviteT/favicon.png">
   <div>
   <h4>
-  <code>inflateT</code>
+  <code>inviteT</code>
 </h4>
-  <p>Search subdirectores to <code>takeonT</code> any which contain a <code>thing.json</code> file.  </p>
+  <p>Create a token and corresponding Permit to <code>inviteT</code> others to view/edit your thing.</p>
 </div>
 </a>
 </article>
 <article>
-  <a href="/eliobones/bones/ribs/optimizeT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/optimizeT/favicon.png">
+  <a href="/eliobones/bones/adons/optimizeT/star.png" target="_splash">
+  <img src="/eliobones/bones/adons/optimizeT/favicon.png">
   <div>
   <h4>
   <code>optimizeT</code>
@@ -188,8 +188,8 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </a>
 </article>
 <article>
-  <a href="/eliobones/bones/ribs/undoT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/undoT/favicon.png">
+  <a href="/eliobones/bones/adons/undoT/star.png" target="_splash">
+  <img src="/eliobones/bones/adons/undoT/favicon.png">
   <div>
   <h4>
   <code>undoT</code>

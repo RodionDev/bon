@@ -4,6 +4,7 @@ const path = require("path")
 const yargs = require("yargs")
 const db = require("@elioway/dbhell")
 const boneUp = require("../src/boneUp")
+const adons = require("../adons")
 const ribs = require("../ribs")
 const spine = require("../spine")
 const flesh = require("../flesh")
@@ -78,7 +79,7 @@ fs.readFile(".env", "utf8", (readEnvErr, envData) => {
         boneUp(
           ribName,
           initializeT(argv, ribsConfig, envVars),
-          { ...ribs, ...spine },
+          { ...ribs, ...spine, ...adons },
           db,
           flesh
         ),
