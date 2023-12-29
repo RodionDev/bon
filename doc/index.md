@@ -8,7 +8,7 @@
 Reusable _endpoints_ for **elioBones** projects.
 [elioBones Dogma](/eliobones/dogma.html)
 # Ribs
-Its ribs are 12 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!
+Its core ribs are 10 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!
 ## The TURDs
 Four **elioEngage** operations - for working with the top level object - the **engaged** "thing":
 <article>
@@ -194,7 +194,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
   <h4>
   <code>undoT</code>
 </h4>
-  <p>Reverse data changes by going back a certain number of steps.  </p>
+  <p>Reverse data changes by going back a certain number of steps. Write me! It will be fun.</p>
 </div>
 </a>
 </article>
