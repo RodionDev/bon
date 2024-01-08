@@ -1,6 +1,7 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDB.js")
 const mockRibs = require("../mocks/mockRibs.js")
+const Person = require("../mocks/Person.js")
 const updateT = require("../../ribs/updateT")
 const { authT, engageT } = require("../../spine")
 const OK = 202
@@ -49,6 +50,7 @@ describe("updateT", () => {
     let cb = (code, data) => {
       code.should.equal(OK)
       data.should.eql({
+        ...Person,
         identifier: "god",
         mainEntityOfPage: "Place",
         ItemList: {
@@ -107,6 +109,7 @@ describe("updateT", () => {
     let cb = (code, data) => {
       code.should.equal(OK)
       data.should.eql({
+        ...Person,
         identifier: "god",
         mainEntityOfPage: "Place",
         ItemList: {

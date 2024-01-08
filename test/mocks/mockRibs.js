@@ -91,12 +91,12 @@ mockRibs.updateT = (packet, ribs, db, cb) => {
 }
 mockRibs.inflateT = (packet, ribs, db, cb) => {
   console.count("the Mock inflateT")
-  const { OK } = require("../../ribs/inflateT")
+  const { OK } = require("../../adons/inflateT")
   cb(OK, packet)
 }
 mockRibs.undoT = (packet, ribs, db, cb) => {
   console.count("the Mock undoT")
-  const { OK } = require("../../ribs/undoT")
+  const { OK } = require("../../adons/undoT")
   cb(OK, packet)
 }
 module.exports = mockRibs

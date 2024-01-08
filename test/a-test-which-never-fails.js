@@ -1,6 +1,7 @@
 const should = require("chai").should()
 const mockDb = require("./mocks/mockDB.js")
 const mockRibs = require("./mocks/mockRibs.js")
+const Thing = require("./mocks/Thing.js")
 describe("Test | Never Fails", () => {
   it("didn't fail! if other tests are failing - that's on you", () => {
     true.should.have.and.have.been.and.of.that.same.same.is.that.same.to.be.true
@@ -13,14 +14,25 @@ describe("mockRibs | TURDy and LUTEy endpoints which Never Fail", () => {
     "takeonT",
     "takeupT",
     "unlistT",
-    "updateT",
-    "undoT"
+    "updateT"
   ).forEach(ribName => {
     it(`mock rib \`${ribName}\` should never fail`, () => {
       let ribT = mockRibs[ribName]
       let packet = { identifier: "god" }
       let cb = (code, thing) => {
         const { OK } = require(`../ribs/${ribName}`)
+        code.should.eql(OK)
+        thing.should.eql(packet)
+      }
+      ribT(packet, mockRibs, mockDb, cb)
+    })
+  })
+  new Array("undoT", "inflateT").forEach(ribName => {
+    it(`mock rib \`${ribName}\` should never fail`, () => {
+      let ribT = mockRibs[ribName]
+      let packet = { identifier: "god" }
+      let cb = (code, thing) => {
+        const { OK } = require(`../adons/${ribName}`)
         code.should.eql(OK)
         thing.should.eql(packet)
       }
@@ -39,7 +51,21 @@ describe("mockRibs | TURDy and LUTEy endpoints which Never Fail", () => {
   })
 })
 describe("mockSpine | SPINEY endpoints which Never Fail", () => {
-  new Array("authT", "engageT", "permitT").forEach(ribName => {
+  new Array("authT", "engageT").forEach(ribName => {
+    it(`mock spine \`${ribName}\` should never fail`, () => {
+      let ribT = mockRibs[ribName]
+      let packet = { identifier: "god" }
+      let cb = (code, ifFailErrMessage, thing) => {
+        const { OK } = require(`../spine/${ribName}`)
+        code.should.equal(OK)
+        ifFailErrMessage.should.eql("")
+        thing.should.eql({ ...Thing, ...packet })
+      }
+      let resultOfEngageT = packet
+      let args = ribT(ribName, packet, mockRibs, mockDb, cb, resultOfEngageT) 
+    })
+  })
+  new Array("permitT").forEach(ribName => {
     it(`mock spine \`${ribName}\` should never fail`, () => {
       let ribT = mockRibs[ribName]
       let packet = { identifier: "god" }

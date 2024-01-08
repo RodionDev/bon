@@ -18,26 +18,13 @@ describe("enlistT", () => {
       ...mockDb,
       read: mockDb.readById({ god, eden }),
     })
-    let cb = (wasSuccessfullyEngaged, ifFailErrMessage, enlistedData) => {
-      wasSuccessfullyEngaged.should.equal(OK)
-      ifFailErrMessage.should.equal("")
-      enlistedData.ItemList.numberOfItems.should.equal(1)
-      enlistedData.ItemList.itemListElement.length.should.equal(1)
-      enlistedData.ItemList.itemListElement[0].identifier.should.equal("eden")
+    let cb = (wasSuccessfullyEngaged, enlistedData) => {
+      wasSuccessfullyEngaged.should.eql(OK)
       enlistedData.should.eql({
-        ...god,
-        mainEntityOfPage: "Person",
-        ItemList: {
-          itemListElement: [
-            {
-              ...eden,
-              ItemList: {
-                itemListElement: [],
-              },
-            },
-          ],
-          numberOfItems: 1,
-        },
+        identifier: "enlistT_eden",
+        subjectOf: "eden",
+        mainEntityOfPage: "Action",
+        Action: { actionStatus: "CompletedActionStatus" },
       })
     }
     spareRibs.enlistT(eden, spareRibs, spareDb, cb)

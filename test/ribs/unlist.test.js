@@ -22,18 +22,13 @@ describe("unlistT", () => {
       ...mockDb,
       read: mockDb.readById({ eden, god }),
     })
-    let cb = (wasSuccessfullyEngaged, ifFailErrMessage, unlistedData) => {
-      wasSuccessfullyEngaged.should.equal(OK)
-      ifFailErrMessage.should.equal("")
-      unlistedData.ItemList.numberOfItems.should.equal(0)
-      unlistedData.ItemList.itemListElement.length.should.equal(0)
+    let cb = (wasSuccessfullyEngaged, unlistedData) => {
+      wasSuccessfullyEngaged.should.eql(OK)
       unlistedData.should.eql({
-        ...god,
-        mainEntityOfPage: "Person",
-        ItemList: {
-          itemListElement: [],
-          numberOfItems: 0,
-        },
+        identifier: "unlistT_eden",
+        subjectOf: "eden",
+        mainEntityOfPage: "Action",
+        Action: { actionStatus: "CompletedActionStatus" },
       })
     }
     spareRibs.unlistT(eden, spareRibs, spareDb, cb)

@@ -24,10 +24,20 @@ describe("listT", () => {
       ...mockDb,
       read: mockDb.readById({ eve, adam, lucifer, snake, apple, god }),
     })
-    let cb = (code, listedData) => {
+    let cb1 = (code, listedData) => {
       code.should.equal(OK)
       listedData.should.eql([eve, adam, lucifer, snake, apple])
     }
-    spareRibs.listT(god, spareRibs, spareDb, cb)
+    spareRibs.listT({ identifier: "god" }, spareRibs, spareDb, cb1)
+    let cb2 = (code, listedData) => {
+      code.should.equal(OK)
+      listedData.should.eql([eve, adam, lucifer])
+    }
+    spareRibs.listT(
+      { identifier: "god", mainEntityOfPage: "Person" },
+      spareRibs,
+      spareDb,
+      cb2
+    )
   })
 })
