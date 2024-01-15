@@ -1,3 +1,9 @@
+> The CRUD... All the TURDs... I/We're going to do them one. last. time. Squeeze out a bunch of world record, Randy Marsh sized CRAPs. Do them well. **Tim Bushell**
+Reusable _endpoints_ for **elioBones** projects.
+[elioBones Dogma](/eliobones/dogma.html)
+# Ribs
+Its core ribs are 10 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!
+## The TURDs
 <aside>
   <dl>
   <dd>Thither let us bend all our thoughts, to learn</dd>
@@ -5,15 +11,10 @@
   <dd>Or substance, how endued</dd>
 </dl>
 </aside>
-Reusable _endpoints_ for **elioBones** projects.
-[elioBones Dogma](/eliobones/dogma.html)
-# Ribs
-Its core ribs are 10 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!
-## The TURDs
 Four **elioEngage** operations - for working with the top level object - the **engaged** "thing":
 <article>
   <a href="/eliobones/bones/ribs/takeupT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/takeupT/favicon.png">
+  <img src="/eliobones/bones/ribs/takeupT/favicoff.png"/>
   <div>
   <h4>
   <code>takeupT</code>
@@ -24,7 +25,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 <article>
   <a href="/eliobones/bones/ribs/updateT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/updateT/favicon.png">
+  <img src="/eliobones/bones/ribs/updateT/favicoff.png"/>
   <div>
   <h4>
   <code>updateT</code>
@@ -35,7 +36,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 <article>
   <a href="/eliobones/bones/ribs/readT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/readT/favicon.png">
+  <img src="/eliobones/bones/ribs/readT/favicoff.png"/>
   <div>
   <h4>
   <code>readT</code>
@@ -46,7 +47,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 </article>
 <article>
   <a href="/eliobones/bones/ribs/destroyT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/destroyT/favicon.png">
+  <img src="/eliobones/bones/ribs/destroyT/favicoff.png"/>
   <div>
   <h4>
   <code>destroyT</code>
@@ -59,7 +60,7 @@ Four **elioEngage** operations - for working with the top level object - the **e
 Four **elioList** endpoints:
 <article>
   <a href="/eliobones/bones/ribs/listT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/listT/favicon.png">
+  <img src="/eliobones/bones/ribs/listT/favicoff.png"/>
   <div>
   <h4>
   <code>listT</code>
@@ -70,7 +71,7 @@ Four **elioList** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/unlistT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/unlistT/favicon.png">
+  <img src="/eliobones/bones/ribs/unlistT/favicoff.png"/>
   <div>
   <h4>
   <code>unlistT</code>
@@ -81,7 +82,7 @@ Four **elioList** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/takeonT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/takeonT/favicon.png">
+  <img src="/eliobones/bones/ribs/takeonT/favicoff.png"/>
   <div>
   <h4>
   <code>takeonT</code>
@@ -92,7 +93,7 @@ Four **elioList** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/enlistT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/enlistT/favicon.png">
+  <img src="/eliobones/bones/ribs/enlistT/favicoff.png"/>
   <div>
   <h4>
   <code>enlistT</code>
@@ -105,7 +106,7 @@ Four **elioList** endpoints:
 Two **elioSchema** endpoints:
 <article>
   <a href="/eliobones/bones/ribs/pingT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/pingT/favicon.png">
+  <img src="/eliobones/bones/ribs/pingT/favicoff.png"/>
   <div>
   <h4>
   <code>pingT</code>
@@ -116,7 +117,7 @@ Two **elioSchema** endpoints:
 </article>
 <article>
   <a href="/eliobones/bones/ribs/schemaT/star.png" target="_splash">
-  <img src="/eliobones/bones/ribs/schemaT/favicon.png">
+  <img src="/eliobones/bones/ribs/schemaT/favicoff.png"/>
   <div>
   <h4>
   <code>schemaT</code>
@@ -130,7 +131,7 @@ Two **elioSchema** endpoints:
 These are called internally by the endpoints, but could be called independently for other purposes:
 <article>
   <a href="/eliobones/bones/spine/engageT/star.png" target="_splash">
-  <img src="/eliobones/bones/spine/engageT/favicon.png">
+  <img src="/eliobones/bones/spine/engageT/favicoff.png"/>
   <div>
   <h4>
   <code>engageT</code>
@@ -141,7 +142,7 @@ These are called internally by the endpoints, but could be called independently 
 </article>
 <article>
   <a href="/eliobones/bones/spine/authT/star.png" target="_splash">
-  <img src="/eliobones/bones/spine/authT/favicon.png">
+  <img src="/eliobones/bones/spine/authT/favicoff.png"/>
   <div>
   <h4>
   <code>authT</code>
@@ -152,7 +153,7 @@ These are called internally by the endpoints, but could be called independently 
 </article>
 <article>
   <a href="/eliobones/bones/spine/permitT/star.png" target="_splash">
-  <img src="/eliobones/bones/spine/permitT/favicon.png">
+  <img src="/eliobones/bones/spine/permitT/favicoff.png"/>
   <div>
   <h4>
   <code>permitT</code>
@@ -167,7 +168,7 @@ As long as the endpoint acts upon a complete `thing`, with or without a list, an
 Here are, for instance, three **elioOptimize** endpoints, the very least we could do. We expect you'll need more. You'll have to write those yourself and share them. We'll share any we write here as well. But for now... We feel it's the least we owe.
 <article>
   <a href="/eliobones/bones/adons/inviteT/star.png" target="_splash">
-  <img src="/eliobones/bones/adons/inviteT/favicon.png">
+  <img src="/eliobones/bones/adons/inviteT/favicoff.png"/>
   <div>
   <h4>
   <code>inviteT</code>
@@ -178,7 +179,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </article>
 <article>
   <a href="/eliobones/bones/adons/optimizeT/star.png" target="_splash">
-  <img src="/eliobones/bones/adons/optimizeT/favicon.png">
+  <img src="/eliobones/bones/adons/optimizeT/favicoff.png"/>
   <div>
   <h4>
   <code>optimizeT</code>
@@ -189,7 +190,7 @@ Here are, for instance, three **elioOptimize** endpoints, the very least we coul
 </article>
 <article>
   <a href="/eliobones/bones/adons/undoT/star.png" target="_splash">
-  <img src="/eliobones/bones/adons/undoT/favicon.png">
+  <img src="/eliobones/bones/adons/undoT/favicoff.png"/>
   <div>
   <h4>
   <code>undoT</code>
