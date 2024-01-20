@@ -1,5 +1,5 @@
 > The development CRUD... All the TURDs... Do them one. last. time. Squeeze out a bunch of world record, Randy Marsh sized CRAPs. Do them well. **Tim Bushell**
-Reusable _endpoints_ for **elioBones** projects.
+**elioBones** provides reusable endpoints for manipulating a "thing"s data, according to the _design_pattern_.
 [elioBones Dogma](/eliobones/dogma.html)
 # Ribs
 Its core ribs are 10 _endpoints_. They enclose the beating heart of **elioWay** projects. You will engage them a lot!

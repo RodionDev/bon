@@ -17,11 +17,11 @@
   "dependencies": {
     "@elioway/dbhell": "^0.0.6",
     "@elioway/thing": "^1.1.3",
+    "lodash": "^4.17.21",
     "yargs": "^17.6.2"
   },
   "devDependencies": {
     "chai": "^4.3.7",
-    "lodash": "^4.17.21",
     "mocha": "^10.2.0",
     "prettier": "^2.8.1"
   },
