@@ -2,7 +2,7 @@ const { errorPayload, bigUp } = require("../../src/helpers")
 const OK = true
 const NOTOK = false
 const engageT = (rib, packet, ribs, db, cb) => {
-  console.count("the Real engageT")
+  console.assert("the Real engageT")
   let { identifier } = packet
   if (identifier) {
     db.read(packet, (readErr, engagedData) => {

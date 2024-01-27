@@ -9,33 +9,33 @@ mockDb.parseJsonToObject = str => JSON.parse(str)
 mockDb.canStore = (packet, cb) => true
 mockDb.exists = (packet, cb) => true
 mockDb.create = (packet, cb) => {
-  console.count("the Mock db.create")
+  console.assert("the Mock db.create")
   cb(WITHNOERROR, packet)
 }
 mockDb.read = (packet, cb) => {
-  console.count("the Mock db.read")
+  console.assert("the Mock db.read")
   cb(WITHNOERROR, packet)
 }
 mockDb.readBackWhatWasGiven = whatWasGiven => (packet, cb) => {
-  console.count("the Mock db.read returning whatWasGiven")
+  console.assert("the Mock db.read returning whatWasGiven")
   cb(WITHNOERROR, whatWasGiven)
 }
 mockDb.readById = packs => (packet, cb) => {
-  console.count("the Mock db.readById from my packs")
+  console.assert("the Mock db.readById from my packs")
   cb(WITHNOERROR, packs[packet.identifier])
 }
 mockDb.list = (packet, cb) => {
-  console.count("the Mock db.list")
+  console.assert("the Mock db.list")
   cb(WITHNOERROR, packet)
 }
 mockDb.update = (packet, cb) => {
-  console.count("the Mock db.update")
+  console.assert("the Mock db.update")
   packet.ItemList = packet.ItemList || { itemListElement: [] }
   packet.ItemList.numberOfItems = packet.ItemList.itemListElement.length
   cb(WITHNOERROR, packet)
 }
 mockDb.destroy = (packet, cb) => {
-  console.count("the Mock db.destroy")
+  console.assert("the Mock db.destroy")
   cb(WITHNOERROR)
 }
 module.exports = mockDb

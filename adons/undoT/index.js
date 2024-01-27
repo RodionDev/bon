@@ -2,7 +2,7 @@ const { errorPayload, hash } = require("../../src/helpers")
 const OK = 206
 const NOTOK = 417
 const undoT = (packet, ribs, db, cb) => {
-  console.count("the Real undoT")
+  console.assert("the Real undoT")
   const { authT } = ribs
   authT("undoT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {

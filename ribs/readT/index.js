@@ -2,7 +2,7 @@ const { errorPayload } = require("../../src/helpers")
 const OK = 200
 const NOTOK = 404
 const readT = (packet, ribs, db, cb) => {
-  console.count("the Real readT")
+  console.assert("the Real readT")
   const { authT } = ribs
   authT("readT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted) {

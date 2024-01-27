@@ -5,7 +5,7 @@ const OK = 206
 const NOTOK = 417
 const findFirstExisting = o => !!o
 const inviteT = (packet, ribs, db, cb) => {
-  console.count("the Real inviteT")
+  console.assert("the Real inviteT")
   let { authT, takeonT, takeupT } = ribs
   authT(
     "inviteT",

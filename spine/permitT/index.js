@@ -2,7 +2,7 @@ const { errorPayload } = require("../../src/helpers")
 const OK = true
 const NOTOK = false
 const permitT = (rib, engagedData, ribs, db, cb, packet) => {
-  console.count("the Real permitT")
+  console.assert("the Real permitT")
   let { engageT } = ribs
   const permitCheckT = govPermits => {
     let passing = [],

@@ -2,7 +2,7 @@ const { bigUp, errorPayload, hasRequiredFields } = require("../../src/helpers")
 const OK = 201
 const NOTOK = 406
 const takeupT = (packet, ribs, db, cb) => {
-  console.count("the Real takeupT")
+  console.assert("the Real takeupT")
   if (hasRequiredFields(packet, ["identifier"])) {
     let { identifier } = packet
     db.exists(packet, exists => {
