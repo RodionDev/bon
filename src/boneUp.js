@@ -1,4 +1,5 @@
 const { errorPayload } = require("./helpers")
+const initializeT = require("./initializeT")
 const boneUp = (rib, packet, ribs, db, cb) => {
   if (!ribs.hasOwnProperty(rib)) {
     cb(
@@ -11,7 +12,7 @@ const boneUp = (rib, packet, ribs, db, cb) => {
       )
     )
   } else {
-    ribs[rib](packet, ribs, db, cb)
+    ribs[rib](initializeT(packet), ribs, db, cb)
   }
 }
 module.exports = boneUp

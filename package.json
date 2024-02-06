@@ -23,7 +23,7 @@
   "devDependencies": {
     "chai": "^4.3.7",
     "mocha": "^10.2.0",
-    "prettier": "^2.8.1"
+    "prettier": "^2.8.3"
   },
   "homepage": "https://elioway.gitlab.io/eliobones/bones",
   "keywords": [
@@ -31,7 +31,7 @@
     "nodejs"
   ],
   "license": "MIT",
-  "main": "./bones/bones.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/eliobones/bones.git"
