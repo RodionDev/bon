@@ -10,3 +10,4 @@ const {
   ribsConfig,
   yargsBone,
 } = require("../src")
+console.log("bones")
