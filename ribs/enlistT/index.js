@@ -1,4 +1,4 @@
-const { successPayload, errorPayload } = require("../../src/helpers")
+const { successPayload, errorPayload, saveT } = require("../../src/helpers")
 const OK = 302
 const NOTOK = 304
 const enlistT = (packet, ribs, db, cb) => {
@@ -27,27 +27,7 @@ const enlistT = (packet, ribs, db, cb) => {
                   ...engagedData.ItemList.itemListElement,
                   engagedListItem,
                 ]
-                db.update(engagedData, (updateErr, updatedThing) => {
-                  if (!updateErr) {
-                    cb(OK, {
-                      identifier: "enlistT_" + identifier,
-                      subjectOf: engagedListItem.identifier,
-                      mainEntityOfPage: "Action",
-                      Action: {
-                        actionStatus: "CompletedActionStatus",
-                      },
-                    })
-                  } else {
-                    cb(
-                      NOTOK,
-                      errorPayload(
-                        "enlistT",
-                        `Could not enlist ${packet.identifier} Thing`,
-                        updateErr
-                      )
-                    )
-                  }
-                })
+                saveT("enlistT", engagedData, db, cb)
               } else {
                 cb(
                   NOTOK,

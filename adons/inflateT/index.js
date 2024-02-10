@@ -36,7 +36,7 @@ const inflateT = (packet, ribs, db, cb) => {
                   engagedData.ItemList.itemListElement.push(listedThing)
                 }
               })
-            updateT(engagedThingPath, db, () => readT(200, db, db))
+            saveT("inflateT", engagedData, db, () => {})
           })
           .catch(err => console.assert(!err, err)) 
       }) 

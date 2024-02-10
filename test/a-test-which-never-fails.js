@@ -1,5 +1,5 @@
 const should = require("chai").should()
-const mockDb = require("./mocks/mockDB.js")
+const mockDb = require("./mocks/mockDb.js")
 const mockRibs = require("./mocks/mockRibs.js")
 const Thing = require("./mocks/Thing.js")
 describe("Test | Never Fails", () => {
@@ -98,7 +98,7 @@ describe("mockSpine | SPINEY endpoints which Never Fail", () => {
     })
   })
 })
-describe("mockDB | An airquotes DB which Never Fails", () => {
+describe("mockDb | An airquotes DB which Never Fails", () => {
   it("mock `exists` should never fail", () => {
     let { exists } = mockDb
     let packet = { identifier: "god" }

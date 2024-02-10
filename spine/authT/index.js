@@ -3,7 +3,6 @@ const OK = true
 const NOTOK = false
 const authT = (rib, packet, ribs, db, cb) => {
   console.assert("the Real authT")
-  const { engageT, permitT } = ribs
   ribs.engageT(rib, packet, ribs, db, (exists, engageErr, engagedData) => {
     if (exists) {
       const permitCb = (permitted, permitErr, permittedData) => {
@@ -13,7 +12,7 @@ const authT = (rib, packet, ribs, db, cb) => {
           cb(NOTOK, errorPayload("authT", permitErr))
         }
       }
-      permitT(rib, engagedData, ribs, db, permitCb, packet)
+      ribs.permitT(rib, engagedData, ribs, db, permitCb, packet)
     } else {
       cb(
         NOTOK,

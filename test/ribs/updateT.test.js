@@ -1,5 +1,5 @@
 const should = require("chai").should()
-const mockDb = require("../mocks/mockDB.js")
+const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const Person = require("../mocks/Person.js")
 const updateT = require("../../ribs/updateT")

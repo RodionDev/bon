@@ -20,27 +20,7 @@ const unlistT = (packet, ribs, db, cb) => {
             engagedData.ItemList.itemListElement.filter(
               e => e.identifier !== identifier
             )
-          db.update(engagedData, (updateErr, updatedThing) => {
-            if (!updateErr) {
-              cb(OK, {
-                identifier: "unlistT_" + identifier,
-                subjectOf: identifier,
-                mainEntityOfPage: "Action",
-                Action: {
-                  actionStatus: "CompletedActionStatus",
-                },
-              })
-            } else {
-              cb(
-                NOTOK,
-                errorPayload(
-                  "unlistT",
-                  `Could not unlistT ${engagedIdentifier} Thing`,
-                  updateErr
-                )
-              )
-            }
-          })
+            saveT("unlistT", engagedData, db, cb)
         } else {
           cb(
             NOTOK,

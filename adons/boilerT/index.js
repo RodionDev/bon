@@ -1,4 +1,4 @@
-const { errorPayload, hash } = require("../../src/helpers")
+const { errorPayload, hash, saveT } = require("../../src/helpers")
 const OK = 3
 const NOTOK = 666
 const boil = engagedData => engagedData
@@ -11,7 +11,7 @@ const boilerT = (packet, ribs, db, cb) => {
     db,
     (permitted, authError, nowFullyEngagedData) => {
       if (permitted && db.canStore(nowFullyEngagedData)) {
-        cb(OK, boil(nowFullyEngagedData))
+        saveT("boilerT", boil(engagedData), db, cb)
       } else {
         cb(NOTOK, authError)
       }

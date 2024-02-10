@@ -2,6 +2,28 @@ const crypto = require("crypto")
 const ThingBuilder = require("@elioway/thing/thing-builder")
 const { schemaDomainUrl } = require("@elioway/thing/utils/get-schema")
 var helpers = {}
+helpers.saveT = (rib, thing, db, cb) => {
+  db.update(thing, (updateErr, updatedThing) => {
+    const { identifier }= thing
+    if (!updateErr) {
+      cb(200, {
+        identifier: rib + "_" + identifier,
+        subjectOf: identifier,
+        mainEntityOfPage: "Action",
+        Action: { actionStatus: "CompletedActionStatus" },
+      })
+    } else {
+      cb(
+        500,
+        errorPayload(
+          rib,
+          `Could not clean ${identifier} Thing`,
+          updateErr
+        )
+      )
+    }
+  })
+}
 helpers.bigUp = thing => {
   let thingBuilder = new ThingBuilder(
     "schemaorg/data/releases/9.0/schemaorg-all-http",

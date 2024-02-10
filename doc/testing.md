@@ -3,7 +3,7 @@
 TURDS operate on the fields of the **engaged** thing, and only take the **engaged** thing's identifier as a fixed parameter.
 ```
 const should = require("chai").should()
-const mockDb = require("../mocks/mockDB.js")
+const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const turdT = require("../../ribs/turdT")
 const OK = 7
@@ -28,7 +28,7 @@ Differences from TURD test:
 2. So must use a special "read" mock to ensure the "stored" things gets returned, not the "packet".
 ```
 const should = require("chai").should()
-const mockDb = require("../mocks/mockDB.js")
+const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const luteT = require("../../ribs/luteT")
 const { authT, engageT } = require("../../spine")

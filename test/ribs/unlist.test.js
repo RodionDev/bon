@@ -1,5 +1,5 @@
 const should = require("chai").should()
-const mockDb = require("../mocks/mockDB.js")
+const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
 const unlistT = require("../../ribs/unlistT")
 const { authT, engageT } = require("../../spine")

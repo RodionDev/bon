@@ -18,6 +18,7 @@
     "@elioway/dbhell": "^0.0.6",
     "@elioway/thing": "^1.1.5",
     "lodash": "^4.17.21",
+    "lodash-clean": "^2.2.3",
     "yargs": "^17.6.2"
   },
   "devDependencies": {
@@ -25,13 +26,17 @@
     "mocha": "^10.2.0",
     "prettier": "^2.8.3"
   },
+  "exports": {
+    ".": "./index.js",
+    "./testutils": "./test/mocks/index.js"
+  },
   "homepage": "https://elioway.gitlab.io/eliobones/bones",
   "keywords": [
     "schema",
     "nodejs"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "./index.js",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/eliobones/bones.git"
@@ -42,6 +47,6 @@
     "clean": "rm -rf ./dist && mkdir dist",
     "dev": "nodemon --exec babel-node ./bones/server.js",
     "prettier": "prettier --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\"",
-    "test": "mocha ./test/* --exit --timeout 10000"
+    "test": "mocha ./test/* --exit --timeout 3000"
   }
 }
