@@ -15,8 +15,8 @@
   },
   "bin": "./bin/index.js",
   "dependencies": {
-    "@elioway/dbhell": "^0.0.6",
-    "@elioway/thing": "^1.1.5",
+    "@elioway/dbhell": "^1.0.0",
+    "@elioway/thing": "^1.1.8",
     "lodash": "^4.17.21",
     "lodash-clean": "^2.2.3",
     "yargs": "^17.6.2"
