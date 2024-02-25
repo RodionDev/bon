@@ -1,2 +1,2 @@
 # bones Prerequisites
-- [elioBones Prerequisites](/eliobones/prerequisites.html)
+- [eliobones Prerequisites](/eliobones/prerequisites.html)

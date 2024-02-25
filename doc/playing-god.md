@@ -1,6 +1,6 @@
 # Playing GOD
 What follows is a set of example commands. Reading them will give you an idea of how **bones** apps can be consumed by a client (in this case a CLI) - but these calls could be from a website or a desktop program. In **bones** we have wired these calls into a CLI API written in NodeJs.
-The imaginary scenario below - telling the story of a "Paradise Lost"-like biblical version Genesis with characters being _engaged_ and _listed_, _iteratively_ **the elioWay** - is whimsical in nature. It's not meant to be a useful app: only demonstrate how data operatations work in **elioBones**. These just give you a flavour of the way these commands combine.
+The imaginary scenario below - telling the story of a "Paradise Lost"-like biblical version Genesis with characters being _engaged_ and _listed_, _iteratively_ **the elioWay** - is whimsical in nature. It's not meant to be a useful app: only demonstrate how data operatations work in **eliobones**. These just give you a flavour of the way these commands combine.
 Run them, and see what changes. The database for this prototype are simple, pretty print JSON files in the `.env`'s `$DATADIR` directory - just open them in your IDE.
 - You can run commands in groups, or one at a time.
 - Run them in order is best, the first time...
