@@ -1,12 +1,13 @@
 const boneUp = require("./boneUp")
-const envVarsLoader = require("./envVarsLoader")
+const { cfgDefault, boneEnvVarsLoader } = require("./boneEnvVarsLoader")
 const helpers = require("./helpers")
 const objCompare = require("./objCompare")
 const ribsConfig = require("./ribsConfig")
 const yargsBone = require("./yargsBone")
 module.exports = {
   boneUp,
-  envVarsLoader,
+  cfgDefault,
+  boneEnvVarsLoader,
   helpers,
   objCompare,
   ribsConfig,

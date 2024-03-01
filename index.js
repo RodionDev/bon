@@ -4,7 +4,7 @@ const spine = require("./spine")
 const flesh = require("./flesh")
 const {
   boneUp,
-  envVarsLoader,
+  boneEnvVarsLoader,
   helpers,
   objCompare,
   ribsConfig,
@@ -16,7 +16,7 @@ module.exports = {
   spine,
   flesh,
   boneUp,
-  envVarsLoader,
+  boneEnvVarsLoader,
   helpers,
   objCompare,
   ribsConfig,
