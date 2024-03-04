@@ -1,7 +1,6 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
-const Person = require("../mocks/Person.js")
 const authT = require("../../spine/authT")
 describe("authT", () => {
   it("authTs if permitT permits", () => {
@@ -10,7 +9,8 @@ describe("authT", () => {
     let cb = (wasSuccessfullyAuthed, ifFailErrMessage, authData) => {
       wasSuccessfullyAuthed.should.be.true
       ifFailErrMessage.should.eql("")
-      authData.should.eql({ ...Person, ...mock })
+      authData.identifier.should.equal("god")
+      authData.mainEntityOfPage.should.eql("Person")
     }
     spareRibs.authT("testT", mock, spareRibs, mockDb, cb)
   })

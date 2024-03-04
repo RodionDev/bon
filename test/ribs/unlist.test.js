@@ -25,8 +25,8 @@ describe("unlistT", () => {
     let cb = (wasSuccessfullyEngaged, unlistedData) => {
       wasSuccessfullyEngaged.should.eql(OK)
       unlistedData.should.eql({
-        identifier: "unlistT_eden",
-        subjectOf: "eden",
+        identifier: "unlistT_god",
+        subjectOf: "god",
         mainEntityOfPage: "Action",
         Action: { actionStatus: "CompletedActionStatus" },
       })

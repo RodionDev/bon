@@ -11,7 +11,7 @@ const paradiseLosterT = (packet, ribs, db, cb) => {
     db,
     (permitted, authError, nowFullyEngagedData) => {
       if (permitted && db.canStore(nowFullyEngagedData)) {
-        saveT("inflateT", paradiseLost(nowFullyEngagedData), db, cb)
+        saveT("inflateT", paradiseLost(nowFullyEngagedData), db, cb, OK, NOTOK)
       } else {
         cb(NOTOK, authError)
       }

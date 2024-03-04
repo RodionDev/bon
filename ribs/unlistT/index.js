@@ -1,4 +1,4 @@
-const { errorPayload } = require("../../src/helpers")
+const { errorPayload, saveT } = require("../../src/helpers")
 const OK = 301
 const NOTOK = 304
 const unlistT = (packet, ribs, db, cb) => {
@@ -20,7 +20,7 @@ const unlistT = (packet, ribs, db, cb) => {
             engagedData.ItemList.itemListElement.filter(
               e => e.identifier !== identifier
             )
-            saveT("unlistT", engagedData, db, cb)
+          saveT("unlistT", engagedData, db, cb, OK, NOTOK)
         } else {
           cb(
             NOTOK,

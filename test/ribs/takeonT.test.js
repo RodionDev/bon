@@ -1,7 +1,6 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
-const Person = require("../mocks/Person.js")
 const takeonT = require("../../ribs/takeonT")
 const { authT, engageT } = require("../../spine")
 const OK = 201
@@ -26,7 +25,6 @@ describe("takeonT", () => {
       takenonData.ItemList.itemListElement.length.should.equal(1)
       takenonData.ItemList.itemListElement[0].identifier.should.equal("eden")
       takenonData.should.eql({
-        ...Person,
         ...god,
         mainEntityOfPage: "Person",
         ItemList: {

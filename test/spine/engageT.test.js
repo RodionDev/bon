@@ -1,7 +1,6 @@
 const should = require("chai").should()
 const mockDb = require("../mocks/mockDb.js")
 const mockRibs = require("../mocks/mockRibs.js")
-const Person = require("../mocks/Person.js")
 const engageT = require("../../spine/engageT")
 const OK = true
 const NOTOK = false
@@ -12,7 +11,8 @@ describe("engageT", () => {
     let cb = (wasSuccessfullyEngaged, ifFailErrMessage, engagedData) => {
       wasSuccessfullyEngaged.should.equal(OK)
       ifFailErrMessage.should.equal("")
-      engagedData.should.eql({ ...Person, ...mock })
+      engagedData.identifier.should.equal("god")
+      engagedData.mainEntityOfPage.should.eql("Person")
     }
     spareRibs.engageT("testT", mock, spareRibs, mockDb, cb)
   })

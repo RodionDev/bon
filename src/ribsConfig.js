@@ -29,6 +29,6 @@ const ribsConfig = {
   optimizeT: { aliases: ["actionStatusOfT"], positionals: ["identifier"] },
   undoT: { aliases: ["undo"], positionals: ["identifier"] },
   anonifyT: { aliases: ["anon"], positionals: ["identifier"] },
-  cleanT:  { aliases: ["clean"], positionals: ["identifier"] },
+  cleanT: { aliases: ["clean"], positionals: ["identifier"] },
 }
 module.exports = ribsConfig

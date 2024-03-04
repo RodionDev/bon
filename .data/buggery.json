@@ -1,0 +1,49 @@
+{
+  "additionalType": "",
+  "alternateName": "",
+  "description": "",
+  "disambiguatingDescription": "",
+  "identifier": "buggery",
+  "image": "",
+  "mainEntityOfPage": "Thing",
+  "name": "",
+  "potentialAction": "",
+  "sameAs": "",
+  "subjectOf": "buggery",
+  "url": "",
+  "ItemList": {
+    "itemListElement": [
+      {
+        "identifier": "DANGER_LOCKMEDOWN",
+        "mainEntityOfPage": "GovernmentPermit",
+        "Permit": {
+          "issuedBy": "buggery",
+          "issuedThrough": "DANGER_LOCKMEDOWN",
+          "permitAudience": "*",
+          "validFor": "*"
+        }
+      },
+      {
+        "additionalType": "",
+        "alternateName": "",
+        "description": "",
+        "disambiguatingDescription": "",
+        "identifier": "lubrication",
+        "image": "",
+        "mainEntityOfPage": "Thing",
+        "name": "",
+        "potentialAction": "",
+        "sameAs": "",
+        "subjectOf": "buggery",
+        "url": "",
+        "ItemList": {
+          "itemListElement": [],
+          "itemListOrder": "",
+          "numberOfItems": 0
+        }
+      }
+    ],
+    "itemListOrder": "",
+    "numberOfItems": 2
+  }
+}

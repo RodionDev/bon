@@ -11,7 +11,7 @@ const boilerT = (packet, ribs, db, cb) => {
     db,
     (permitted, authError, nowFullyEngagedData) => {
       if (permitted && db.canStore(nowFullyEngagedData)) {
-        saveT("boilerT", boil(engagedData), db, cb)
+        saveT("boilerT", boil(engagedData), db, cb, OK, NOTOK)
       } else {
         cb(NOTOK, authError)
       }

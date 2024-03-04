@@ -7,7 +7,7 @@ const updateT = (packet, ribs, db, cb) => {
   const { authT } = ribs
   authT("updateT", packet, ribs, db, (permitted, authError, engagedData) => {
     if (permitted && db.canStore(engagedData)) {
-      saveT("updateT", merge(engagedData, packet), db, cb)
+      saveT("updateT", merge(engagedData, packet), db, cb, OK, NOTOK)
     } else {
       cb(NOTOK, authError)
     }

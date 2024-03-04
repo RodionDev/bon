@@ -28,7 +28,7 @@ const anonifyT = (packet, ribs, db, cb) => {
       if (!foundPermits.length) {
         engagedData.ItemList.itemListElement.push(anonymousPermit)
       }
-      saveT("anonifyT", engagedData, db, cb)
+      saveT("anonifyT", engagedData, db, cb, OK, NOTOK)
     } else {
       cb(NOTOK, errorPayload("anonifyT", `Thing missing required fields`))
     }
