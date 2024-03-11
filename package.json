@@ -6,7 +6,7 @@
   },
   "description": "Reusable Code for eliobones projects, **the elioWay**.",
   "name": "@elioway/bones",
-  "version": "2.1.12",
+  "version": "2.1.13",
   "tew": {
     "lifecycle": "alpha",
     "chisel": {
