@@ -3,7 +3,7 @@ const boneEnvVarsLoader = (readEnvErr, envData, commandDir) => {
   let cfg = {
     APPIDENTIFIER: commandDir.split(path.sep).pop(),
     DATADIR: path.join(commandDir, ".data"),
-    MEDIADIR: path.join(commandDir, "gallery"),
+    MEDIADIR: path.join(commandDir, "media"),
     PORT: 3000,
   }
   let envVars = {}
