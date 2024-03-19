@@ -11,7 +11,6 @@ const commandDir = process.cwd()
 const allDefaultRibs = { ...ribs, ...spine, ...adons }
 fs.readFile(path.join(commandDir, ".env"), "utf8", (readEnvErr, envData) => {
   let CFG = boneEnvVarsLoader(readEnvErr, envData, commandDir)
-  console.log({ CFG })
   let commandHandler = packet => boneUp(packet, allDefaultRibs, db, flesh)
   db.initialize(CFG, () => yargsBone("bones", ribsConfig, commandHandler))
 })
