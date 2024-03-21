@@ -18,7 +18,6 @@
     "@elioway/dbhell": "^1.0.0",
     "@elioway/thing": "^1.1.8",
     "lodash": "^4.17.21",
-    "lodash-clean": "^2.2.3",
     "yargs": "^17.6.2"
   },
   "devDependencies": {
@@ -46,7 +45,7 @@
     "build": "npm run clean && babel ./bones --out-dir dist",
     "clean": "rm -rf ./dist && mkdir dist",
     "dev": "nodemon --exec babel-node ./bones/server.js",
-    "prettier": "prettier --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\"",
+    "prettier": "prettier --list-different --write \"**/*.{css,html,js,json,md,mjs,scss,ts,yaml}\" \"!package.json\"",
     "test": "mocha ./test/* --exit --timeout 3000"
   }
 }
